@@ -24,3 +24,50 @@ var Promise = require('es6-promise').Promise
     // new Router()
 // }
 
+import Backbone from 'backbone'
+import React, {Component} from 'react'
+import $ from 'jquery'
+
+var User = Backbone.Model.extend({
+  defaults: {
+    name: '',
+    email: ''
+  }
+})
+
+var Users = Backbone.Collection.extend({
+  model: User,
+  url: '/home'
+})
+
+var u = new Users();
+
+class App extends Component {
+  render() {
+    return(<div>
+      <UsersView />
+    </div>)
+  }
+}
+
+class UsersView extends Component {
+  render() {
+    return (<div>
+      Wut
+    </div>
+    )
+  }
+}
+
+var Router = Backbone.Router.extend({
+  routes: {
+    '*default': 'showHome'
+  },
+
+  showHome: function() {
+    u.fetch()
+    React.render(<App />, document.querySelector('.container'))
+  }
+})
+
+var r = new Router();
