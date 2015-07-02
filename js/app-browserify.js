@@ -23,6 +23,8 @@ import Backbone from 'backbone'
 import React, {Component} from 'react'
 import $ from 'jquery'
 
+var remote = 'http://water-bear-contacts.herokuapp.com'
+
 var User = Backbone.Model.extend({
   defaults: {
     name: "",
@@ -36,6 +38,9 @@ var User = Backbone.Model.extend({
     linkedin: "",
     github: "",
     instagram: ""
+  },
+  url: function() {
+    return `/users/${this.id}`
   }
 })
 
@@ -59,7 +64,7 @@ class App extends Component {
   }
   render() {
     return(<div>
-      <UsersView data={u} />
+      <UsersView data={this.props.data} />
     </div>)
   }
 }
@@ -77,7 +82,7 @@ class UsersView extends Component {
   }
   render() {
     return (<div>
-      {this.props.data.map((model) => <UserView data={model} />)}
+      {this.props.data.map((model) => <a href={`#users/${model.id}`}><UserView data={model} /></a>)}
     </div>
     )
   }
@@ -103,12 +108,20 @@ class UserView extends Component {
 
 var Router = Backbone.Router.extend({
   routes: {
+    'users/:id': 'showUser',
     '*default': 'showHome'
   },
 
   showHome: function() {
     u.fetch()
-    React.render(<App />, document.querySelector('.container'))
+    React.render(<App data={u} />, document.querySelector('.container'))
+  },
+
+  showUser: function(id) {
+    var model = new User({ id: id })
+    model.fetch().then(() => {
+      React.render(<UserView data={model} />, document.querySelector('.container'))
+    })
   },
 
   initialize: function(){
