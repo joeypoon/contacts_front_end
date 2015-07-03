@@ -39,8 +39,12 @@ var User = Backbone.Model.extend({
     github: "",
     instagram: ""
   },
+
   url: function() {
     return `/users/${this.id}`
+  },
+  urlRoot: function(){
+    return `${remote}users`
   }
 })
 
@@ -106,15 +110,59 @@ class UserView extends Component {
   }
 }
 
+class NewUserForm extends Component {
+  constructor(...p){
+    super(...p)
+  }
+
+  _create(e) {
+    e.preventDefault()
+    var name = findDOMNode(this.refs.name).value
+    var email = findDOMNode(this.refs.email).value
+    var password = findDOMNode(this.refs.password).value
+    var password_confirmation = findDOMNode(this.refs.password_confirmation).value
+
+    var model = new User({
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation
+    })
+
+    model.save().then(() => {
+      findDOMNode(this.refs.name).value = ''
+      findDOMNode(this.refs.email).value = ''
+      findDOMNode(this.refs.password).value = ''
+      findDOMNode(this.refs.password_confirmation).value = ''
+      //fetch?
+    })
+  }
+
+  render() {
+    return (<div>
+      <form onSubmit={(e) => this._create(e)}>
+        <label for="name">Name</label>
+        <input type="text" ref="name" name="name" />
+        <label for="email">Email</label>
+        <input type="text" ref="email" name="email" />
+        <label for="password">Password</label>
+        <input type="text" ref="password" name="password" />
+        <label for="password_confirmation">Confirm Password</label>
+        <input type="text" ref="password_confirmation" name="password_confirmation" />
+      </form>
+    </div>)
+  }
+}
+
 var Router = Backbone.Router.extend({
   routes: {
+    'users/new': 'newUser',
     'users/:id': 'showUser',
     '*default': 'showHome'
   },
 
-  showHome: function() {
-    u.fetch()
-    React.render(<App data={u} />, document.querySelector('.container'))
+  newUser: function() {
+    React.render(<NewUserForm />, document.querySelector('.container'))
   },
 
   showUser: function(id) {
@@ -122,6 +170,11 @@ var Router = Backbone.Router.extend({
     model.fetch().then(() => {
       React.render(<UserView data={model} />, document.querySelector('.container'))
     })
+  },
+
+  showHome: function() {
+    u.fetch()
+    React.render(<App data={u} />, document.querySelector('.container'))
   },
 
   initialize: function(){

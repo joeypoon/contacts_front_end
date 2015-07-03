@@ -34,6 +34,7 @@ function startServer() {
     // proxify('/brewery/styles', 'https://api.brewerydb.com/v2/styles');
     var remote = 'http://water-bear-contacts.herokuapp.com'
     proxify('/home', remote+'/users.json')
+    // proxify('/users/new', remote+'/users/new.json')
     proxify('/users/:id', remote+'/users/:id.json')
 
     // all environments
