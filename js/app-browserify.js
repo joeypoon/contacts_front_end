@@ -24,6 +24,7 @@ import React, {Component} from 'react'
 import $ from 'jquery'
 
 var remote = 'http://water-bear-contacts.herokuapp.com'
+// var remote = 'http://localhost:3000'
 
 var User = Backbone.Model.extend({
   defaults: {
@@ -127,19 +128,13 @@ class NewUserForm extends Component {
     var model = new User({
       user: {
         name: name,
-        email: email,
+        email: email.toLowerCase(),
         password: password,
         password_confirmation: password_confirmation
       }
     })
 
-    model.save().then(() => {
-      React.findDOMNode(this.refs.name).value = ''
-      React.findDOMNode(this.refs.email).value = ''
-      React.findDOMNode(this.refs.password).value = ''
-      React.findDOMNode(this.refs.password_confirmation).value = ''
-      //fetch?
-    })
+    $.post(`${remote}users`, model.toJSON())
   }
 
   render() {
