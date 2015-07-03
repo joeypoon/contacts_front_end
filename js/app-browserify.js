@@ -27,17 +27,19 @@ var remote = 'http://water-bear-contacts.herokuapp.com'
 
 var User = Backbone.Model.extend({
   defaults: {
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    city: "",
-    state: "",
-    facebook: "",
-    twitter: "",
-    linkedin: "",
-    github: "",
-    instagram: ""
+    user: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      city: "",
+      state: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      github: "",
+      instagram: ""
+    }
   },
 
   url: function() {
@@ -117,23 +119,25 @@ class NewUserForm extends Component {
 
   _create(e) {
     e.preventDefault()
-    var name = findDOMNode(this.refs.name).value
-    var email = findDOMNode(this.refs.email).value
-    var password = findDOMNode(this.refs.password).value
-    var password_confirmation = findDOMNode(this.refs.password_confirmation).value
+    var name = React.findDOMNode(this.refs.name).value
+    var email = React.findDOMNode(this.refs.email).value
+    var password = React.findDOMNode(this.refs.password).value
+    var password_confirmation = React.findDOMNode(this.refs.password_confirmation).value
 
     var model = new User({
-      name: name,
-      email: email,
-      password: password,
-      password_confirmation: password_confirmation
+      user: {
+        name: name,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
     })
 
     model.save().then(() => {
-      findDOMNode(this.refs.name).value = ''
-      findDOMNode(this.refs.email).value = ''
-      findDOMNode(this.refs.password).value = ''
-      findDOMNode(this.refs.password_confirmation).value = ''
+      React.findDOMNode(this.refs.name).value = ''
+      React.findDOMNode(this.refs.email).value = ''
+      React.findDOMNode(this.refs.password).value = ''
+      React.findDOMNode(this.refs.password_confirmation).value = ''
       //fetch?
     })
   }
@@ -144,11 +148,12 @@ class NewUserForm extends Component {
         <label for="name">Name</label>
         <input type="text" ref="name" name="name" />
         <label for="email">Email</label>
-        <input type="text" ref="email" name="email" />
+        <input type="email" ref="email" name="email" />
         <label for="password">Password</label>
-        <input type="text" ref="password" name="password" />
+        <input type="password" ref="password" name="password" />
         <label for="password_confirmation">Confirm Password</label>
-        <input type="text" ref="password_confirmation" name="password_confirmation" />
+        <input type="password" ref="password_confirmation" name="password_confirmation" />
+        <button>Create</button>
       </form>
     </div>)
   }
