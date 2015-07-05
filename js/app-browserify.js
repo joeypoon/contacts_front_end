@@ -134,7 +134,9 @@ class NewUserForm extends Component {
       }
     })
 
-    $.post(`${remote}/users`, model.toJSON())
+    $.post(`${remote}/users`, model.toJSON()).then(function(data) {
+      sessionStorage.setItem('current_user', data.email)
+    })
   }
 
   render() {
