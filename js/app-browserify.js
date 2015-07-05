@@ -134,7 +134,7 @@ class NewUserForm extends Component {
       }
     })
 
-    $.post(`${remote}users`, model.toJSON())
+    $.post(`${remote}/users`, model.toJSON())
   }
 
   render() {
@@ -154,11 +154,41 @@ class NewUserForm extends Component {
   }
 }
 
+class LoginForm extends Component {
+  constructor(...p){
+    super(...p)
+  }
+
+  _create(e) {
+    e.preventDefault()
+    var email = React.findDOMNode(this.refs.email).value
+    var password = React.findDOMNode(this.refs.password).value
+    $.post(`http://locahost:3000/login.json`, { user: { email: email, password: password } })
+  }
+
+  render() {
+    return (<div>
+      <form onSubmit={(e) => this._create(e)}>
+        <label for="email">Email</label>
+        <input type="email" ref="email" name="email" />
+        <label for="password">Password</label>
+        <input type="password" ref="password" name="password" />
+        <button>Login</button>
+      </form>
+    </div>)
+  }
+}
+
 var Router = Backbone.Router.extend({
   routes: {
+    'login': 'login',
     'users/new': 'newUser',
     'users/:id': 'showUser',
     '*default': 'showHome'
+  },
+
+  login: function() {
+    React.render(<LoginForm />, document.querySelector('.container'))
   },
 
   newUser: function() {
