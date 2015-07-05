@@ -163,7 +163,7 @@ class LoginForm extends Component {
     e.preventDefault()
     var email = React.findDOMNode(this.refs.email).value
     var password = React.findDOMNode(this.refs.password).value
-    $.post(`http://locahost:3000/login.json`, { user: { email: email, password: password } })
+    $.post(`${remote}/login.json`, { user: { email: email, password: password } })
   }
 
   render() {
