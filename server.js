@@ -32,7 +32,7 @@ function startServer() {
     // examples:
     // proxify('/yummly/recipes', 'http://api.yummly.com/v1/api/recipes');
     // proxify('/brewery/styles', 'https://api.brewerydb.com/v2/styles');
-    var remote = 'http://water-bear-contacts.herokuapp.com'
+    var remote = 'https://contacts-back-end.herokuapp.com'
     // var remote = 'http://localhost:3000'
     proxify('/home', remote+'/users.json')
     proxify('/users/:id', remote+'/users/:id.json')

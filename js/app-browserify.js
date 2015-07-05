@@ -23,7 +23,7 @@ import Backbone from 'backbone'
 import React, {Component} from 'react'
 import $ from 'jquery'
 
-var remote = 'http://water-bear-contacts.herokuapp.com'
+var remote = 'https://contacts-back-end.herokuapp.com'
 // var remote = 'http://localhost:3000'
 
 var User = Backbone.Model.extend({
