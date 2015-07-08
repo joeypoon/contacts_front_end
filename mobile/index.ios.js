@@ -10,39 +10,39 @@ var {
   AppRegistry,
   Image,
   ListView,
+  NavigatorIOS,
   StyleSheet,
   Text,
   View,
 } = React;
 
+
+
 var REQUEST_URL = 'https://contacts-back-end.herokuapp.com',
     REQUEST_USERS = 'https://contacts-back-end.herokuapp.com/users.json'
 
 
-// class App extends React.Component{
-//   constructor(props){
-//     super(props)
-//   }
+class AppNavigation extends React.Component{
+  constructor(props){
+    super(props)
+  }
 
-//   render(){
-//     <Navigator
-//       initialRoute={
-//         {
-//           name: 'AppNavigator', 
-//           index: 0
-//         }
-//       }
-//       renderScene={(route, navigator) => 
-//         <Contacts
-//           name={route.name}
-//         />
-//       }
-//     />
-//   }
-// }
+  render(){
+    return(
+      <NavigatorIOS
+        style={styles.wrapper}
+        initialRoute={
+          {
+            component: ProximityList,
+            title: 'Please Router Work'
+          }
+        }
+      />
+    )
+  }
+}
 
-
-class Contacts extends React.Component{
+class ProximityList extends React.Component{
   constructor(props){
     super(props)
     this.state = {
@@ -89,6 +89,7 @@ class Contacts extends React.Component{
 
 
   render() {
+    console.log('Rendering List')
     if (!this.state.loaded) {
       return this._renderLoadingView();
     }
@@ -104,6 +105,9 @@ class Contacts extends React.Component{
 }
 
 var styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   container: {
   },
   usersContainer: {
@@ -135,5 +139,5 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('Contacts', () => Contacts);
+AppRegistry.registerComponent('Contacts', () => AppNavigation);
 
