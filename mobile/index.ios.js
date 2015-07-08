@@ -5,6 +5,7 @@
 'use strict';
 
 var React = require('react-native');
+
 var {
   AppRegistry,
   Image,
@@ -14,21 +15,47 @@ var {
   View,
 } = React;
 
-var REQUEST_URL = 'https://contacts-back-end.herokuapp.com'
-var REQUEST_USERS = 'https://contacts-back-end.herokuapp.com/users.json'
+var REQUEST_URL = 'https://contacts-back-end.herokuapp.com',
+    REQUEST_USERS = 'https://contacts-back-end.herokuapp.com/users.json'
 
-var Contacts = React.createClass({
 
-  getInitialState: function() {
-    return { dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}), loaded: false }
-    loaded: false
-  },
+// class App extends React.Component{
+//   constructor(props){
+//     super(props)
+//   }
 
-  componentDidMount: function() {
-    this.fetchData();
-  },
+//   render(){
+//     <Navigator
+//       initialRoute={
+//         {
+//           name: 'AppNavigator', 
+//           index: 0
+//         }
+//       }
+//       renderScene={(route, navigator) => 
+//         <Contacts
+//           name={route.name}
+//         />
+//       }
+//     />
+//   }
+// }
 
-  fetchData: function() {
+
+class Contacts extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}), 
+      loaded: false 
+    }
+  }
+
+  componentDidMount(){
+    this._fetchData();
+  }
+
+  _fetchData(){
     fetch(REQUEST_USERS)
       .then((response) => response.json())
       .then((responseData) => {
@@ -38,25 +65,9 @@ var Contacts = React.createClass({
         })
       })
       .done()
-  },
+  }
 
-  render: function() {
-
-    if (!this.state.loaded) {
-      return this.renderLoadingView();
-    }
-
-    return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderUser}
-        style={styles.listView}
-      />
-    )
-
-  },
-
-  renderLoadingView: function() {
+  _renderLoadingView() {
     return (
       <View style={styles.container}>
         <Text>
@@ -64,10 +75,9 @@ var Contacts = React.createClass({
         </Text>
       </View>
     )
-  },
+  }
 
-  renderUser: function(user) {
-
+  _renderUser(user) {
     return (
       <View style={styles.usersContainer}>
         <Image style={styles.image}/>
@@ -75,9 +85,23 @@ var Contacts = React.createClass({
         <Text style={styles.email}>{user.email}</Text>
       </View>
     );
-
   }
-});
+
+
+  render() {
+    if (!this.state.loaded) {
+      return this._renderLoadingView();
+    }
+
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this._renderUser}
+        style={styles.listView}
+      />
+    )
+  }
+}
 
 var styles = StyleSheet.create({
   container: {
@@ -112,3 +136,4 @@ var styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('Contacts', () => Contacts);
+
