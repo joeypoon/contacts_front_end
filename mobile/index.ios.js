@@ -7,6 +7,7 @@
 var React = require('react-native');
 var {
   AppRegistry,
+  Image,
   ListView,
   StyleSheet,
   Text,
@@ -68,29 +69,40 @@ var Contacts = React.createClass({
   renderUser: function(user) {
 
     return (
-      <View style={styles.container}>
+      <View style={styles.usersContainer}>
+        <Image style={styles.image}/>
         <Text style={styles.name}>{user.name}</Text>
         <Text style={styles.email}>{user.email}</Text>
       </View>
     );
+
   }
 });
 
 var styles = StyleSheet.create({
   container: {
+  },
+  usersContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    padding: 10,
+    borderBottomWidth: 0,
+    borderWidth: 1,
+    borderColor: '#000',
+  },
+  image: {
+    height: 50,
+    width: 50,
+    backgroundColor: '#333',
+    marginRight: 10,
   },
   name: {
-    fontSize: 20,
+    fontSize: 14,
     marginBottom: 8,
     textAlign: 'center',
   },
   email: {
+    fontSize:10,
     textAlign: 'center',
   },
   listView: {
