@@ -8,12 +8,13 @@ var React = require('react-native');
 
 var {
   AppRegistry,
-  Image,
   ListView,
-  NavigatorIOS,
+  Image,
+  Navigator,
   StyleSheet,
   Text,
   View,
+  TouchableHighlight
 } = React;
 
 
@@ -29,13 +30,16 @@ class AppNavigation extends React.Component{
 
   render(){
     return(
-      <NavigatorIOS
-        style={styles.wrapper}
-        initialRoute={
-          {
-            component: ProximityList,
-            title: 'Please Router Work'
-          }
+      <Navigator
+        ref="navigator"
+        style={styles.container}
+        initialRoute={{name: 'First Route',index: 0}}
+        renderScene={(route, navigator) =>
+          <ProximityList
+            name={route.name}
+            route={route}
+            navigator={navigator}
+          />
         }
       />
     )
@@ -77,13 +81,25 @@ class ProximityList extends React.Component{
     )
   }
 
-  _renderUser(user) {
+  _selectUser(user){
+    console.log(user)
+    var nextIndex = this.props.route.index + 1
+    this.props.navigator.push({
+      name: "WAT",
+      index: nextIndex
+    })
+  }
+
+  _renderUser(user, sectionId, rowId) {
+    console.log(user, sectionId, rowId, this)
     return (
-      <View style={styles.usersContainer}>
-        <Image style={styles.image}/>
-        <Text style={styles.name}>{user.name}</Text>
-        <Text style={styles.email}>{user.email}</Text>
-      </View>
+      <TouchableHighlight onPress={() => this._selectUser(user)}>
+        <View style={styles.usersContainer}>
+          <Image style={styles.image}/>
+          <Text style={styles.name}>{user.name}</Text>
+          <Text style={styles.email}>{user.email}</Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 
@@ -95,9 +111,10 @@ class ProximityList extends React.Component{
     }
 
     return (
+      // myRoutes[this.props.route.name]
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this._renderUser}
+        renderRow={this._renderUser.bind(this)}
         style={styles.listView}
       />
     )
@@ -105,10 +122,8 @@ class ProximityList extends React.Component{
 }
 
 var styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
   container: {
+    flex: 1,
   },
   usersContainer: {
     flex: 1,
