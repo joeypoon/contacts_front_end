@@ -36,14 +36,14 @@ class LoginView extends React.Component{
 		  	body: JSON.stringify({
 		  		user: {
 		    		password: this.state.newPassword,
-		    		password_confirmation: this.state.newPassword_confirmation,
-	    			contact_info:{
-	    				email: this.state.newEmail
-	    			}
-		  		}
-  			})
-		})
-	}
+		    		password_confirmation: this.state.newPassword_confirmation
+          },
+    			contact_info: {
+    				email: this.state.newEmail
+    			}
+        })
+    })
+  }
 
 	_loginUser(){
     fetch(`${REMOTE}/login.json`, {
