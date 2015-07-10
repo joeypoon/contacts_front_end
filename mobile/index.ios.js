@@ -30,13 +30,11 @@ class AppNavigation extends React.Component{
 
   _renderScene(route, nav){
     switch (route.id) {
-      case "LoginView":
+      default: "LoginView":
         return <LoginView navigator={nav} styles={styles} route={route}/>
       case "ProximityList":
         return <ProximityList navigator={nav} styles={styles} route={route}/>
-      default:
-        console.log(route)
-   }
+    }
   }
 
   render(){
