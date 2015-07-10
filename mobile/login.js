@@ -31,9 +31,11 @@ class LoginView extends React.Component{
 		  		user: {
 		    		password: this.state.newPassword,
 		    		password_confirmation: this.state.newPassword_confirmation,
-	    			email: this.state.newEmail
+	    			contact_info:{
+	    				email: this.state.newEmail
+	    			}
 		  		}
-		  	})
+			})
 		})
 	}
 
@@ -52,9 +54,22 @@ class LoginView extends React.Component{
 					Login!
 				</Button>
 				<Text style={styles.label}>SignUp</Text>
-				<TextInput style={styles.input} onChangeText={(text) => this.setState({newEmail: text})} placeholder='Enter Email' />
-				<TextInput style={styles.input} password='true' onChangeText={(text) => this.setState({newPassword: text})} placeholder='Enter Password' />
-				<TextInput style={styles.input} password='true' onChangeText={(text) => this.setState({newPassword_confirmation: text})} placeholder='Confirm Password' />
+				<TextInput 
+					style={styles.input} 
+					onChangeText={(text) => this.setState({newEmail: text})} 
+					placeholder='Enter Email' 
+				/>
+				<TextInput 
+					style={styles.input} 
+					password='true' 
+					onChangeText={(text) => this.setState({newPassword: text})} 
+					placeholder='Enter Password' 
+				/>
+				<TextInput 
+					style={styles.input} 
+					password='true' 
+					onChangeText={(text) => this.setState({newPassword_confirmation: text})} 
+					placeholder='Confirm Password' />
 				<Button style={{color: 'green'}} onPress={this._registerUser.bind(this)}>
 					SignUp!
 				</Button>
