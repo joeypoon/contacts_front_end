@@ -12,8 +12,7 @@ var {
   TouchableHighlight
 } = React;
 
-var REQUEST_URL = 'https://contacts-back-end.herokuapp.com',
-    REQUEST_USERS = 'https://contacts-back-end.herokuapp.com/users.json'
+var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
 class ProximityList extends React.Component{
   constructor(props){
@@ -29,7 +28,7 @@ class ProximityList extends React.Component{
   }
 
   _fetchData(){
-    fetch(REQUEST_USERS)
+    fetch(`${REMOTE}/users.json`)
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
@@ -51,21 +50,29 @@ class ProximityList extends React.Component{
   }
 
   _selectUser(user){
+
+  	if(user.name=='Nikita Toy'){
+  		this.props.navigator.jumpTo('WAT1')
+  		return
+  	}
+  	console.log(this.props.navigator.getCurrentRoutes())
     console.log(user)
     var nextIndex = this.props.route.index + 1
+    console.log(this.props.route)
     this.props.navigator.push({
-      name: "WAT",
-      index: nextIndex
+      name: "WAT"+this.props.route.index,
+      index: nextIndex,
     })
   }
 
   _renderUser(user, sectionId, rowId) {
+  	var styles = this.props.styles
     return (
       <TouchableHighlight onPress={() => this._selectUser(user)}>
-        <View style={this.props.styles.usersContainer}>
-          <Image style={this.props.styles.image}/>
-          <Text style={this.props.styles.name}>{user.name}</Text>
-          <Text style={this.props.styles.email}>{user.email}</Text>
+        <View style={styles.usersContainer}>
+          <Image style={styles.image}/>
+          <Text style={styles.name}>{user.name}</Text>
+          <Text style={styles.email}>{user.email}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -73,6 +80,7 @@ class ProximityList extends React.Component{
 
 
   render() {
+  	var styles = this.props.styles
     console.log('Rendering List')
     if (!this.state.loaded) {
       return this._renderLoadingView();
@@ -83,7 +91,7 @@ class ProximityList extends React.Component{
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this._renderUser.bind(this)}
-        style={this.props.styles.listView}
+        style={styles.listView}
       />
     )
   }

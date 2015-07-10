@@ -4,6 +4,7 @@
  */
 'use strict';
 var React = require('react-native');
+var Button = require('react-native-button');
 
 var {
   AppRegistry,
@@ -16,37 +17,40 @@ var {
   TouchableHighlight
 } = React;
 
-var REQUEST_URL = 'https://contacts-back-end.herokuapp.com',
-    REQUEST_USERS = 'https://contacts-back-end.herokuapp.com/users.json'
+var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
 var ProximityList = require('./ProxList'),
-    styles = require('./styles')
-
-console.log(styles)
+    styles = require('./styles'),
+    LoginView = require('./login')
 
 class AppNavigation extends React.Component{
   constructor(props){
     super(props)
   }
 
+  _renderScene(route, nav){
+    switch (route.id) {
+      case "LoginView":
+        return <LoginView navigator={nav} styles={styles} route={route}/>
+      case "ProximityList":
+        return <ProximityList navigator={nav} styles={styles} route={route}/>
+      default:
+        console.log(route)
+   }
+  }
+
   render(){
     return(
       <Navigator
-        ref="navigator"
-        style={styles.container}
-        initialRoute={{name: 'First Route',index: 0}}
-        renderScene={(route, navigator) =>
-          <ProximityList
-            name={route.name}
-            route={route}
-            navigator={navigator}
-            styles={styles}
-          />
-        }
+        style={styles.navigator}
+        initialRoute={{
+            id: "LoginView"
+        }}
+        renderScene = {(route, navigator) => this._renderScene(route, navigator)}
+        configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />
     )
   }
 }
 
 AppRegistry.registerComponent('Contacts', () => AppNavigation);
-

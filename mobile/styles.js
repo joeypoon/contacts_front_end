@@ -8,6 +8,16 @@ var {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  navigator: {
+    flex: 1,
+  },
+  loginContainer: {
+    flex: 1,
+    margin: 10,
   },
   usersContainer: {
     flex: 1,
@@ -34,7 +44,16 @@ var styles = StyleSheet.create({
   },
   listView: {
     paddingTop: 20,
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#F5FCFF',
+  },
+  input: {
+    fontSize: 14,
+    backgroundColor: '#efefef',
+    flex: 6,
+  },
+  label: {
+    flex: 10,
+    textAlign: 'center',
   }
 });
 
