@@ -15,6 +15,8 @@ class LoginView extends React.Component{
 		super(props)
 		this.state = {
 			newEmail: '',
+      email: '',
+      password: '',
 			newPassword: '',
 			newPassword_confirmation: ''
 		}
@@ -27,7 +29,11 @@ class LoginView extends React.Component{
 	_registerUser(){
 		fetch(`${REMOTE}/users.json`, {
   			method: 'post',
-		  	body: JSON.stringify({	
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+		  	body: JSON.stringify({
 		  		user: {
 		    		password: this.state.newPassword,
 		    		password_confirmation: this.state.newPassword_confirmation,
@@ -35,12 +41,24 @@ class LoginView extends React.Component{
 	    				email: this.state.newEmail
 	    			}
 		  		}
-			})
+  			})
 		})
 	}
 
 	_loginUser(){
-
+    fetch(`${REMOTE}/login.json`, {
+  			method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+		  	body: JSON.stringify({
+		  		user: {
+            email: this.state.email,
+		    		password: this.state.password
+		  		}
+  			})
+		})
 	}
 
 	render(){
@@ -48,27 +66,27 @@ class LoginView extends React.Component{
 		return(
 			<View style={styles.container}>
 				<Text style={styles.label}>Login</Text>
-				<TextInput style={styles.input} placeholder='Enter Email'/>
-				<TextInput style={styles.input} placeholder='Enter Password'/>
-				<Button style={{color: 'green'}} onPress={this._loginUser}>
+				<TextInput style={styles.input} onChangeText={(text) => this.setState({email: text})} placeholder='Enter Email'/>
+				<TextInput style={styles.input} onChangeText={(text) => this.setState({password: text})} placeholder='Enter Password'/>
+				<Button style={{color: 'green'}} onPress={this._loginUser.bind(this)}>
 					Login!
 				</Button>
 				<Text style={styles.label}>SignUp</Text>
-				<TextInput 
-					style={styles.input} 
-					onChangeText={(text) => this.setState({newEmail: text})} 
-					placeholder='Enter Email' 
+				<TextInput
+					style={styles.input}
+					onChangeText={(text) => this.setState({newEmail: text})}
+					placeholder='Enter Email'
 				/>
-				<TextInput 
-					style={styles.input} 
-					password='true' 
-					onChangeText={(text) => this.setState({newPassword: text})} 
-					placeholder='Enter Password' 
+				<TextInput
+					style={styles.input}
+					password='true'
+					onChangeText={(text) => this.setState({newPassword: text})}
+					placeholder='Enter Password'
 				/>
-				<TextInput 
-					style={styles.input} 
-					password='true' 
-					onChangeText={(text) => this.setState({newPassword_confirmation: text})} 
+				<TextInput
+					style={styles.input}
+					password='true'
+					onChangeText={(text) => this.setState({newPassword_confirmation: text})}
 					placeholder='Confirm Password' />
 				<Button style={{color: 'green'}} onPress={this._registerUser.bind(this)}>
 					SignUp!
