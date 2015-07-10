@@ -15,10 +15,6 @@ var styles = StyleSheet.create({
   navigator: {
     flex: 1,
   },
-  loginContainer: {
-    flex: 1,
-    margin: 10,
-  },
   usersContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -52,7 +48,7 @@ var styles = StyleSheet.create({
     flex: 6,
   },
   label: {
-    flex: 10,
+    flex: 6,
     textAlign: 'center',
   }
 });

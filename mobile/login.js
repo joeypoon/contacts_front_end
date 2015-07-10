@@ -13,19 +13,24 @@ var REMOTE = 'https://contacts-back-end.herokuapp.com'
 class LoginView extends React.Component{
 	constructor(props){
 		super(props)
-		// this.state = {
-			
-		// }
+		this.state = {
+			email: '',
+			password: '',
+			newName: '',
+			newEmail: '',
+			newCompany: ''
+		}
 	}
 
 	_registerUser(){
 		console.log(this.refs.email)
-		// fetch(`${REMOTE}/users.json`, {
-  // 			method: 'post',
-		//   	body: JSON.stringify({
-		//     	name: this.refs.name.value,
-		//   	})
-		// })
+		fetch(`${REMOTE}/users.json`, {
+  			method: 'post',
+		  	body: JSON.stringify({
+		    	name: this.state.newName,
+		    	
+		  	})
+		})
 	}
 
 	_loginUser(){
@@ -35,9 +40,9 @@ class LoginView extends React.Component{
 	render(){
 		var styles=this.props.styles
 		return(
-			<View style={styles.loginContainer}>
+			<View style={styles.container}>
 				<Text style={styles.label}>Login</Text>
-				<TextInput ref="email" style={styles.input} placeholder='Enter Email'/>
+				<TextInput style={styles.input} placeholder='Enter Email'/>
 				<TextInput style={styles.input} placeholder='Enter Password'/>
 				<Button style={{color: 'green'}} onPress={this._loginUser}>
 					Login!
