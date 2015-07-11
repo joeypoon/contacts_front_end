@@ -19,9 +19,12 @@ var {
 
 var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
-var ProximityList = require('./ProxList')
-var styles = require('./styles')
-var LoginView = require('./login')
+var ProximityList = require('./ProxList'),
+    styles = require('./styles'),
+    LoginView = require('./login'),
+    ProfileView = require('./profile'),
+    PendingContacts = require('./pendingContacts'),
+    ChooseInfo = require('./chooseInfo')
 
 class AppNavigation extends React.Component{
   constructor(props){
@@ -34,6 +37,12 @@ class AppNavigation extends React.Component{
         return <LoginView navigator={nav} styles={styles} route={route}/>
       case "ProximityList":
         return <ProximityList navigator={nav} styles={styles} route={route}/>
+      case "ProfileView":
+        return <ProfileView navigator={nav} styles={styles} route={route}/>
+      case "ChooseInfo":
+        return <ChooseInfo navigator={nav} styles={styles} route={route}/>
+      case "PendingContacts":
+        return <PendingContacts navigator={nav} styles={styles} route={route}/>
       default:
         return null
     }
@@ -43,7 +52,7 @@ class AppNavigation extends React.Component{
     return(
       <Navigator
         style={styles.navigator}
-        initialRoute={{id: "LoginView"}}
+        initialRoute={{id: "PendingContacts"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}
         configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />

@@ -14,51 +14,47 @@ class LoginView extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			newEmail: '',
-      email: '',
-      password: '',
+      		email: '',
+      		password: '',
+      		newEmail: '',
 			newPassword: '',
 			newPassword_confirmation: ''
 		}
 	}
 
-	_saveInfo(){
-
-	}
-
 	_registerUser(){
 		fetch(`${REMOTE}/users.json`, {
   			method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-		  	body: JSON.stringify({
+	        headers: {
+	          'Accept': 'application/json',
+	          'Content-Type': 'application/json'
+	        },
+			body: JSON.stringify({
 		  		user: {
 		    		password: this.state.newPassword,
 		    		password_confirmation: this.state.newPassword_confirmation
-          },
-    			contact_info: {
-    				email: this.state.newEmail
-    			}
-        })
-    })
-  }
+	          	},
+				contact_info: {
+					email: this.state.newEmail
+				}
+	        })
+    	}).then(this.props.navigator.replace({id: "ProfileView"}))
+  	}
 
 	_loginUser(){
-    fetch(`${REMOTE}/login.json`, {
-  			method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+	    fetch(`${REMOTE}/login.json`, {
+	  		method: 'post',
+	        headers: {
+	          'Accept': 'application/json',
+	          'Content-Type': 'application/json'
+	        },
 		  	body: JSON.stringify({
 		  		user: {
-            email: this.state.email,
+            		email: this.state.email,
 		    		password: this.state.password
 		  		}
   			})
-		})
+		}).then(this.props.navigator.replace({id: "ProximityList"}))
 	}
 
 	render(){
@@ -66,8 +62,17 @@ class LoginView extends React.Component{
 		return(
 			<View style={styles.container}>
 				<Text style={styles.label}>Login</Text>
-				<TextInput style={styles.input} onChangeText={(text) => this.setState({email: text})} placeholder='Enter Email'/>
-				<TextInput style={styles.input} onChangeText={(text) => this.setState({password: text})} placeholder='Enter Password'/>
+				<TextInput 
+					style={styles.input}
+					onChangeText={(text) => this.setState({email: text})} 
+					placeholder='Enter Email'
+				/>
+				<TextInput 
+					style={styles.input} 
+					password={true}
+					onChangeText={(text) => this.setState({password: text})} 
+					placeholder='Enter Password'
+				/>
 				<Button style={{color: 'green'}} onPress={this._loginUser.bind(this)}>
 					Login!
 				</Button>
@@ -79,13 +84,13 @@ class LoginView extends React.Component{
 				/>
 				<TextInput
 					style={styles.input}
-					password='true'
+					password={true}
 					onChangeText={(text) => this.setState({newPassword: text})}
 					placeholder='Enter Password'
 				/>
 				<TextInput
 					style={styles.input}
-					password='true'
+					password={true}
 					onChangeText={(text) => this.setState({newPassword_confirmation: text})}
 					placeholder='Confirm Password' />
 				<Button style={{color: 'green'}} onPress={this._registerUser.bind(this)}>

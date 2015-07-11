@@ -40,8 +40,9 @@ class ProximityList extends React.Component{
   }
 
   _renderLoadingView() {
+    var styles=this.props.styles
     return (
-      <View style={this.props.styles.container}>
+      <View style={styles.container}>
         <Text>
           Loading users...
         </Text>
@@ -50,19 +51,7 @@ class ProximityList extends React.Component{
   }
 
   _selectUser(user){
-
-  	if(user.name=='Nikita Toy'){
-  		this.props.navigator.jumpTo('WAT1')
-  		return
-  	}
-  	console.log(this.props.navigator.getCurrentRoutes())
-    console.log(user)
-    var nextIndex = this.props.route.index + 1
-    console.log(this.props.route)
-    this.props.navigator.push({
-      name: "WAT"+this.props.route.index,
-      index: nextIndex,
-    })
+  	this.props.navigator.push({id: "ChooseInfo"})
   }
 
   _renderUser(user, sectionId, rowId) {
@@ -71,8 +60,8 @@ class ProximityList extends React.Component{
       <TouchableHighlight onPress={() => this._selectUser(user)}>
         <View style={styles.usersContainer}>
           <Image style={styles.image}/>
-          <Text style={styles.name}>{user.name}</Text>
-          <Text style={styles.email}>{user.email}</Text>
+          <Text style={styles.name}> {user.name} </Text>
+          <Text style={styles.email}> {user.email} </Text>
         </View>
       </TouchableHighlight>
     );
@@ -85,9 +74,10 @@ class ProximityList extends React.Component{
     if (!this.state.loaded) {
       return this._renderLoadingView();
     }
+          // myRoutes[this.props.route.name]
+
 
     return (
-      // myRoutes[this.props.route.name]
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this._renderUser.bind(this)}
