@@ -28,6 +28,7 @@ class PendingContacts extends React.Component{
 		return(
 			<TabBarIOS selectedTab={this.state.selectedTab}>
 				<TabBarIOS.Item
+					title="Inbound"
 					selected={this.state.selectedTab === 'inbound'}
 					onPress={() => 
 						this.setState({
@@ -38,6 +39,7 @@ class PendingContacts extends React.Component{
 					<Inbound styles={styles} navigator={this.props.navigator}/>
 				</TabBarIOS.Item>
 				<TabBarIOS.Item
+					title="Outbound"
 					selected={this.state.selectedTab === 'outbound'}
 					onPress={() => 
 						this.setState({

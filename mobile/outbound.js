@@ -17,7 +17,7 @@ class Outbound extends React.Component{
 	render(){
 		var styles = this.props.styles
 		return(
-			<View style={styles.container}>
+			<View style={[styles.container, styles.outbound]}>
 		        <Text>
 	        	  Outbound Pending Contacts
 		        </Text>

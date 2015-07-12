@@ -28,7 +28,7 @@ class ProximityList extends React.Component{
   }
 
   _fetchData(){
-    fetch(`${REMOTE}/users.json`)
+    fetch(`${REMOTE}/users/-58.000001/-68.000002/10`)
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
@@ -56,12 +56,14 @@ class ProximityList extends React.Component{
 
   _renderUser(user, sectionId, rowId) {
   	var styles = this.props.styles
+    console.log(user)
+    console.log(user.contact_info)
     return (
       <TouchableHighlight onPress={() => this._selectUser(user)}>
         <View style={styles.usersContainer}>
           <Image style={styles.image}/>
-          <Text style={styles.name}> {user.name} </Text>
-          <Text style={styles.email}> {user.email} </Text>
+          <Text style={styles.name}> {user.contact_info.name} </Text>
+          <Text style={styles.email}> {user.contact_info.email} </Text>
         </View>
       </TouchableHighlight>
     );

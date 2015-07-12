@@ -18,7 +18,7 @@ class Inbound extends React.Component{
 	render(){
 		var styles = this.props.styles
 		return(
-			<View style={styles.container}>
+			<View style={[styles.container, styles.inbound]}>
 		        <Text>
 	        	  Inbound Pending Contacts
 		        </Text>

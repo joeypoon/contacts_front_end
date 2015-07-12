@@ -8,20 +8,20 @@ var {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
   imageContainer: {
     flex: 1,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   infoContainer: {
     flex: 2,
     backgroundColor: 'blue',
     flexDirection: 'column',
-    margin: 5,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -30,8 +30,8 @@ var styles = StyleSheet.create({
     fontSize: 14
   },
   profilePic: {
-    height: 50,
-    width: 50,
+    height: 70,
+    width: 70,
     backgroundColor: 'yellow'
   },
   navigator: {
@@ -71,6 +71,15 @@ var styles = StyleSheet.create({
   label: {
     flex: 6,
     textAlign: 'center'
+  },
+  bottomBarTag: {
+    tintColor: 'red'
+  },
+  inbound: {
+    backgroundColor: 'red'
+  },
+  outbound: {
+    backgroundColor: 'blue'
   }
 });
 
