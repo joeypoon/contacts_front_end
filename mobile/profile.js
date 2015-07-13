@@ -30,7 +30,6 @@ class ProfileView extends React.Component{
 					<Image style={styles.profilePic} />
 				</View>
 				<View style={styles.infoContainer}>
-					<Text>Hello</Text>
 					<TextInput style={styles.input} placeholder='Name'/>
 					<TextInput style={styles.input} placeholder='Phone'/>
 					<TextInput style={styles.input} placeholder='Company'/>
