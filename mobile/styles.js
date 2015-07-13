@@ -10,7 +10,8 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'brown'
   },
   imageContainer: {
     flex: 1,
@@ -30,8 +31,8 @@ var styles = StyleSheet.create({
     fontSize: 14
   },
   profilePic: {
-    height: 70,
-    width: 70,
+    height: 100,
+    width: 100,
     backgroundColor: 'yellow'
   },
   navigator: {
