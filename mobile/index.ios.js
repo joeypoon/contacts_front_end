@@ -52,7 +52,7 @@ class AppNavigation extends React.Component{
     return(
       <Navigator
         style={styles.navigator}
-        initialRoute={{id: "ProximityList"}}
+        initialRoute={{id: "ProfileView"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}
         configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />
