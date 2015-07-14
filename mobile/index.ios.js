@@ -55,7 +55,7 @@ class AppNavigation extends React.Component{
     return(
       <Navigator
         style={styles.navigator}
-        initialRoute={{id: "PendingContacts"}}
+        initialRoute={{id: "LoginView"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}
         configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />

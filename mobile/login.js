@@ -3,16 +3,21 @@
 var React = require('react-native');
 var Button = require('react-native-button');
 var {
-  Text,
-  View,
-  TextInput
+	AsyncStorage,
+  	Text,
+	View,
+	TextInput,
+	AlertIOS
 } = React;
+
+let state = require('./state'); // { user: prop() }
 
 var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
 class LoginView extends React.Component{
 	constructor(props){
 		super(props)
+		
 		this.state = {
       		email: '',
       		password: '',
@@ -21,6 +26,12 @@ class LoginView extends React.Component{
 			newPassword: '',
 			newPassword_confirmation: ''
 		}
+
+		// test if user is already logged in, navigate to other screen
+		state.user().then((data)=> {
+			// console.log(data)
+			this.props.navigator.push({id: "ProximityList"})
+		})
 	}
 
 	_registerUser(){
@@ -39,40 +50,37 @@ class LoginView extends React.Component{
 				}
 	        })
     	}).then((response) => {
-    		console.log(response)
 			if(response.status > 400){
 				response.json().then((responseData) => alert(`${responseData.error}`))
 			} else {
-				response.json().then((responseData) => 
-					this.props.navigator.replace({id: "ProfileView", name: "Profile", userid: `${responseData.id}`})
-				)
+				this.props.navigator.replace({id: "ProfileView", name: "Profile"})
 			}
 		})
   	}
 
 	_loginUser(){
-	    fetch(`${REMOTE}/login.json`, {
-	  		method: 'post',
-	        headers: {
-	          'Accept': 'application/json',
-	          'Content-Type': 'application/json'
-	        },
-		  	body: JSON.stringify({
-		  		user: {
-            		email: this.state.email,
-		    		password: this.state.password
-		  		}
-  			})
-		}).then((response) => {
-			if(response.status > 400){
-				response.json().then((responseData) => alert(`${responseData.error}`))
-			} else {
-				response.json().then((responseData) => 
-					this.props.navigator.replace({id: "ProximityList", userid: `${responseData.id}`})
-				)
-			}
-		})
+		var {email, password} = this.state
+
+	    state.login(email, password)
+	    	.then((data) => {
+
+	    	})
+	    	.catch((e) => {
+		    	AlertIOS.alert('Login Failed', e)
+		    })
 	}
+		
+
+	// 		if(response.status > 400){
+	// 			response.json().then((responseData) => alert(`${responseData.error}`))
+	// 		} else {
+	// 			response.json().then((responseData) => {
+	// 				AsyncStorage.setItem('userid', responseData.id)
+	// 					this.props.navigator.replace({id: "ProximityList"})
+	// 			})
+	// 		}
+	// 	})
+	// }
 
 	render(){
 		var styles=this.props.styles
@@ -93,6 +101,7 @@ class LoginView extends React.Component{
 				<Button style={{color: 'green'}} onPress={this._loginUser.bind(this)}>
 					Login!
 				</Button>
+
 				<Text style={styles.label}>SignUp</Text>
 				<TextInput
 					style={styles.input}
