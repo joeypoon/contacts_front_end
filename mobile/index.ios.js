@@ -24,7 +24,8 @@ var ProximityList = require('./ProxList'),
     LoginView = require('./login'),
     ProfileView = require('./profile'),
     PendingContacts = require('./pendingContacts'),
-    ChooseInfo = require('./chooseInfo')
+    ChooseInfo = require('./chooseInfo'),
+    ContactsManager = require('./contactsManager')
 
 class AppNavigation extends React.Component{
   constructor(props){
@@ -41,6 +42,8 @@ class AppNavigation extends React.Component{
         return <ProfileView navigator={nav} styles={styles} route={route}/>
       case "ChooseInfo":
         return <ChooseInfo navigator={nav} styles={styles} route={route}/>
+      case "ContactsManager":
+        return <ContactsManager navigator={nav} styles={styles} route={route}/>
       case "PendingContacts":
         return <PendingContacts navigator={nav} styles={styles} route={route}/>
       default:
@@ -52,7 +55,7 @@ class AppNavigation extends React.Component{
     return(
       <Navigator
         style={styles.navigator}
-        initialRoute={{id: "LoginView"}}
+        initialRoute={{id: "PendingContacts"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}
         configureScene={() => Navigator.SceneConfigs.FloatFromRight}
       />

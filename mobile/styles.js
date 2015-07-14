@@ -6,36 +6,72 @@ var {
 } = React;
 
 var styles = StyleSheet.create({
+  navigator: {
+    flex: 1
+  },
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column'
+  },
+  label: {
+    flex: 6,
+    textAlign: 'center'
+  },
+  input: {
+    fontSize: 14,
+    flex: 1,
+    margin: 5
+  },
+  navBarContainer: {
+    flexDirection: 'row',
+    flex: 8,
+    backgroundColor: '#fff'
+  },
+  logo: {
+    flex: 15,
+    backgroundColor: 'red',
+    opacity: .5,
+    flexDirection: 'column'
+  },
+  hamburgerMenu: {
+    fontSize: 15,
+    flex: 20
+  },
+  navNameContainer: {
+    flex: 70,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'brown'
+    alignItems: 'center'
+  },
+  navName: {
+    fontSize: 20
   },
   imageContainer: {
-    flex: 1,
-    backgroundColor: 'red',
+    flex: 23,
+    backgroundColor: '#efefef',
     justifyContent: 'center',
     alignItems: 'center'
   },
+  profilePic: {
+    height: 120,
+    width: 120,
+    backgroundColor: '#ddd',
+    borderWidth: 3,
+    borderColor: 'black',
+    borderRadius: 60
+  },
   infoContainer: {
-    flex: 2,
-    backgroundColor: 'blue',
+    flex: 59,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  profileInput: {
+  swiper: {
+    backgroundColor: '#ccc',
     flex: 10,
-    fontSize: 14
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  profilePic: {
-    height: 100,
-    width: 100,
-    backgroundColor: 'yellow'
-  },
-  navigator: {
+  demand: {
     flex: 1
   },
   usersContainer: {
@@ -65,13 +101,31 @@ var styles = StyleSheet.create({
     paddingTop: 20,
     backgroundColor: '#F5FCFF'
   },
-  input: {
-    fontSize: 14,
-    flex: 6
+  header: {
+    flex: 20,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  label: {
-    flex: 6,
-    textAlign: 'center'
+  headerText: {
+    flex: 1,
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 20
+  },
+  infoOptions: {
+    flex: 70,
+    flexDirection: 'column'
+  },
+  contactsList: {
+    flex: 92,
+    flexWrap: 'wrap'
+  },
+  contactList: {
+    flex: 50,
+    height: 100,
+    backgroundColor: 'orange',
+    borderWidth: 2,
+    borderColor: 'black'
   },
   bottomBarTag: {
     tintColor: 'red'

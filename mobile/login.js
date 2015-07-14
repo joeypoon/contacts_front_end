@@ -16,6 +16,7 @@ class LoginView extends React.Component{
 		this.state = {
       		email: '',
       		password: '',
+      		newName: '',
       		newEmail: '',
 			newPassword: '',
 			newPassword_confirmation: ''
@@ -32,13 +33,21 @@ class LoginView extends React.Component{
 			body: JSON.stringify({
 		  		user: {
 		    		password: this.state.newPassword,
-		    		password_confirmation: this.state.newPassword_confirmation
-	          	},
-				contact_info: {
-					email: this.state.newEmail
+		    		password_confirmation: this.state.newPassword_confirmation,
+					email: this.state.newEmail,
+					name: this.state.newName
 				}
 	        })
-    	}).then(this.props.navigator.replace({id: "ProfileView"}))
+    	}).then((response) => {
+    		console.log(response)
+			if(response.status > 400){
+				response.json().then((responseData) => alert(`${responseData.error}`))
+			} else {
+				response.json().then((responseData) => 
+					this.props.navigator.replace({id: "ProfileView", name: "Profile", userid: `${responseData.id}`})
+				)
+			}
+		})
   	}
 
 	_loginUser(){
@@ -54,7 +63,15 @@ class LoginView extends React.Component{
 		    		password: this.state.password
 		  		}
   			})
-		}).then(this.props.navigator.replace({id: "ProximityList"}))
+		}).then((response) => {
+			if(response.status > 400){
+				response.json().then((responseData) => alert(`${responseData.error}`))
+			} else {
+				response.json().then((responseData) => 
+					this.props.navigator.replace({id: "ProximityList", userid: `${responseData.id}`})
+				)
+			}
+		})
 	}
 
 	render(){
@@ -79,6 +96,11 @@ class LoginView extends React.Component{
 				<Text style={styles.label}>SignUp</Text>
 				<TextInput
 					style={styles.input}
+					onChangeText={(text) => this.setState({newName: text})}
+					placeholder='Enter Name'
+				/>
+				<TextInput
+					style={styles.input}
 					onChangeText={(text) => this.setState({newEmail: text})}
 					placeholder='Enter Email'
 				/>
@@ -100,17 +122,5 @@ class LoginView extends React.Component{
 		)
 	}
 }
-
-
-// onSomethingClicked: function() {
-//    // this will push the new component on top of me (you can go back)
-//    this.props.navigator.push({id: "SomeOtherComponent"});
-// }
-
-
-// onSomethingOtherClicked: function() {
-//    // this will replace myself with the other component (no going back)
-//    this.props.navigator.replace({id: "SomeOtherComponent"});
-// }
 
 module.exports = LoginView;

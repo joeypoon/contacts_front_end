@@ -1,5 +1,6 @@
 'use strict';
-var React = require('react-native');
+var React = require('react-native'),
+	NavigationBarWithoutSearch = require('./navigationBarWithoutSearch')
 
 var {
   Image,
@@ -19,13 +20,12 @@ class ProfileView extends React.Component{
 		this.props.navigator.push({id: "ProximityList"})
 	}
 
-	// <Text onPress={this._takeMeHome.bind(this)} >Profile View, reroute to ProxList when done</Text>
-
 	render(){
 		var styles = this.props.styles
 		console.log('rendering profile')
 		return(
 			<View style={styles.container}>
+				<NavigationBarWithoutSearch styles={styles} route={this.props.route}/>
 				<View style={styles.imageContainer}>
 					<Image style={styles.profilePic} />
 				</View>
@@ -39,6 +39,9 @@ class ProfileView extends React.Component{
 					<TextInput style={styles.input} placeholder='LinkedIn'/>
 					<TextInput style={styles.input} placeholder='Twitter'/>
 					<TextInput style={styles.input} placeholder='Site'/>
+				</View>
+				<View style={styles.swiper}>
+					<Text style={styles.demand} onPress={this._takeMeHome.bind(this)}>SWIPE TO SAVE (Click for now)</Text>
 				</View>
 			</View>
 		)

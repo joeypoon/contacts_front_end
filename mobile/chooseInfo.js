@@ -18,14 +18,22 @@ class ChooseInfo extends React.Component{
 	}
 
 	_backToList(){
-		this.props.navigator.pop()
+		this.props.navigator.replace({id: "ProximityList"})
 	}
 
 	render(){
 		var styles = this.props.styles
 		return(
 			<View style={styles.container}>
-				<Text onPress={this._backToList.bind(this)}>Choose info to Send</Text>
+				<View style={styles.header}>
+					<Text style={styles.headerText}>Choose what information to send:</Text>
+				</View>
+				<View style={styles.infoOptions}>
+
+				</View>
+				<View style={styles.swiper}>
+					<Text style={styles.demand} onPress={this._backToList.bind(this)}>Swipe to send request</Text>
+				</View>
 			</View> 
 		)
 	}
