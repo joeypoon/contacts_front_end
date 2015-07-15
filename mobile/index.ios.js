@@ -25,11 +25,17 @@ var ProximityList = require('./ProxList'),
     ProfileView = require('./profile'),
     PendingContacts = require('./pendingContacts'),
     ChooseInfo = require('./chooseInfo'),
-    ContactsManager = require('./contactsManager')
+    ContactsManager = require('./contactsManager'),
+    state = require('./state')
 
 class AppNavigation extends React.Component{
   constructor(props){
     super(props)
+
+    // test if user is already logged in, navigate to other screen
+    state.user().then((data)=> {
+      this.refs.navigator.replace({id: "ProfileView"})
+    })
   }
 
   _renderScene(route, nav){
@@ -54,6 +60,7 @@ class AppNavigation extends React.Component{
   render(){
     return(
       <Navigator
+        ref="navigator"
         style={styles.navigator}
         initialRoute={{id: "LoginView"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}

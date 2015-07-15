@@ -14,6 +14,8 @@ var {
 
 var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
+let state = require('./state'); // { user: prop() }
+
 class ProximityList extends React.Component{
   constructor(props){
     super(props)
@@ -24,25 +26,19 @@ class ProximityList extends React.Component{
   }
 
   componentDidMount(){
-    this._fetchData();
+    this._getNearbyUsers();
   }
 
-  _fetchData(){
-    fetch(`${REMOTE}/users/-58.000001/-68.000002/10`)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData),
-          loaded: true
-        })
-      })
-      .done()
+  _getNearbyUsers(){
+    var {dataSource} = this.state
+
+    state.proximityList(dataSource).then((data) => this.setState(data))
   }
 
   _renderLoadingView() {
     var styles=this.props.styles
     return (
-      <View style={styles.container}>
+      <View style={styles.loadingContainer}>
         <Text>
           Loading users...
         </Text>

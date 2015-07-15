@@ -13,6 +13,11 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   label: {
     flex: 6,
     textAlign: 'center'
@@ -54,7 +59,6 @@ var styles = StyleSheet.create({
   profilePic: {
     height: 120,
     width: 120,
-    backgroundColor: '#ddd',
     borderWidth: 3,
     borderColor: 'black',
     borderRadius: 60
