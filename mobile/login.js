@@ -19,8 +19,8 @@ class LoginView extends React.Component{
 		super(props)
 		
 		this.state = {
-      		email: 'paulsaad.13@gmail.com',
-      		password: 'password',
+      		email: '',
+      		password: '',
       		newName: '',
       		newEmail: '',
 			newPassword: '',
@@ -45,7 +45,7 @@ class LoginView extends React.Component{
 
 	    state.login(email, password)
 	    	.then((data) => {
-	    		this.props.navigator.push({id: "ProfileView"})
+	    		this.props.navigator.push({id: "ProximityList"})
 	    	})
 	    	.catch((e) => {
 	    		console.log(e)

@@ -30,16 +30,21 @@ class ProfileView extends React.Component{
 		}
 	}
 
-	_takeMeHome(){
-		this.props.navigator.push({id: "ProximityList"})
-	}
-
 	componentDidMount(){
-		this._getProfileInfo()
+		state.user().then((data) => this.setState(data))
   	}
 
-	_getProfileInfo(){
-		state.profile().then((data) => this.setState(data))
+	_updateInfo(){
+		var {name, email, phone, company, linkedin, facebook, twitter, instagram, github, site} = this.state
+
+	    state.profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site)
+	    	.then(() => {
+	    		this.props.navigator.push({id: "ProximityList"})
+	    	})
+	    	.catch((e) => {
+	    		console.log(e)
+		    	// AlertIOS.alert('Update Failed', e)
+		    })
 	}
 
 	render(){
@@ -94,7 +99,7 @@ class ProfileView extends React.Component{
 					/>
 				</View>
 				<View style={styles.swiper}>
-					<Text style={styles.demand} onPress={this._takeMeHome.bind(this)}>SWIPE TO SAVE (Click for now)</Text>
+					<Text style={styles.demand} onPress={this._updateInfo.bind(this)}>SWIPE TO SAVE (Click for now)</Text>
 				</View>
 			</View>
 		)

@@ -120,6 +120,26 @@ var styles = StyleSheet.create({
     flex: 70,
     flexDirection: 'column'
   },
+  options: {
+    flex: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    margin: 5
+  },
+  send: {
+    backgroundColor: 'green',
+    borderRadius: 20
+  },
+  contactParam: {
+    flex: 1,
+    marginRight: 30,
+    marginLeft: 30,
+    borderWidth: 2,
+    borderColor: 'black',
+    backgroundColor: '#efefef',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   contactsList: {
     flex: 92,
     flexWrap: 'wrap'

@@ -16,7 +16,7 @@ var {AsyncStorage, Text, View, TextInput} = React
 
 function prop(key, initialData){
 	if(typeof val !== "undefined"){
-		AsyncStorage.set(key, initialData)	
+		AsyncStorage.setItem(key, initialData)	
 	}
 	return function(val){
 		//If no argument is passed, set a new key-value in storage. If a valid argument is passed, get the key-value pair.
@@ -84,34 +84,49 @@ function register(name, email, password, password_confirmation){
 	})
 }
 
-// function x(...args){
-// 	args// []
-// }
-
-function fetch_profile(){
+function fetch_profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site){
 	return state.user()
 		.then((user) => user.id)
 		.then((user_id) => {
-			return fetch(`${REMOTE}/profile/${user_id}.json`).then((r) => r.json()).then((personalInfo) => {
-				state.user_profile(personalInfo)
-				return personalInfo
-			})
+			return fetch(`${REMOTE}/update.json`, {
+		        method: 'post',
+		        headers: {
+		            'Accept': 'application/json',
+		            'Content-Type': 'application/json'
+		        },
+		        body: JSON.stringify({
+		            id: user_id,
+		            user: {
+		                name: name,
+						email: email,
+						phone: phone,
+						company: company,
+						linkedin: linkedin,
+						facebook: facebook,
+						twitter: twitter,
+						instagram: instagram,
+						github: github,
+						site: site
+		            }
+		        })
+		    }).then((response) => {
+		        if (response.status > 400) throw 'You f***ed up bro'
+		        return response.json()
+		    }).then((updatedInfo) => state.user(updatedInfo))
 		})
-		.catch((...a) => console.log(...a))
 }
 
-function profile(){
-	return fetch_profile()
+function profileUpdate(name, email, phone, conmpany, linkedin, facebook, twitter, instagram, github, site){
+	return fetch_profileUpdate(name, email, phone, conmpany, linkedin, facebook, twitter, instagram, github, site)
 }
 
 function fetch_proximityList(data_source){
     return state.user()
-    	.then((data) => data.id)
+    	.then((user) => user.id)
       	.then((user_id) => {
         	return fetch(`${REMOTE}/users/-58.000001/-68.000002/${user_id}`)
 		    .then((response) => response.json())
 		    .then((responseData) => {
-		    	console.log(responseData)
              	return {
 	             	dataSource: data_source.cloneWithRows(responseData),
 	              	loaded: true
@@ -125,14 +140,54 @@ function proximityList(data_source){
 	return fetch_proximityList(data_source)
 }
 
+function fetch_inboundContacts(data_source){
+	return state.user()
+		.then((user) => user.id)
+		.then((user_id) => {
+			return fetch(`${REMOTE}/inbound/${user_id}`)
+	      	.then((response) => response.json())
+	      	.then((responseData) => {
+	        	return {
+		          	dataSource: data_source.cloneWithRows(responseData),
+		          	loaded: true
+	        	}
+	      	})
+		})
+		.catch((...a) => console.log(...a))   
+}
+
+function inboundContacts(data_source){
+	return fetch_inboundContacts(data_source)
+}
+
+function fetch_outboundContacts(data_source){
+	return state.user()
+		.then((user) => user.id)
+		.then((user_id) => {
+			return fetch(`${REMOTE}/outbound/${user_id}`)
+	      	.then((response) => response.json())
+	      	.then((responseData) => {
+	        	return {
+		          	dataSource: data_source.cloneWithRows(responseData),
+		          	loaded: true
+	        	}
+	      	})
+		})
+		.catch((...a) => console.log(...a))   
+}
+
+function outboundContacts(data_source){
+	return fetch_outboundContacts(data_source)
+}
+
 const state = {
 	user: prop('user'),
-	user_profile: prop('user_profile'),
 	login: login,
 	register: register,
-	profile: profile,
-	proximityList: proximityList
-
+	proximityList: proximityList,
+	inboundContacts: inboundContacts,
+	outboundContacts: outboundContacts,
+	profileUpdate: profileUpdate
 }
 
 
