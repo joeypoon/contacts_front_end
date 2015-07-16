@@ -16,7 +16,7 @@ var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
 let state = require('./state'); // { user: prop() }
 
-class ProximityList extends React.Component{
+class ContactList extends React.Component{
   constructor(props){
     super(props)
     this.state = {
@@ -26,13 +26,13 @@ class ProximityList extends React.Component{
   }
 
   componentDidMount(){
-    this._getNearbyUsers();
+    this._getContacts();
   }
 
-  _getNearbyUsers(){
+  _getContacts(){
     var {dataSource} = this.state
 
-    state.proximityList(dataSource).then((data) => this.setState(data))
+    state.contactList(dataSource).then((data) => this.setState(data))
   }
 
   _renderLoadingView() {
@@ -46,16 +46,16 @@ class ProximityList extends React.Component{
     )
   }
 
-  _selectUser(user){
-    console.log('Chose user')
-    state.outbound_user(user.id)
-  	this.props.navigator.push({id: "ChooseInfo"})
+  _seeUserProfile(user){
+    console.log('See this guy\'s profile')
+    state.connected_user(user.id)
+    this.props.navigator.push({id: "UserProfile"})
   }
 
   _renderUser(user, sectionId, rowId) {
   	var styles = this.props.styles
     return (
-      <TouchableHighlight onPress={() => this._selectUser(user)}>
+      <TouchableHighlight onPress={() => this._seeUserProfile(user)}>
         <View style={styles.usersContainer}>
           <Image style={styles.image}/>
           <Text style={styles.name}> {user.name} </Text>
@@ -82,4 +82,4 @@ class ProximityList extends React.Component{
   }
 }
 
-module.exports= ProximityList;
+module.exports = ContactList;

@@ -1,7 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+
 'use strict';
 var React = require('react-native');
 var Button = require('react-native-button');
@@ -25,7 +22,8 @@ var ProximityList = require('./ProxList'),
     ProfileView = require('./profile'),
     PendingContacts = require('./pendingContacts'),
     ChooseInfo = require('./chooseInfo'),
-    ContactsManager = require('./contactsManager'),
+    ContactList = require('./contactList'),
+    UserProfile = require('./userProfile'),
     state = require('./state')
 
 class AppNavigation extends React.Component{
@@ -34,7 +32,7 @@ class AppNavigation extends React.Component{
 
     // test if user is already logged in, navigate to other screen
     state.user().then((data)=> {
-      this.refs.navigator.replace({id: "ChooseInfo"})
+      this.refs.navigator.replace({id: "ContactList"})
     })
   }
 
@@ -48,10 +46,12 @@ class AppNavigation extends React.Component{
         return <ProfileView navigator={nav} styles={styles} route={route}/>
       case "ChooseInfo":
         return <ChooseInfo navigator={nav} styles={styles} route={route}/>
-      case "ContactsManager":
-        return <ContactsManager navigator={nav} styles={styles} route={route}/>
+      case "ContactList":
+        return <ContactList navigator={nav} styles={styles} route={route}/>
       case "PendingContacts":
         return <PendingContacts navigator={nav} styles={styles} route={route}/>
+      case "UserProfile":
+        return <UserProfile navigator={nav} styles={styles} route={route}/>
       default:
         return null
     }
