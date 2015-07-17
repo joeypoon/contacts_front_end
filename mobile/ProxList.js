@@ -57,9 +57,11 @@ class ProximityList extends React.Component{
     return (
       <TouchableHighlight onPress={() => this._selectUser(user)}>
         <View style={styles.usersContainer}>
-          <Image style={styles.image}/>
-          <Text style={styles.name}> {user.name} </Text>
-          <Text style={styles.email}> {user.email} </Text>
+          <Image style={styles.image} source={{uri: `${user.avatar}`}}/>
+          <View style={styles.homeInfoContainer}>
+            <Text style={styles.name}> {user.name} </Text>
+            <Text style={styles.email}> {user.company || 'Evaluating their options...'} </Text>
+          </View>
         </View>
       </TouchableHighlight>
     );

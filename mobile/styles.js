@@ -19,28 +19,33 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   label: {
-    flex: 6,
-    textAlign: 'center'
+    flex: 30,
+    fontWeight: 'bold',
+    fontSize: 14,
+    paddingLeft: 30
   },
   input: {
     fontSize: 14,
+    flex: 70
+  },
+  inputHolder: {
     flex: 1,
-    margin: 5
+    flexDirection: 'row',
+    margin: 5,
+    justifyContent: 'center'
   },
   navBarContainer: {
     flexDirection: 'row',
     flex: 8,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    borderBottomWidth: 2
   },
   logo: {
     flex: 15,
-    backgroundColor: 'red',
-    opacity: .5,
     flexDirection: 'column'
   },
-  hamburgerMenu: {
-    fontSize: 15,
-    flex: 20
+  menuInitiator: {
+    flex: 15
   },
   navNameContainer: {
     flex: 70,
@@ -52,7 +57,6 @@ var styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 23,
-    backgroundColor: '#efefef',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -65,9 +69,7 @@ var styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 59,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'column'
   },
   swiper: {
     backgroundColor: '#ccc',
@@ -79,27 +81,32 @@ var styles = StyleSheet.create({
     flex: 1
   },
   usersContainer: {
-    flex: 1,
+    flex: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 0,
-    borderWidth: 1,
-    borderColor: '#000'
+    borderBottomWidth: 1,
+    borderColor: '#000',
+    backgroundColor: '#eef2f3'
   },
   image: {
     height: 50,
     width: 50,
     backgroundColor: '#333',
-    marginRight: 10
+    borderRadius: 25,
+    margin: 7
+  },
+  homeInfoContainer: {
+    flex: 70,
+    flexDirection: 'column',
+    marginLeft: 15
   },
   name: {
-    fontSize: 14,
-    marginBottom: 8,
-    textAlign: 'center'
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom: 8
   },
   email: {
-    fontSize:10,
-    textAlign: 'center'
+    fontSize:11
   },
   listView: {
     paddingTop: 20,

@@ -93,61 +93,75 @@ class ChooseInfo extends React.Component{
 						</TouchableWithoutFeedback>
 					</View>
 					<View style={styles.options}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_phone')}>
-							<View style={[styles.contactParam, this.state.bool_phone && styles.send]}>
-								<Text style={styles.navName}>{this.state.phone}</Text>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
-					<View style={styles.options}>
 						<TouchableWithoutFeedback>
 							<View style={[styles.contactParam, this.state.bool_company && styles.send]}>
 								<Text style={styles.navName}>{this.state.company}</Text>
 							</View>
 						</TouchableWithoutFeedback>
 					</View>
-					<View style={styles.options}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_linkedin')}>
-							<View style={[styles.contactParam, this.state.bool_linkedin && styles.send]}>
-								<Text style={styles.navName}>{this.state.linkedin}</Text>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
-					<View style={styles.options}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_facebook')}>
-							<View style={[styles.contactParam, this.state.bool_facebook && styles.send]}>
-								<Text style={styles.navName}>{this.state.facebook}</Text>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
-					<View style={styles.options}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_twitter')}>
-							<View style={[styles.contactParam, this.state.bool_twitter && styles.send]}>
-								<Text style={styles.navName}>{this.state.twitter}</Text>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
-					<View style={styles.options}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_instagram')}>
-							<View style={[styles.contactParam, this.state.bool_instagram && styles.send]}>
-								<Text style={styles.navName}>{this.state.instagram}</Text>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
-					<View style={styles.options}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_github')}>
-							<View style={[styles.contactParam, this.state.bool_github && styles.send]}>
-								<Text style={styles.navName}>{this.state.github}</Text>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
-					<View style={styles.options}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_site')}>
-							<View style={[styles.contactParam, this.state.bool_site && styles.send]}>
-								<Text style={styles.navName}>{this.state.site}</Text>
-							</View>
-						</TouchableWithoutFeedback>
-					</View>
+					{!!this.state.phone &&
+						<View style={styles.options}>
+							<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_phone')}>
+								<View style={[styles.contactParam, this.state.bool_phone && styles.send]}>
+									<Text style={styles.navName}>{this.state.phone}</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+					}
+					{!!this.state.linkedin &&
+						<View style={styles.options}>
+							<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_linkedin')}>
+								<View style={[styles.contactParam, this.state.bool_linkedin && styles.send]}>
+									<Text style={styles.navName}>{this.state.linkedin}</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+					}
+					{!!this.state.facebook &&
+						<View style={styles.options}>
+							<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_facebook')}>
+								<View style={[styles.contactParam, this.state.bool_facebook && styles.send]}>
+									<Text style={styles.navName}>{this.state.facebook}</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+					}
+					{!!this.state.twitter &&
+						<View style={styles.options}>
+							<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_twitter')}>
+								<View style={[styles.contactParam, this.state.bool_twitter && styles.send]}>
+									<Text style={styles.navName}>{this.state.twitter}</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+					}
+					{!!this.state.instagram &&
+						<View style={styles.options}>
+							<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_instagram')}>
+								<View style={[styles.contactParam, this.state.bool_instagram && styles.send]}>
+									<Text style={styles.navName}>{this.state.instagram}</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+					}
+					{!!this.state.github &&
+						<View style={styles.options}>
+							<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_github')}>
+								<View style={[styles.contactParam, this.state.bool_github && styles.send]}>
+									<Text style={styles.navName}>{this.state.github}</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+					}
+					{!!this.state.site &&
+						<View style={styles.options}>
+							<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_site')}>
+								<View style={[styles.contactParam, this.state.bool_site && styles.send]}>
+									<Text style={styles.navName}>{this.state.site}</Text>
+								</View>
+							</TouchableWithoutFeedback>
+						</View>
+					}
 				</View>
 				<View style={styles.swiper}>
 					<Text style={styles.demand} onPress={this._checkUser.bind(this)}>Swipe to send request</Text>

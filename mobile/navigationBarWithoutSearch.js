@@ -23,11 +23,7 @@ class NavigationBarWithoutSearch extends React.Component{
 				<View style={styles.navNameContainer}>
 					<Text style={styles.navName}>{route.name}</Text>
 				</View>
-				<View style={styles.logo}>
-					<Text style={styles.hamburgerMenu}>-</Text>
-					<Text style={styles.hamburgerMenu}>-</Text>
-					<Text style={styles.hamburgerMenu}>-</Text>
-				</View>
+				<Image style={styles.menuInitiator} />
 			</View>
 		)
 	}

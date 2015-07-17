@@ -49,17 +49,19 @@ class Inbound extends React.Component{
   }
 
 	_renderUser(user, sectionId, rowId) {
-		var styles = this.props.styles
-  	return (
-    		<TouchableHighlight onPress={() => this._selectUser(user)}>
-      		<View style={styles.usersContainer}>
-        			<Image style={styles.image}/>
-        			<Text style={styles.name}> {user.name} </Text>
-        			<Text style={styles.email}> {user.email} </Text>
-      		</View>
-			</TouchableHighlight>
-  	);
-	}
+    var styles = this.props.styles
+    return (
+      <TouchableHighlight onPress={() => this._selectUser(user)}>
+        <View style={styles.usersContainer}>
+          <Image style={styles.image} source={{uri: `${user.avatar}`}}/>
+          <View style={styles.homeInfoContainer}>
+            <Text style={styles.name}> {user.name} </Text>
+            <Text style={styles.email}> {user.company || 'Evaluating their options...'} </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    );
+  }
 
 	render() {
 		var styles = this.props.styles
