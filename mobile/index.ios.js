@@ -16,15 +16,14 @@ var {
 
 var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
-var ProximityList = require('./ProxList'),
-    styles = require('./styles'),
+var styles = require('./styles'),
     LoginView = require('./login'),
     LoginOnly = require('./loginOnly'),
     RegisterOnly = require('./registerOnly'),
     ProfileView = require('./profile'),
     PendingContacts = require('./pendingContacts'),
+    UserListView = require('./userListView'),
     ChooseInfo = require('./chooseInfo'),
-    ContactList = require('./contactList'),
     UserProfile = require('./userProfile'),
     state = require('./state')
 
@@ -35,9 +34,9 @@ class AppNavigation extends React.Component{
     // test if user is already logged in, navigate to other screen
     state.user().then((data)=> {
         if(data){
-          this.refs.navigator.replace({id: "PendingContacts"})
+          this.refs.navigator.replace({id: "ProfileView"})
         } else{
-          this.refs.navigator.replace({id: 'LoginView'})
+          this.refs.navigator.replace({id: "LoginView"})
         }
     })
   }
@@ -51,13 +50,13 @@ class AppNavigation extends React.Component{
       case "RegisterOnly":
         return <RegisterOnly navigator={nav} styles={styles} route={route}/>
       case "ProximityList":
-        return <ProximityList navigator={nav} styles={styles} route={route}/>
+        return <UserListView navigator={nav} styles={styles} route={route} viewRole={"ProximityList"}/>
       case "ProfileView":
         return <ProfileView navigator={nav} styles={styles} route={route}/>
       case "ChooseInfo":
         return <ChooseInfo navigator={nav} styles={styles} route={route}/>
       case "ContactList":
-        return <ContactList navigator={nav} styles={styles} route={route}/>
+        return <UserListView navigator={nav} styles={styles} route={route} viewRole={"ContactList"}/>
       case "PendingContacts":
         return <PendingContacts navigator={nav} styles={styles} route={route}/>
       case "UserProfile":

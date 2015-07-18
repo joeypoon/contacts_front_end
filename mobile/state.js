@@ -254,6 +254,7 @@ const state = {
 	user: prop('user'),
 	outbound_user: prop('outbound_user'),
 	connected_user: prop('connected_user'),
+	user_location: prop('user_location'),
 	login: login,
 	register: register,
 	proximityList: proximityList,

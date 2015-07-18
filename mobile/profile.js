@@ -167,9 +167,3 @@ class ProfileView extends React.Component{
 }
 
 module.exports = ProfileView;
-
-// <TouchableWithoutFeedback onPress={this._updateInfo.bind(this)}>
-// 					<View style={styles.swiper}>
-// 						<Text style={styles.demand}>Swipe to Save</Text>
-// 					</View>
-// 				</TouchableWithoutFeedback>

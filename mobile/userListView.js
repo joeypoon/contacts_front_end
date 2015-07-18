@@ -18,24 +18,56 @@ var {
 
 var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
-class ContactList extends React.Component{
+class UserListView extends React.Component{
   constructor(props){
     super(props)
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}), 
       loaded: false,
-      menuVisible: false
+      menuVisible: false,
+      currentView: this.props.viewRole
     }
   }
 
   componentDidMount(){
-    this._getContacts();
+    switch (this.state.currentView) {
+      case "ProximityList":
+        this._getNearbyUsers()
+        break
+      case "ContactList":
+        this._getContacts()
+        break
+      case "Inbound":
+        this._getInboundPendingContacts()
+        break
+      case "Outbound":
+        this._getOutboundPendingContacts()
+        break
+    }
   }
 
   _getContacts(){
     var {dataSource} = this.state
 
     state.contactList(dataSource).then((data) => this.setState(data))
+  }
+
+  _getNearbyUsers(){
+    var {dataSource} = this.state
+
+    state.proximityList(dataSource).then((data) => this.setState(data))
+  }
+
+  _getInboundPendingContacts(){
+    var {dataSource} = this.state
+
+    state.inboundContacts(dataSource).then((data) => this.setState(data))
+  }
+
+  _getOutboundPendingContacts(){
+    var {dataSource} = this.state
+    
+    state.outboundContacts(dataSource).then((data) => this.setState(data))
   }
 
   _renderLoadingView() {
@@ -49,16 +81,45 @@ class ContactList extends React.Component{
     )
   }
 
+  _selectUser(user){
+    console.log('Chose user')
+    state.outbound_user(user.id)
+    this.props.navigator.push({id: "ChooseInfo"})
+  }
+
   _seeUserProfile(user){
     console.log('See this guy\'s profile')
     state.connected_user(user.id)
     this.props.navigator.push({id: "UserProfile"})
   }
 
+  _shareBack(user){
+    console.log('Chose user')
+    state.outbound_user(user.id)
+    this.props.navigator.push({id: "ChooseInfo"})
+  }
+
+  _handlePressOnUser(user){
+    switch (this.state.currentView) {
+      case "ProximityList":
+        this._selectUser(user)
+        break
+      case "ContactList":
+        this._seeUserProfile(user)
+        break
+      case "Inbound":
+        this._shareBack(user)
+        break
+      case "Outbound":
+        break
+    }
+
+  }
+
   _renderUser(user, sectionId, rowId) {
   	var styles = this.props.styles
     return (
-      <TouchableHighlight onPress={() => this._seeUserProfile(user)}>
+      <TouchableHighlight onPress={() => this._handlePressOnUser.bind(this, user)}>
         <View style={styles.usersContainer}>
           <Image style={styles.image} source={{uri: `${user.avatar}`}}/>
           <View style={styles.homeInfoContainer}>
@@ -93,4 +154,4 @@ class ContactList extends React.Component{
   }
 }
 
-module.exports = ContactList;
+module.exports = UserListView

@@ -1,7 +1,6 @@
 'use strict';
 var React = require('react-native'),
-	Inbound = require('./inbound'),
-	Outbound = require('./outbound')
+	UserListView = require('./userListView')
 
 var {
   AppRegistry,
@@ -36,7 +35,7 @@ class PendingContacts extends React.Component{
 						})
 					}
 				>
-					<Inbound styles={styles} navigator={this.props.navigator} route={this.props.route}/>
+					<UserListView styles={styles} navigator={this.props.navigator} route={this.props.route} viewRole={"Inbound"}/>
 				</TabBarIOS.Item>
 				<TabBarIOS.Item
 					title="Outbound"
@@ -47,7 +46,7 @@ class PendingContacts extends React.Component{
 						})
 					}
 				>
-					<Outbound styles={styles} navigator={this.props.navigator} route={this.props.route}/>
+					<UserListView styles={styles} navigator={this.props.navigator} route={this.props.route} viewRole={"Outbound"}/>
 				</TabBarIOS.Item>
 			</TabBarIOS>
 		)
