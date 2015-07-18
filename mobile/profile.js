@@ -2,6 +2,7 @@
 var React = require('react-native'),
 	NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
 	Menu = require('./menu'),
+	Swiper = require('./swiper'),
 	state = require('./state')
 
 var {
@@ -16,104 +17,99 @@ var {
 class ProfileBody extends React.Component{
 	constructor(props){
 		super(props)
-
-		this.state=this.props.parentState
-	}
-
-	componentWillReceiveProps(newProps){
-		this.setState(newProps.parentState)
 	}
 
 	render(){
+		var parent=this.props.parent
 		var styles=this.props.styles
 		return (
 			<View style={styles.bodyWithSwiper}>
-				<Menu styles={styles} parentState={this.state}/>
 				<View style={styles.imageContainer}>
-					<Image style={styles.profilePic} source={{uri: `${this.state.avatar || null}`}} />
+					<Image style={styles.profilePic} source={{uri: `${parent.state.avatar || null}`}} />
 				</View>
 				<View style={styles.infoContainer}>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Name:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Name'
-							onChangeText={(text) => this.setState({name: text})} 
-							value={this.state.name}
+							onChangeText={(text) => parent.setState({name: text})} 
+							value={parent.state.name}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Email:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Email' 
-							onChangeText={(text) => this.setState({email: text})} 
-							value={this.state.email}
+							onChangeText={(text) => parent.setState({email: text})} 
+							value={parent.state.email}
 							/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Company:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Company' 
-							onChangeText={(text) => this.setState({company: text})} 
-							value={this.state.company}
+							onChangeText={(text) => parent.setState({company: text})} 
+							value={parent.state.company}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Phone</Text>
 						<TextInput style={styles.input}
 							 placeholder='Phone' 
-							onChangeText={(text) => this.setState({phone: text})} 
-							value={this.state.phone}
+							onChangeText={(text) => parent.setState({phone: text})} 
+							value={parent.state.phone}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>LinkedIn:</Text>
 						<TextInput style={styles.input} 
 							placeholder='LinkedIn' 
-							onChangeText={(text) => this.setState({linkedin: text})} 
-							value={this.state.linkedin}
+							onChangeText={(text) => parent.setState({linkedin: text})} 
+							value={parent.state.linkedin}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Facebook:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Facebook' 
-							onChangeText={(text) => this.setState({facebook: text})} 
-							value={this.state.facebook}
+							onChangeText={(text) => parent.setState({facebook: text})} 
+							value={parent.state.facebook}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Twitter:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Twitter' 
-							onChangeText={(text) => this.setState({twitter: text})} 
-							value={this.state.twitter}
+							onChangeText={(text) => parent.setState({twitter: text})} 
+							value={parent.state.twitter}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Instagram:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Instagram' 
-							onChangeText={(text) => this.setState({instagram: text})} 
-							value={this.state.instagram}
+							onChangeText={(text) => parent.setState({instagram: text})} 
+							value={parent.state.instagram}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Github:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Github' 
-							onChangeText={(text) => this.setState({github: text})} 
-							value={this.state.github}
+							onChangeText={(text) => parent.setState({github: text})} 
+							value={parent.state.github}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Site:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Site' 
-							onChangeText={(text) => this.setState({site: text})} 
-							value={this.state.site}
+							onChangeText={(text) => parent.setState({site: text})} 
+							value={parent.state.site}
 						/>
 					</View>
 				</View>
+				<Menu styles={styles} navigator={this.props.navigator} parent={parent}/>
 			</View>
 		)
 	}
@@ -157,20 +153,23 @@ class ProfileView extends React.Component{
 	}
 
 	render(){
+		console.log(`profileView: ${this.state.menuVisible}`)
 		var styles = this.props.styles
 		console.log('rendering profile')
 		return(
 			<View style={styles.container}>
-				<NavigationBarWithoutSearch styles={styles} parentState={this.state} route={this.props.route}/>
-				<ProfileBody styles={styles} parentState={this.state}/>
-				<TouchableWithoutFeedback onPress={this._updateInfo.bind(this)}>
-					<View style={styles.swiper}>
-						<Text style={styles.demand}>Swipe to Save</Text>
-					</View>
-				</TouchableWithoutFeedback>
+				<NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
+				<ProfileBody styles={styles} parent={this} navigator={this.props.navigator}/>
+				<Swiper styles={styles} swipe_callback={this._updateInfo.bind(this)}/>
 			</View>
 		)
 	}
 }
 
 module.exports = ProfileView;
+
+// <TouchableWithoutFeedback onPress={this._updateInfo.bind(this)}>
+// 					<View style={styles.swiper}>
+// 						<Text style={styles.demand}>Swipe to Save</Text>
+// 					</View>
+// 				</TouchableWithoutFeedback>

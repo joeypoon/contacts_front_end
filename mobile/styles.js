@@ -20,6 +20,10 @@ var styles = StyleSheet.create({
     flex: 82,
     flexDirection: 'column'
   },
+  bodyWithoutSwiper: {
+    flex: 92,
+    flexDirection: 'column'
+  },
   loadingContainer: {
     flex: 92,
     justifyContent: 'center',
@@ -72,6 +76,13 @@ var styles = StyleSheet.create({
     top: 0,
     right: 0,
     backgroundColor: 'orange'
+  },
+  showMenu: {
+    backgroundColor: 'blue'
+  },
+  menuItem: {
+    flex: 20,
+    borderBottomWidth: 1
   },
   menuVisible: {
     tintColor: 'red'
@@ -133,7 +144,7 @@ var styles = StyleSheet.create({
     fontSize:11
   },
   listView: {
-    flex: 92,
+    flex: 1,
     backgroundColor: '#F5FCFF'
   },
   header: {

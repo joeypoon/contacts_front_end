@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react-native'),
-    NavigationBarWithoutSearch = require('./navigationBarWithoutSearch')
+    NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
+    Menu = require('./menu')
 
 var {
  AppRegistry,
@@ -23,7 +24,8 @@ class ProximityList extends React.Component{
     super(props)
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}), 
-      loaded: false 
+      loaded: false,
+      menuVisible: false 
     }
   }
 
@@ -78,12 +80,15 @@ class ProximityList extends React.Component{
 
     return (
       <View style={styles.container}>
-        <NavigationBarWithoutSearch styles={this.props.styles} route={this.props.route}/>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderUser.bind(this)}
-          style={styles.listView}
-        />
+        <NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
+        <View style={styles.bodyWithoutSwiper}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderUser.bind(this)}
+            style={styles.listView}
+          />
+          <Menu styles={styles} navigator={this.props.navigator} parent={this}/>
+        </View>
       </View>
     )
   }
