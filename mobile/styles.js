@@ -13,8 +13,15 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  test: {
+    flex: 8
+  },
+  bodyWithSwiper: {
+    flex: 82,
+    flexDirection: 'column'
+  },
   loadingContainer: {
-    flex: 1,
+    flex: 92,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -41,44 +48,61 @@ var styles = StyleSheet.create({
     borderBottomWidth: 2
   },
   logo: {
-    flex: 15,
+    width: 40,
+    height: 40,
     flexDirection: 'column'
   },
   menuInitiator: {
-    flex: 15
+    width: 40,
+    height: 40,
+    marginTop: 15
   },
   navNameContainer: {
-    flex: 70,
+    flex: 75,
     justifyContent: 'center',
     alignItems: 'center'
   },
   navName: {
     fontSize: 20
   },
+  menu: {
+    flex: 1,
+    flexDirection: 'column',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: 'orange'
+  },
+  menuVisible: {
+    tintColor: 'red'
+  },
   imageContainer: {
-    flex: 23,
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center'
   },
   profilePic: {
     height: 120,
     width: 120,
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: 'black',
     borderRadius: 60
   },
   infoContainer: {
-    flex: 59,
+    flex: 5,
     flexDirection: 'column'
   },
   swiper: {
     backgroundColor: '#ccc',
     flex: 10,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
   demand: {
-    flex: 1
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 25
   },
   usersContainer: {
     flex: 10,
@@ -109,7 +133,7 @@ var styles = StyleSheet.create({
     fontSize:11
   },
   listView: {
-    paddingTop: 20,
+    flex: 92,
     backgroundColor: '#F5FCFF'
   },
   header: {

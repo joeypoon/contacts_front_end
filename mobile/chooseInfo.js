@@ -46,7 +46,6 @@ class ChooseInfo extends React.Component{
   	}
 
 	_toggle(key){
-		console.log(this.state[key])
 		var newState = {}
 		newState[key] = !this.state[key]
 		this.setState(newState)

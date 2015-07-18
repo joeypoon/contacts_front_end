@@ -32,7 +32,7 @@ class AppNavigation extends React.Component{
 
     // test if user is already logged in, navigate to other screen
     state.user().then((data)=> {
-      this.refs.navigator.replace({id: "ProfileView"})
+        this.refs.navigator.replace({id: "ProfileView"})
     })
   }
 

@@ -1,6 +1,7 @@
 'use strict';
 
-var React = require('react-native');
+var React = require('react-native'),
+    NavigationBarWithoutSearch = require('./navigationBarWithoutSearch')
 var {
  AppRegistry,
   ListView,
@@ -57,9 +58,11 @@ class ContactList extends React.Component{
     return (
       <TouchableHighlight onPress={() => this._seeUserProfile(user)}>
         <View style={styles.usersContainer}>
-          <Image style={styles.image}/>
-          <Text style={styles.name}> {user.name} </Text>
-          <Text style={styles.email}> {user.email} </Text>
+          <Image style={styles.image} source={{uri: `${user.avatar}`}}/>
+          <View style={styles.homeInfoContainer}>
+            <Text style={styles.name}> {user.name} </Text>
+            <Text style={styles.email}> {user.company || "Evaluating their options..."} </Text>
+          </View>
         </View>
       </TouchableHighlight>
     );
@@ -67,17 +70,20 @@ class ContactList extends React.Component{
 
   render() {
   	var styles = this.props.styles
-    console.log('Rendering List')
+    console.log('Rendering contact list')
     if (!this.state.loaded) {
       return this._renderLoadingView();
     }
 
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this._renderUser.bind(this)}
-        style={styles.listView}
-      />
+      <View style={styles.container}>
+        <NavigationBarWithoutSearch styles={this.props.styles} route={this.props.route}/>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderUser.bind(this)}
+          style={styles.listView}
+        />
+      </View>
     )
   }
 }

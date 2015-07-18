@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native'),
+  NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
 	state = require('./state')
 
 var {
@@ -66,17 +67,20 @@ class Inbound extends React.Component{
 	render() {
 		var styles = this.props.styles
   	console.log('Rendering Inbound')
-
   	if (!this.state.loaded) {
     		return this._renderLoadingView();
   	}
 
     return (
-    	<ListView
-	        dataSource={this.state.dataSource}
-	        renderRow={this._renderUser.bind(this)}
-	        style={styles.listView}
-      	/>
+      <View style={styles.container}>
+        <View style={styles.test}>
+        </View>
+      	<ListView
+  	        dataSource={this.state.dataSource}
+  	        renderRow={this._renderUser.bind(this)}
+  	        style={styles.listView}
+        />
+      </View>
     )
 	}
 }

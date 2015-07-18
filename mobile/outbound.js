@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native'),
+  NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
 	state = require('./state')
 var {
  AppRegistry,
@@ -65,11 +66,15 @@ class Outbound extends React.Component{
   	}
 
     return (
-    	<ListView
-	        dataSource={this.state.dataSource}
-	        renderRow={this._renderUser.bind(this)}
-	        style={styles.listView}
-      	/>
+    	<View style={styles.container}>
+        <View style={styles.test}>
+        </View>        
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderUser.bind(this)}
+          style={styles.listView}
+        />
+      </View>
     )
 	}
 }

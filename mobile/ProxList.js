@@ -1,6 +1,8 @@
 'use strict';
 
-var React = require('react-native');
+var React = require('react-native'),
+    NavigationBarWithoutSearch = require('./navigationBarWithoutSearch')
+
 var {
  AppRegistry,
   ListView,
@@ -75,11 +77,14 @@ class ProximityList extends React.Component{
     }
 
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this._renderUser.bind(this)}
-        style={styles.listView}
-      />
+      <View style={styles.container}>
+        <NavigationBarWithoutSearch styles={this.props.styles} route={this.props.route}/>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderUser.bind(this)}
+          style={styles.listView}
+        />
+      </View>
     )
   }
 }

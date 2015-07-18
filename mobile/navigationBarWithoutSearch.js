@@ -6,12 +6,23 @@ var {
   Text,
   View,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
+  TouchableWithoutFeedback
 } = React;
 
 class NavigationBarWithoutSearch extends React.Component{
 	constructor(props){
 		super(props)
+
+		this.state=this.props.parentState
+	}
+
+	componentWillReceiveProps(newProps){
+		this.setState(newProps.parentState)
+	}
+
+	_toggleMenu(){
+		this.setState({menuVisible: !this.state.menuVisible})
 	}
 
 	render(){
@@ -23,7 +34,9 @@ class NavigationBarWithoutSearch extends React.Component{
 				<View style={styles.navNameContainer}>
 					<Text style={styles.navName}>{route.name}</Text>
 				</View>
-				<Image style={styles.menuInitiator} />
+				<TouchableWithoutFeedback onPress={this._toggleMenu.bind(this)}>
+					<Image style={[styles.menuInitiator, this.state.menuVisible && styles.menuVisible]} source={require('image!hamburglar')} />
+				</TouchableWithoutFeedback>
 			</View>
 		)
 	}
