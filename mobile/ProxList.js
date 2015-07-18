@@ -2,7 +2,8 @@
 
 var React = require('react-native'),
     NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
-    Menu = require('./menu')
+    Menu = require('./menu'),
+    state = require('./state') // { user: prop() }
 
 var {
  AppRegistry,
@@ -16,8 +17,6 @@ var {
 } = React;
 
 var REMOTE = 'https://contacts-back-end.herokuapp.com'
-
-let state = require('./state'); // { user: prop() }
 
 class ProximityList extends React.Component{
   constructor(props){

@@ -13,9 +13,6 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
-  test: {
-    flex: 8
-  },
   bodyWithSwiper: {
     flex: 82,
     flexDirection: 'column'

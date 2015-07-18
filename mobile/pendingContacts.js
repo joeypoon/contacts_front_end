@@ -36,7 +36,7 @@ class PendingContacts extends React.Component{
 						})
 					}
 				>
-					<Inbound styles={styles} navigator={this.props.navigator}/>
+					<Inbound styles={styles} navigator={this.props.navigator} route={this.props.route}/>
 				</TabBarIOS.Item>
 				<TabBarIOS.Item
 					title="Outbound"
@@ -47,7 +47,7 @@ class PendingContacts extends React.Component{
 						})
 					}
 				>
-					<Outbound styles={styles} navigator={this.props.navigator}/>
+					<Outbound styles={styles} navigator={this.props.navigator} route={this.props.route}/>
 				</TabBarIOS.Item>
 			</TabBarIOS>
 		)

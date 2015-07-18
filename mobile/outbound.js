@@ -2,6 +2,7 @@
 
 var React = require('react-native'),
   NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
+  Menu = require('./menu'),
 	state = require('./state')
 var {
  AppRegistry,
@@ -17,7 +18,8 @@ class Outbound extends React.Component{
 		super(props)
 		this.state = {
 	      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}), 
-	      loaded: false 
+	      loaded: false,
+        menuVisible: false
 	    }
 	}
 
@@ -67,13 +69,15 @@ class Outbound extends React.Component{
 
     return (
     	<View style={styles.container}>
-        <View style={styles.test}>
-        </View>        
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderUser.bind(this)}
-          style={styles.listView}
-        />
+        <NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
+        <View style={styles.bodyWithoutSwiper}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderUser.bind(this)}
+            style={styles.listView}
+          />
+          <Menu styles={styles} navigator={this.props.navigator} parent={this}/>
+        </View>
       </View>
     )
 	}
