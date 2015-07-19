@@ -119,7 +119,7 @@ class UserListView extends React.Component{
   _renderUser(user, sectionId, rowId) {
   	var styles = this.props.styles
     return (
-      <TouchableHighlight onPress={() => this._handlePressOnUser.bind(this, user)}>
+      <TouchableHighlight onPress={this._handlePressOnUser.bind(this, user)}>
         <View style={styles.usersContainer}>
           <Image style={styles.image} source={{uri: `${user.avatar}`}}/>
           <View style={styles.homeInfoContainer}>

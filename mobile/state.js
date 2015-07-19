@@ -79,6 +79,7 @@ function fetch_register(name, email, password, password_confirmation){
 
 function register(name, email, password, password_confirmation){
 	return fetch_register(name, email, password, password_confirmation).then((data) => {
+		console.log(data)
 		state.user(data)
 		return data
 	})

@@ -2,14 +2,12 @@
 
 var React = require('react-native');
 var Button = require('react-native-button'),
-	state
+	state = require('./state')
 var {
   Text,
   View,
   TextInput
 } = React;
-
-var REMOTE = 'https://contacts-back-end.herokuapp.com'
 
 class RegisterOnly extends React.Component{
 	constructor(props){

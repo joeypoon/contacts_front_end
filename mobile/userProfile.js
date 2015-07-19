@@ -24,7 +24,7 @@ class UserProfileBody extends React.Component{
 			<View style={styles.bodyWithSwiper}>
 				<Menu styles={styles} parent={parent} />
 				<View style={styles.imageContainer}>
-					<Image style={styles.profilePic} source={{uri: `${this.state.avatar || null}`}} />
+					<Image style={styles.profilePic} source={{uri: `${parent.state.avatar || null}`}} />
 				</View>
 				<View style={styles.infoContainer}>
 					<View style={styles.inputHolder}>
@@ -153,7 +153,7 @@ class UserProfile extends React.Component{
 		console.log('rendering this guy\'s profile')
 		return(
 			<View style={styles.container}>
-				<NavigationBarWithoutSearch styles={styles} route={this.props.route}/>
+				<NavigationBarWithoutSearch styles={styles} route={this.props.route} parent={this}/>
 				<UserProfileBody styles={styles} parent={this}/>
 				<View style={styles.swiper}>
 					<Text style={styles.demand} onPress={this._returnToContacts.bind(this)}>Return to Contact List</Text>
