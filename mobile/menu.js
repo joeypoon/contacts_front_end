@@ -18,12 +18,12 @@ class Menu extends React.Component{
 
 	_logOut(){
 		state.user(null)
-			.then(() => this.props.navigator.replace({id: 'LoginView'}))
+			.then(() => this.props.navigator.popToTop())
 	}
 
-	_route(route_id){
+	_route(route_id, route_name){
 		console.log('routing')
-		this.props.navigator.push({id: route_id})
+		this.props.navigator.push({id: route_id, name: route_name})
 	}
 
 	render(){
@@ -32,22 +32,22 @@ class Menu extends React.Component{
 		console.log(parent.state.menuVisible)
 		return(
 			<View style={[styles.menu, parent.state.menuVisible && styles.showMenu]}>
-				<TouchableWithoutFeedback onPress={this._route.bind(this, "ProfileView")}>
+				<TouchableWithoutFeedback onPress={this._route.bind(this, "ProfileView", "Profile")}>
 					<View style={[styles.menuItem]}>
 						<Text>Profile</Text>
 					</View>
 				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={this._route.bind(this, "ProximityList")}>
+				<TouchableWithoutFeedback onPress={this._route.bind(this, "ProximityList", "People Near You")}>
 					<View style={[styles.menuItem]}>
 						<Text>Proximity List</Text>
 					</View>
 				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={this._route.bind(this, "ContactList")}>
+				<TouchableWithoutFeedback onPress={this._route.bind(this, "ContactList", "Contacts")}>
 					<View style={[styles.menuItem]}>
 						<Text>Contact List</Text>
 					</View>
 				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={this._route.bind(this, "PendingContacts")}>
+				<TouchableWithoutFeedback onPress={this._route.bind(this, "PendingContacts", "Pending Contacts")}>
 					<View style={[styles.menuItem]}>
 						<Text>Pending Contacts</Text>
 					</View>

@@ -19,6 +19,21 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  title: {
+    fontSize: 20 
+  },
+  loginTitle: {
+    flex: 70,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  registerTitle: {
+    flex: 50,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   bodyWithSwiper: {
     flex: 82,
     flexDirection: 'column'
@@ -41,6 +56,9 @@ var styles = StyleSheet.create({
   input: {
     fontSize: 14,
     flex: 70
+  },
+  loginInput: {
+    flex: 10
   },
   inputHolder: {
     flex: 1,

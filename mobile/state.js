@@ -30,6 +30,20 @@ function prop(key, initialData){
 
 const REMOTE = 'https://contacts-back-end.herokuapp.com'
 
+function get_location(){
+	navigator.geolocation.getCurrentPosition(
+		(position) => {
+			console.log(position) 
+			state.user_location({
+				lat: position.coords.latitude, 
+				long: position.coords.longitude
+			})
+		},
+		(error) => console.log(error.message),
+		{enableHighAccuracy: false}
+	)
+}
+
 function fetch_login(email, password) {
     return fetch(`${REMOTE}/login.json`, {
         method: 'post',
@@ -47,20 +61,6 @@ function fetch_login(email, password) {
         if (response.status > 399) throw 'That email/password combination does not exist. Try again!'
         return response.json()
     })
-}
-
-function get_location(){
-	navigator.geolocation.getCurrentPosition(
-		(position) => {
-			console.log(position) 
-			state.user_location({
-				lat: position.coords.latitude, 
-				long: position.coords.longitude
-			})
-		},
-		(error) => console.log(error.message),
-		{enableHighAccuracy: true}
-	)
 }
 
 //How do we handle asynchronosity of location services?

@@ -41,19 +41,19 @@ class LoginOnly extends React.Component{
 		var styles=this.props.styles
 		return(
 			<View style={styles.container}>
-				<Text style={styles.title}>Login</Text>
+				<View style={styles.loginTitle}><Text style={styles.title}>Login</Text></View>
 				<TextInput 
-					style={styles.input}
+					style={styles.loginInput}
 					onChangeText={(text) => this.setState({email: text})} 
 					placeholder='Enter Email'
 				/>
 				<TextInput 
-					style={styles.input} 
+					style={styles.loginInput} 
 					secureTextEntry={true}
 					onChangeText={(text) => this.setState({password: text})} 
 					placeholder='Enter Password'
 				/>
-				<Text onPress={this._goRegister.bind(this)}>Already an existing user?</Text>
+				<Text onPress={this._goRegister.bind(this)}>Not already a user?</Text>
 				<Swiper styles={styles} innerText={"Swipe to Login"} swipe_callback={this._loginUser.bind(this)}/>
 			</View>
 		)

@@ -1,15 +1,15 @@
 'use strict';
 
 var React = require('react-native'),
-    NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
+    NavigationBar = require('./navigationBar'),
     Menu = require('./menu'),
     state = require('./state')
 
 var {
- AppRegistry,
+  AppRegistry,
+  Navigator,
   ListView,
   Image,
-  Navigator,
   StyleSheet,
   Text,
   View,
@@ -33,6 +33,17 @@ class UserListView extends React.Component{
     switch (this.state.currentView) {
       case "ProximityList":
         this._getNearbyUsers()
+        this.onFocusID = navigator.geolocation.watchPosition((position) => {
+          console.log("updating position coordinates")
+          this.setState({currentLocation:{
+              lat: position.coords.latitude, 
+              long: position.coords.longitude
+            }
+          })
+          state.user_location(this.state.currentLocation),
+          (error) => console.log(error),
+          {enableHighAccuracy: true, timeout: 60000}
+        })
         break
       case "ContactList":
         this._getContacts()
@@ -44,6 +55,20 @@ class UserListView extends React.Component{
         this._getOutboundPendingContacts()
         break
     }
+  }
+
+  componentWillUnmount(){
+    if(this.state.currentView === "ProximityList")
+      navigator.geolocation.clearWatch(this.onFocusID)
+      this.offFocusID = navigator.geolocation.watchPosition((position) => {
+          console.log("updating position coordinates")
+          state.user_location({
+              lat: position.coords.latitude, 
+              long: position.coords.longitude
+            }),
+          (error) => console.log(error),
+          {enableHighAccuracy: true, timeout: 300000}
+        })
   }
 
   _getContacts(){
@@ -82,7 +107,7 @@ class UserListView extends React.Component{
   }
 
   _selectUser(user){
-    console.log('Chose user')
+    console.log('I want to share with this guy')
     state.outbound_user(user.id)
     this.props.navigator.push({id: "ChooseInfo"})
   }
@@ -94,7 +119,7 @@ class UserListView extends React.Component{
   }
 
   _shareBack(user){
-    console.log('Chose user')
+    console.log('Sharing my contact info back')
     state.outbound_user(user.id)
     this.props.navigator.push({id: "ChooseInfo"})
   }
@@ -140,7 +165,7 @@ class UserListView extends React.Component{
 
     return (
       <View style={styles.container}>
-        <NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
+        <NavigationBar styles={styles} parent={this} route={this.props.route}/>
         <View style={styles.bodyWithoutSwiper}>
           <ListView
             dataSource={this.state.dataSource}

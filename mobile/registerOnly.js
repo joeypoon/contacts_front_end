@@ -1,12 +1,14 @@
 'use strict';
 
-var React = require('react-native');
-var Button = require('react-native-button'),
+var React = require('react-native'),
+	Swiper = require('./swiper'),
 	state = require('./state')
+
 var {
   Text,
   View,
-  TextInput
+  TextInput,
+  Navigator
 } = React;
 
 class RegisterOnly extends React.Component{
@@ -32,35 +34,38 @@ class RegisterOnly extends React.Component{
 			})
   	}
 
+  	_goLogin(){
+		this.props.navigator.replace({id: "LoginOnly", sceneConfig: Navigator.SceneConfigs.FloatFromBottom})
+	}
+
 	render(){
 		var styles=this.props.styles
 		return(
 			<View style={styles.container}>
-				<Text style={styles.label}>SignUp</Text>
+				<View style={styles.registerTitle}><Text style={styles.title}>Register</Text></View>
 				<TextInput
-					style={styles.input}
+					style={styles.loginInput}
 					onChangeText={(text) => this.setState({newName: text})}
 					placeholder='Enter Name'
 				/>
 				<TextInput
-					style={styles.input}
+					style={styles.loginInput}
 					onChangeText={(text) => this.setState({newEmail: text})}
 					placeholder='Enter Email'
 				/>
 				<TextInput
-					style={styles.input}
+					style={styles.loginInput}
 					secureTextEntry={true}
 					onChangeText={(text) => this.setState({newPassword: text})}
 					placeholder='Enter Password'
 				/>
 				<TextInput
-					style={styles.input}
+					style={styles.loginInput}
 					secureTextEntry={true}
 					onChangeText={(text) => this.setState({newPassword_confirmation: text})}
 					placeholder='Confirm Password' />
-				<Button style={{color: 'green'}} onPress={this._registerUser.bind(this)}>
-					SignUp!
-				</Button>
+				<Text onPress={this._goLogin.bind(this)}>Already an existing user?</Text>
+				<Swiper styles={styles} innerText={"Swipe to Register"} swipe_callback={this._registerUser.bind(this)}/>
 			</View>
 		)
 	}
