@@ -49,13 +49,13 @@ class RegisterOnly extends React.Component{
 				/>
 				<TextInput
 					style={styles.input}
-					password={true}
+					secureTextEntry={true}
 					onChangeText={(text) => this.setState({newPassword: text})}
 					placeholder='Enter Password'
 				/>
 				<TextInput
 					style={styles.input}
-					password={true}
+					secureTextEntry={true}
 					onChangeText={(text) => this.setState({newPassword_confirmation: text})}
 					placeholder='Confirm Password' />
 				<Button style={{color: 'green'}} onPress={this._registerUser.bind(this)}>

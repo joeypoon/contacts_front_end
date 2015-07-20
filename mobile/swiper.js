@@ -22,7 +22,7 @@ class Swiper extends React.Component{
 		return(
 			<TouchableWithoutFeedback onPress={this._handleSwipe.bind(this, callback)}>
 				<View style={styles.swiper}>
-					<Text style={styles.demand}>Swipe to Save</Text>
+					<Text style={styles.demand}>{this.props.innerText || "Swipe to Save"}</Text>
 				</View>
 			</TouchableWithoutFeedback>
 		)

@@ -36,7 +36,7 @@ class AppNavigation extends React.Component{
         if(data){
           this.refs.navigator.replace({id: "ProfileView"})
         } else{
-          this.refs.navigator.replace({id: "RegisterOnly"})
+          this.refs.navigator.replace({id: "LoginView"})
         }
     })
   }
@@ -73,7 +73,12 @@ class AppNavigation extends React.Component{
         style={styles.navigator}
         initialRoute={{id: "RegisterOnly"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}
-        configureScene={() => Navigator.SceneConfigs.FloatFromRight}
+        configureScene={(route) => {
+          if (route.sceneConfig) {
+            return route.sceneConfig
+          }
+          return Navigator.SceneConfigs.FloatFromRight
+        }}
       />
     )
   }

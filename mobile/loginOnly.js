@@ -2,11 +2,13 @@
 
 var React = require('react-native');
 var Button = require('react-native-button'),
+	Swiper = require('./swiper'),
 	state = require('./state')
 var {
   Text,
   View,
-  TextInput
+  TextInput,
+  Navigator
 } = React;
 
 class LoginOnly extends React.Component{
@@ -31,11 +33,15 @@ class LoginOnly extends React.Component{
 		    })
 	}
 
+	_goRegister(){
+		this.props.navigator.replace({id: "RegisterOnly", sceneConfig: Navigator.SceneConfigs.FloatFromBottom})
+	}
+
 	render(){
 		var styles=this.props.styles
 		return(
 			<View style={styles.container}>
-				<Text style={styles.label}>Login</Text>
+				<Text style={styles.title}>Login</Text>
 				<TextInput 
 					style={styles.input}
 					onChangeText={(text) => this.setState({email: text})} 
@@ -43,13 +49,12 @@ class LoginOnly extends React.Component{
 				/>
 				<TextInput 
 					style={styles.input} 
-					password={true}
+					secureTextEntry={true}
 					onChangeText={(text) => this.setState({password: text})} 
 					placeholder='Enter Password'
 				/>
-				<Button style={{color: 'green'}} onPress={this._loginUser.bind(this)}>
-					Login!
-				</Button>
+				<Text onPress={this._goRegister.bind(this)}>Already an existing user?</Text>
+				<Swiper styles={styles} innerText={"Swipe to Login"} swipe_callback={this._loginUser.bind(this)}/>
 			</View>
 		)
 	}

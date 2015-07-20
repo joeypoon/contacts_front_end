@@ -44,13 +44,30 @@ function fetch_login(email, password) {
             }
         })
     }).then((response) => {
-        if (response.status > 400) throw 'That email/password combination does not exist. Try again!'
+        if (response.status > 399) throw 'That email/password combination does not exist. Try again!'
         return response.json()
     })
 }
 
+function get_location(){
+	navigator.geolocation.getCurrentPosition(
+		(position) => {
+			console.log(position) 
+			state.user_location({
+				lat: position.coords.latitude, 
+				long: position.coords.longitude
+			})
+		},
+		(error) => console.log(error.message),
+		{enableHighAccuracy: true}
+	)
+}
+
+//How do we handle asynchronosity of location services?
 function login(email, password){
-	return fetch_login(email, password).then((data) => {
+	get_location()
+	return fetch_login(email, password)
+	.then((data) => {
 		state.user(data)
 		return data
 	})
@@ -78,6 +95,7 @@ function fetch_register(name, email, password, password_confirmation){
 }
 
 function register(name, email, password, password_confirmation){
+	get_location()
 	return fetch_register(name, email, password, password_confirmation).then((data) => {
 		console.log(data)
 		state.user(data)
@@ -122,10 +140,10 @@ function profileUpdate(name, email, phone, company, linkedin, facebook, twitter,
 }
 
 function fetch_proximityList(data_source){
-    return state.user()
-    	.then((user) => user.id)
-      	.then((user_id) => {
-        	return fetch(`${REMOTE}/users/-58.000001/-68.000002/${user_id}`)
+    var promises=[state.user(), state.user_location()]
+    return Promise.all(promises)
+      	.then((res) => {
+        	return fetch(`${REMOTE}/users/${res[1].lat}/${res[1].long}/${res[0].id}`)
 		    .then((response) => response.json())
 		    .then((responseData) => {
              	return {

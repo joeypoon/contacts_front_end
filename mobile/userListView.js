@@ -16,8 +16,7 @@ var {
   TouchableHighlight
 } = React;
 
-var REMOTE = 'https://contacts-back-end.herokuapp.com'
-
+//currentLocation: {lat: xx, lng: xx}
 class UserListView extends React.Component{
   constructor(props){
     super(props)
@@ -25,7 +24,8 @@ class UserListView extends React.Component{
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}), 
       loaded: false,
       menuVisible: false,
-      currentView: this.props.viewRole
+      currentView: this.props.viewRole,
+      currentLocation: null
     }
   }
 

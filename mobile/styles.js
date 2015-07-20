@@ -13,6 +13,12 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  titlePage: {
+    flex: 80,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   bodyWithSwiper: {
     flex: 82,
     flexDirection: 'column'
