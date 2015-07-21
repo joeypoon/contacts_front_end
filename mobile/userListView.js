@@ -25,7 +25,7 @@ class UserListView extends React.Component{
       loaded: false,
       menuVisible: false,
       currentView: this.props.viewRole,
-      currentLocation: null
+      loader: null
     }
   }
 

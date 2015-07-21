@@ -1,5 +1,8 @@
 'use strict';
-var React = require('react-native');
+var React = require('react-native'),
+    Dimensions = require('Dimensions')
+
+var {width, height, scale} = Dimensions.get('window')
 
 var {
   StyleSheet,
@@ -100,19 +103,23 @@ var styles = StyleSheet.create({
     flex: 1
   },
   menu: {
-    flex: 1,
+    width: width/2,
+    height: height*.6,
     flexDirection: 'column',
     position: 'absolute',
     top: 0,
-    right: 0,
-    backgroundColor: 'orange'
+    left: width,
+    backgroundColor: '#efefef'
   },
   showMenu: {
-    backgroundColor: 'blue'
+    transform: [{translateX: -width/2}]
   },
   menuItem: {
     flex: 20,
-    borderBottomWidth: 1
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderLeftWidth: 1
   },
   menuVisible: {
     tintColor: 'red'

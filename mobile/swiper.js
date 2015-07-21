@@ -79,6 +79,7 @@ class Swiper extends React.Component{
 	}
 
 	render(){
+		console.log(width, height)
 		var styles = this.props.styles
 		var callback = this.props.swipe_callback
 		return(

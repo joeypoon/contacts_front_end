@@ -31,7 +31,7 @@ class LoginView extends React.Component{
 				<View style={styles.titlePage}>
 					<Text>Swap Meet</Text>
 				</View>
-				<Swiper styles={styles} color={"#ccc"} innerText={"Swipe to Login"} swipe_callback={this._goLogin.bind(this)}/>
+				<Swiper styles={styles} color={"#ddd"} innerText={"Swipe to Login"} swipe_callback={this._goLogin.bind(this)}/>
 				<Swiper styles={styles} innerText={"Swipe to Register"} swipe_callback={this._goRegister.bind(this)}/>
 			</View>
 		)
