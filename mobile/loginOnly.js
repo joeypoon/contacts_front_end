@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react-native');
-var Button = require('react-native-button'),
+var React = require('react-native'),
 	Swiper = require('./swiper'),
 	state = require('./state')
 var {

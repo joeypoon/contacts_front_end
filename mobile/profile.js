@@ -17,6 +17,7 @@ var {
 class ProfileBody extends React.Component{
 	constructor(props){
 		super(props)
+		this.temps=this.props.parent.state
 	}
 
 	render(){
@@ -32,7 +33,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Name:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Name'
-							onChangeText={(text) => parent.setState({name: text})} 
+							onChangeText={(text) => this.temps.name = text}
+							onEndEditing={() => parent.setState({name: this.temps.name})} 
 							value={parent.state.name}
 						/>
 					</View>
@@ -40,7 +42,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Email:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Email' 
-							onChangeText={(text) => parent.setState({email: text})} 
+							onChangeText={(text) => this.temps.email = text}
+							onEndEditing={() => parent.setState({email: this.temps.email})} 
 							value={parent.state.email}
 							/>
 					</View>
@@ -48,15 +51,18 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Company:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Company' 
-							onChangeText={(text) => parent.setState({company: text})} 
+							onChangeText={(text) => this.temps.company = text}
+							onEndEditing={() => parent.setState({company: this.temps.company})} 
 							value={parent.state.company}
 						/>
 					</View>
 					<View style={styles.inputHolder}>
 						<Text style={styles.label}>Phone</Text>
 						<TextInput style={styles.input}
-							 placeholder='Phone' 
-							onChangeText={(text) => parent.setState({phone: text})} 
+							placeholder='Phone' 
+							keyboardType='numeric'
+							onChangeText={(text) => this.temps.phone = text}
+							onEndEditing={() => parent.setState({phone: this.temps.phone})} 
 							value={parent.state.phone}
 						/>
 					</View>
@@ -64,7 +70,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>LinkedIn:</Text>
 						<TextInput style={styles.input} 
 							placeholder='LinkedIn' 
-							onChangeText={(text) => parent.setState({linkedin: text})} 
+							onChangeText={(text) => this.temps.linkedin = text}
+							onEndEditing={() => parent.setState({linkedin: this.temps.linkedin})} 
 							value={parent.state.linkedin}
 						/>
 					</View>
@@ -72,7 +79,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Facebook:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Facebook' 
-							onChangeText={(text) => parent.setState({facebook: text})} 
+							onChangeText={(text) => this.temps.facebook = text}
+							onEndEditing={() => parent.setState({facebook: this.temps.facebook})} 
 							value={parent.state.facebook}
 						/>
 					</View>
@@ -80,7 +88,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Twitter:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Twitter' 
-							onChangeText={(text) => parent.setState({twitter: text})} 
+							onChangeText={(text) => this.temps.twitter = text}
+							onEndEditing={() => parent.setState({twitter: this.temps.twitter})} 
 							value={parent.state.twitter}
 						/>
 					</View>
@@ -88,7 +97,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Instagram:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Instagram' 
-							onChangeText={(text) => parent.setState({instagram: text})} 
+							onChangeText={(text) => this.temps.instagram = text}
+							onEndEditing={() => parent.setState({instagram: this.temps.instagram})} 
 							value={parent.state.instagram}
 						/>
 					</View>
@@ -96,7 +106,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Github:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Github' 
-							onChangeText={(text) => parent.setState({github: text})} 
+							onChangeText={(text) => this.temps.github = text}
+							onEndEditing={() => parent.setState({github: this.temps.github})} 
 							value={parent.state.github}
 						/>
 					</View>
@@ -104,7 +115,8 @@ class ProfileBody extends React.Component{
 						<Text style={styles.label}>Site:</Text>
 						<TextInput style={styles.input} 
 							placeholder='Site' 
-							onChangeText={(text) => parent.setState({site: text})} 
+							onChangeText={(text) => this.temps.site = text}
+							onEndEditing={() => parent.setState({site: this.temps.site})} 
 							value={parent.state.site}
 						/>
 					</View>
@@ -144,7 +156,7 @@ class ProfileView extends React.Component{
 
 	    state.profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site)
 	    	.then(() => {
-	    		this.props.navigator.push({id: "ProximityList"})
+	    		this.props.navigator.push({id: "ProximityList", name: "People Near You"})
 	    	})
 	    	.catch((e) => {
 	    		console.log(e)
@@ -153,7 +165,6 @@ class ProfileView extends React.Component{
 	}
 
 	render(){
-		console.log(`profileView: ${this.state.menuVisible}`)
 		var styles = this.props.styles
 		console.log('rendering profile')
 		return(

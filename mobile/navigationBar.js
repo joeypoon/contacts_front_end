@@ -20,6 +20,11 @@ class NavigationBar extends React.Component{
 		parent.setState({menuVisible: !parent.state.menuVisible})
 	}
 
+	_filterListing(){
+		var parent = this.props.parent
+		console.log(parent.state)
+	}
+
 	render(){
 		var route = this.props.route
 		var styles = this.props.styles
@@ -28,7 +33,11 @@ class NavigationBar extends React.Component{
 			<View style={styles.navBarContainer}>
 				<View style={styles.logo}></View>
 				<View style={styles.navNameContainer}>
-					<TextInput style={styles.navInput} placeholder={route.name} />
+					<TextInput 
+						style={styles.navInput} 
+						placeholder={route.name} 
+						onChangeText={this._filterListing.bind(this)}
+					/>
 				</View>
 				<TouchableWithoutFeedback onPress={this._toggleMenu.bind(this)}>
 					<Image style={[styles.menuInitiator, parent.state.menuVisible && styles.menuVisible]} source={require('image!hamburglar')} />

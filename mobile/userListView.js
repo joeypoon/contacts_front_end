@@ -51,15 +51,7 @@ class UserListView extends React.Component{
       navigator.geolocation.clearWatch(this.onFocusID)
   }
 
-  // this.offFocusID = navigator.geolocation.watchPosition((position) => {
-  //         console.log("updating position coordinates")
-  //         state.user_location({
-  //             lat: position.coords.latitude, 
-  //             long: position.coords.longitude
-  //           }),
-  //         (error) => console.log(error),
-  //         {enableHighAccuracy: true, timeout: 300000}
-  //       })
+  //Turn off watcher on logout or unmount??
 
   _getContacts(){
     var {dataSource} = this.state
@@ -122,7 +114,7 @@ class UserListView extends React.Component{
   _seeUserProfile(user){
     console.log('See this guy\'s profile')
     state.connected_user(user.id)
-    this.props.navigator.push({id: "UserProfile"})
+    this.props.navigator.push({id: "UserProfile", name: `${user.name}'s Info`})
   }
 
   _shareBack(user){

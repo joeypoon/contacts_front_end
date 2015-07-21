@@ -170,7 +170,7 @@ function fetch_proximityList(data_source){
     var promises=[state.user(), state.user_location()]
     return Promise.all(promises)
       	.then((res) => {
-        	return fetch(`${REMOTE}/users/${res[1].lat}/${res[1].long}/${res[0].id}`)
+        	return fetch(`${REMOTE}/users/${res[1].lat}/${res[1].lng}/${res[0].id}`)
 		    .then((response) => response.json())
 		    .then((responseData) => {
              	return {
@@ -254,7 +254,7 @@ function fetch_requestUser(outbound_id, name, email, phone, company, linkedin, f
 		            }
 		        })
 		    }).then((response) => {
-		        if (response.status > 399) throw 'Request not successfully sent!'
+		        if (response.status > 399) throw response
 		    })
 		})
 }

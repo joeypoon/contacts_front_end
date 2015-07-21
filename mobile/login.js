@@ -1,17 +1,15 @@
 'use strict';
 
 var React = require('react-native'),
-	Swiper = require('./swiper')
+	Swiper = require('./swiper'),
+	state = require('./state')
 
 var {
   	Text,
 	View,
 	TextInput,
-	Navigator,
-	AlertIOS
+	Navigator
 } = React;
-
-let state = require('./state'); // { user: prop() }
 
 class LoginView extends React.Component{
 	constructor(props){
@@ -33,7 +31,7 @@ class LoginView extends React.Component{
 				<View style={styles.titlePage}>
 					<Text>Swap Meet</Text>
 				</View>
-				<Swiper styles={styles} innerText={"Swipe to Login"} swipe_callback={this._goLogin.bind(this)}/>
+				<Swiper styles={styles} color={"#ccc"} innerText={"Swipe to Login"} swipe_callback={this._goLogin.bind(this)}/>
 				<Swiper styles={styles} innerText={"Swipe to Register"} swipe_callback={this._goRegister.bind(this)}/>
 			</View>
 		)
