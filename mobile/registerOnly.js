@@ -26,11 +26,12 @@ class RegisterOnly extends React.Component{
 		var {newName, newEmail, newPassword, newPassword_confirmation} = this.state
 		
 		state.register(newName, newEmail, newPassword, newPassword_confirmation)
-			.then((data) => {
+			.then(() => {
 				this.props.navigator.push({id: "ProfileView", name: "Profile"})
 			})
 			.catch((e) => {
-				AlertIOS.alert('Signup Failed', e)
+				console.log(e)
+				// AlertIOS.alert('Signup Failed', e)
 			})
   	}
 

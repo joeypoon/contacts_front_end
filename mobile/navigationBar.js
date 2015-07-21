@@ -28,7 +28,7 @@ class NavigationBar extends React.Component{
 			<View style={styles.navBarContainer}>
 				<View style={styles.logo}></View>
 				<View style={styles.navNameContainer}>
-					<Text style={styles.navName}>{route.name}</Text>
+					<TextInput style={styles.navInput} placeholder={route.name} />
 				</View>
 				<TouchableWithoutFeedback onPress={this._toggleMenu.bind(this)}>
 					<Image style={[styles.menuInitiator, parent.state.menuVisible && styles.menuVisible]} source={require('image!hamburglar')} />

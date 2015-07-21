@@ -1,5 +1,6 @@
 'use strict';
 var React = require('react-native'),
+	Swiper = require('./swiper'),
 	state = require('./state')
 
 var {
@@ -162,9 +163,7 @@ class ChooseInfo extends React.Component{
 						</View>
 					}
 				</View>
-				<View style={styles.swiper}>
-					<Text style={styles.demand} onPress={this._checkUser.bind(this)}>Swipe to send request</Text>
-				</View>
+				<Swiper styles={styles} innerText={"Swipe to send request"} swipe_callback={this._checkUser.bind(this)}/>
 			</View> 
 		)
 	}

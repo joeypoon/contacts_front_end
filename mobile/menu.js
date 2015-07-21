@@ -17,6 +17,7 @@ class Menu extends React.Component{
 	}
 
 	_logOut(){
+		console.log('loggin out')
 		state.user(null)
 			.then(() => this.props.navigator.popToTop())
 	}
@@ -29,7 +30,6 @@ class Menu extends React.Component{
 	render(){
 		var parent=this.props.parent
 		var styles=this.props.styles
-		console.log(parent.state.menuVisible)
 		return(
 			<View style={[styles.menu, parent.state.menuVisible && styles.showMenu]}>
 				<TouchableWithoutFeedback onPress={this._route.bind(this, "ProfileView", "Profile")}>

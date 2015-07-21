@@ -33,17 +33,6 @@ class UserListView extends React.Component{
     switch (this.state.currentView) {
       case "ProximityList":
         this._getNearbyUsers()
-        this.onFocusID = navigator.geolocation.watchPosition((position) => {
-          console.log("updating position coordinates")
-          this.setState({currentLocation:{
-              lat: position.coords.latitude, 
-              long: position.coords.longitude
-            }
-          })
-          state.user_location(this.state.currentLocation),
-          (error) => console.log(error),
-          {enableHighAccuracy: true, timeout: 60000}
-        })
         break
       case "ContactList":
         this._getContacts()
@@ -60,16 +49,17 @@ class UserListView extends React.Component{
   componentWillUnmount(){
     if(this.state.currentView === "ProximityList")
       navigator.geolocation.clearWatch(this.onFocusID)
-      this.offFocusID = navigator.geolocation.watchPosition((position) => {
-          console.log("updating position coordinates")
-          state.user_location({
-              lat: position.coords.latitude, 
-              long: position.coords.longitude
-            }),
-          (error) => console.log(error),
-          {enableHighAccuracy: true, timeout: 300000}
-        })
   }
+
+  // this.offFocusID = navigator.geolocation.watchPosition((position) => {
+  //         console.log("updating position coordinates")
+  //         state.user_location({
+  //             lat: position.coords.latitude, 
+  //             long: position.coords.longitude
+  //           }),
+  //         (error) => console.log(error),
+  //         {enableHighAccuracy: true, timeout: 300000}
+  //       })
 
   _getContacts(){
     var {dataSource} = this.state
@@ -81,6 +71,23 @@ class UserListView extends React.Component{
     var {dataSource} = this.state
 
     state.proximityList(dataSource).then((data) => this.setState(data))
+
+      new Promise((res, rej) => 
+        navigator.geolocation.watchPosition(
+          (position) => {
+            console.log("updating position through watch position")
+            res({
+                lat: position.coords.latitude, 
+                lng: position.coords.longitude
+            }),
+            (error) => rej(error.message),
+            {enableHighAccuracy: true, timeout: 5000}
+          }
+        )
+      )
+      .then((res) => state.user_location(res))
+      .then(() => state.proximityList(dataSource))
+      .then((data) => this.setState(data))
   }
 
   _getInboundPendingContacts(){
@@ -157,6 +164,7 @@ class UserListView extends React.Component{
   }
 
   render() {
+    console.log(this.state.dataSource)
   	var styles = this.props.styles
     console.log('Rendering contact list')
     if (!this.state.loaded) {
@@ -167,11 +175,18 @@ class UserListView extends React.Component{
       <View style={styles.container}>
         <NavigationBar styles={styles} parent={this} route={this.props.route}/>
         <View style={styles.bodyWithoutSwiper}>
+        {this.state.dataSource._cachedRowCount > 0 &&  
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderUser.bind(this)}
             style={styles.listView}
           />
+        }
+        {this.state.dataSource._cachedRowCount === 0 && 
+          <View style={styles.noData}>
+            <Text>No Contacts Available</Text>
+          </View>
+        } 
           <Menu styles={styles} navigator={this.props.navigator} parent={this}/>
         </View>
       </View>

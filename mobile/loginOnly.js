@@ -25,7 +25,7 @@ class LoginOnly extends React.Component{
 
 	    state.login(email, password)
 	    	.then((data) => {
-	    		this.props.navigator.push({id: "ProximityList"})
+	    		this.props.navigator.push({id: "ProximityList", name: "People Near You"})
 	    	})
 	    	.catch((e) => {
 	    		console.log(e)

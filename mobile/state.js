@@ -31,17 +31,43 @@ function prop(key, initialData){
 const REMOTE = 'https://contacts-back-end.herokuapp.com'
 
 function get_location(){
-	navigator.geolocation.getCurrentPosition(
-		(position) => {
-			console.log(position) 
-			state.user_location({
-				lat: position.coords.latitude, 
-				long: position.coords.longitude
-			})
-		},
-		(error) => console.log(error.message),
-		{enableHighAccuracy: false}
-	)
+	new Promise((res, rej) => 
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				console.log(position) 
+				res({
+					lat: position.coords.latitude, 
+					lng: position.coords.longitude
+				})
+			},
+			(error) => console.log('cant get initial location'),
+			{enableHighAccuracy: false}
+	))
+}
+
+function fetch_updateLocation(){
+	promises=[state.user(), state.user_location()]
+
+	return Promise.all(promises)
+		.then((res) => {
+			console.log(res)
+			return fetch(`${REMOTE}/update.json`, {
+		        method: 'post',
+		        headers: {
+		            'Accept': 'application/json',
+		            'Content-Type': 'application/json'
+		        },
+		        body: JSON.stringify({
+		            id: res[0].id,
+		            user: {
+		                lat: res[1].lat,
+		                lng: res[1].lng
+		            }
+		        })
+		    }).then((response) => {
+		        if (response.status > 399) throw 'Could not update location!'
+		    })		
+		})
 }
 
 function fetch_login(email, password) {
@@ -63,13 +89,13 @@ function fetch_login(email, password) {
     })
 }
 
-//How do we handle asynchronosity of location services?
 function login(email, password){
-	get_location()
-	return fetch_login(email, password)
+	promises=[get_location(), fetch_login(email, password)]
+	return Promise.all(promises)
 	.then((data) => {
-		state.user(data)
-		return data
+		state.user_location(data[0])
+		state.user(data[1])
+		return data[1]
 	})
 }
 
@@ -89,17 +115,18 @@ function fetch_register(name, email, password, password_confirmation){
 			}
         })
     }).then((response) => {
-    	if (response.status > 400) throw 'Sign up failed. Please enter valid parameters.'
+    	if (response.status > 399) throw 'Sign up failed. Please enter valid parameters.'
         	return response.json() 
     })
 }
 
 function register(name, email, password, password_confirmation){
-	get_location()
-	return fetch_register(name, email, password, password_confirmation).then((data) => {
-		console.log(data)
-		state.user(data)
-		return data
+	promises=[get_location(), fetch_register(name, email, password, password_confirmation)]
+	return Promise.all(promises)
+	.then((data) => {
+		state.user_location(data[0])
+		state.user(data[1])
+		return data[1]
 	})
 }
 
@@ -156,7 +183,10 @@ function fetch_proximityList(data_source){
 }
 
 function proximityList(data_source){
-	return fetch_proximityList(data_source)
+	console.log('FETCHING ONCE AGAIN')
+	return fetch_updateLocation()
+	.then(() => fetch_proximityList(data_source))
+    .catch((...a) => console.log(...a))
 }
 
 function fetch_inboundContacts(data_source){

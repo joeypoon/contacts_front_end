@@ -13,6 +13,11 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  noData: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   titlePage: {
     flex: 80,
     flexDirection: 'column',
@@ -89,6 +94,10 @@ var styles = StyleSheet.create({
   },
   navName: {
     fontSize: 20
+  },
+  navInput: {
+    fontSize: 14,
+    flex: 1
   },
   menu: {
     flex: 1,
