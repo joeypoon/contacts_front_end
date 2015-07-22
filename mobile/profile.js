@@ -6,12 +6,13 @@ var React = require('react-native'),
 	state = require('./state')
 
 var {
-  Image,
-  Text,
-  View,
-  TextInput,
-  TouchableHighlight,
-  TouchableWithoutFeedback
+	CameraRoll,
+	Image,
+	Text,
+	View,
+	TextInput,
+	TouchableHighlight,
+	TouchableWithoutFeedback
 } = React;
 
 class ProfileBody extends React.Component{

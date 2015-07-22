@@ -12,6 +12,9 @@ var styles = StyleSheet.create({
   navigator: {
     flex: 1
   },
+  keyboardView: {
+    transform: [{translateY:-height/4}]
+  },
   container: {
     flex: 1,
     flexDirection: 'column'
@@ -21,14 +24,29 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  rowTiles: {
+    flex: 25,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    opacity: .5
+  },
+  tile: {
+    flex: 1,
+    borderRightWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  tileImage: {
+    width: width/5,
+    height: width/5
+  },
   titlePage: {
     flex: 80,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
+    flexDirection: 'column'
+    },
   title: {
-    fontSize: 20 
+    fontSize: 40,
+    fontFamily: "Roboto-Light"
   },
   loginTitle: {
     flex: 70,

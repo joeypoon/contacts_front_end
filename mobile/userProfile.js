@@ -22,7 +22,6 @@ class UserProfileBody extends React.Component{
 		var styles=this.props.styles
 		return (
 			<View style={styles.bodyWithSwiper}>
-				<Menu styles={styles} parent={parent} />
 				<View style={styles.imageContainer}>
 					<Image style={styles.profilePic} source={{uri: `${parent.state.avatar || null}`}} />
 				</View>

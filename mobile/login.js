@@ -2,6 +2,7 @@
 
 var React = require('react-native'),
 	Swiper = require('./swiper'),
+	Tiles = require('./tiles'),
 	state = require('./state')
 
 var {
@@ -24,15 +25,17 @@ class LoginView extends React.Component{
 		this.props.navigator.push({id: 'RegisterOnly', sceneConfig: Navigator.SceneConfigs.FloatFromLeft})
 	}
 
+	//<Text style={styles.title}>AdMi</Text>
+
 	render(){
 		var styles=this.props.styles
 		return(
 			<View style={styles.container}>
 				<View style={styles.titlePage}>
-					<Text>Swap Meet</Text>
+					<Tiles styles={styles}/>
 				</View>
 				<Swiper styles={styles} color={"#ddd"} innerText={"Swipe to Login"} swipe_callback={this._goLogin.bind(this)}/>
-				<Swiper styles={styles} innerText={"Swipe to Register"} swipe_callback={this._goRegister.bind(this)}/>
+				<Swiper styles={styles} color={"#bbb"} innerText={"Swipe to Register"} swipe_callback={this._goRegister.bind(this)}/>
 			</View>
 		)
 	}

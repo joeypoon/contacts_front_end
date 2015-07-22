@@ -15,7 +15,8 @@ class LoginOnly extends React.Component{
 		super(props)
 		this.state = {
       		email: '',
-      		password: ''
+      		password: '',
+      		keyboard: false
 		}
 	}
 
@@ -38,22 +39,28 @@ class LoginOnly extends React.Component{
 
 	render(){
 		var styles=this.props.styles
+		var nav = this.props.navigator
+		console.log(this.state.keyboard)
 		return(
-			<View style={styles.container}>
+			<View style={[styles.container, !!this.state.keyboard && styles.keyboardView]}>
 				<View style={styles.loginTitle}><Text style={styles.title}>Login</Text></View>
 				<TextInput 
 					style={styles.loginInput}
 					onChangeText={(text) => this.setState({email: text})} 
 					placeholder='Enter Email'
+					onFocus={() => this.setState({keyboard: true})}
+					onBlur={() => this.setState({keyboard: false})}
 				/>
 				<TextInput 
 					style={styles.loginInput} 
 					secureTextEntry={true}
 					onChangeText={(text) => this.setState({password: text})} 
 					placeholder='Enter Password'
+					onFocus={() => this.setState({keyboard: true})}
+					onBlur={() => this.setState({keyboard: false})}
 				/>
 				<Text onPress={this._goRegister.bind(this)}>Not already a user?</Text>
-				<Swiper styles={styles} innerText={"Swipe to Login"} swipe_callback={this._loginUser.bind(this)}/>
+				<Swiper navigator={nav} styles={styles} innerText={"Swipe to Login"} swipe_callback={this._loginUser.bind(this)}/>
 			</View>
 		)
 	}
