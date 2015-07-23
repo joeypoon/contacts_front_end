@@ -264,12 +264,11 @@ var styles = StyleSheet.create({
     fontSize: 25
   },
   usersContainer: {
-    flex: 10,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: '#000',
-    backgroundColor: '#eef2f3'
+    borderColor: '#83CACD'
   },
   image: {
     height: 50,
@@ -292,8 +291,7 @@ var styles = StyleSheet.create({
     fontSize:11
   },
   listView: {
-    flex: 1,
-    backgroundColor: '#F5FCFF'
+    flex: 1
   },
   header: {
     flex: 20,

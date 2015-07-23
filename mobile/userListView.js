@@ -3,6 +3,7 @@
 var React = require('react-native'),
     NavigationBar = require('./navigationBar'),
     Menu = require('./menu'),
+    SwipeableElement = require('./swipeableElement'),
     state = require('./state')
 
 var {
@@ -122,7 +123,7 @@ class UserListView extends React.Component{
     this.props.navigator.push({id: "ChooseInfo"})
   }
 
-  _handlePressOnUser(user){
+  _handleSwipeUser(user){
     switch (this.state.currentView) {
       case "ProximityList":
         this._selectUser(user)
@@ -136,26 +137,71 @@ class UserListView extends React.Component{
       case "Outbound":
         break
     }
+  }
 
+  _removeUser(user){
+    console.log('delete user')
+  }
+
+  _leftTitle(user){
+    switch (this.state.currentView) {
+      case "ProximityList":
+        return `Request User`  
+      case "ContactList":
+        return `See User's Profile`
+      case "Inbound":
+        return `Respond to Request`
+      case "Outbound":
+        return `nuthin yet....`
+    }
+  }
+
+  _rightTitle(user){
+    switch (this.state.currentView) {
+      case "ProximityList":
+        return `Not sure yet....`  
+        break
+      case "ContactList":
+        return `Delete Contact`
+        break
+      case "Inbound":
+        return `Decline Request`
+        break
+      case "Outbound":
+        return `Cancel Request`
+        break
+    }
   }
 
   _renderUser(user, sectionId, rowId) {
   	var styles = this.props.styles
     return (
-      <TouchableHighlight onPress={this._handlePressOnUser.bind(this, user)}>
-        <View style={styles.usersContainer}>
-          <Image style={styles.image} source={{uri: `${user.avatar}`}}/>
-          <View style={styles.homeInfoContainer}>
-            <Text style={styles.name}> {user.name} </Text>
-            <Text style={styles.email}> {user.company || "Evaluating their options..."} </Text>
+      <SwipeableElement 
+        component={
+          <View style={styles.usersContainer}>
+            <Image style={styles.image} source={{uri: `${user.avatar}`}}/>
+            <View style={styles.homeInfoContainer}>
+              <Text style={styles.name}> {user.name} </Text>
+              <Text style={styles.email}> {user.company || "Evaluating their options..."} </Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
+        }
+        swipeRightTextColor={'#C4F071'}
+        swipeRightImageColor={'#C4F071'}
+        swipeLeftTextColor={'#C4F071'}
+        swipeLeftImageColor={'#C4F071'}
+        swipeRightBackgroundColor={'#0C6468'}
+        swipeLeftBackgroundColor={'#0C6468'}
+        color={rowId%2===1 ? '#efefef' : '#ccc'}
+        swipeRightTitle={this._leftTitle.bind(this, user)} //Why is it not getting it from switch?
+        swipeLeftTitle={this._rightTitle.bind(this, user)} //Why is it not getting it from switch?
+        onSwipeRight={this._handleSwipeUser.bind(this, user)}
+        onSwipeLeft={this._removeUser.bind(this, user)}
+      />
     );
   }
 
   render() {
-    console.log(this.state.dataSource)
   	var styles = this.props.styles
     console.log('Rendering contact list')
     if (!this.state.loaded) {
@@ -163,22 +209,26 @@ class UserListView extends React.Component{
     }
 
     return (
-      <View style={styles.container}>
-        <NavigationBar styles={styles} parent={this} route={this.props.route}/>
-        <View style={styles.bodyWithoutSwiper}>
-        {this.state.dataSource._cachedRowCount > 0 &&  
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderUser.bind(this)}
-            style={styles.listView}
-          />
-        }
-        {this.state.dataSource._cachedRowCount === 0 && 
-          <View style={styles.noData}>
-            <Text>No Contacts Available</Text>
+      <View style={styles.navigator}>
+        <View style={styles.backgroundColor}></View>
+        <View style={styles.container}>
+          <NavigationBar styles={styles} parent={this} route={this.props.route}/>
+          <View style={styles.bodyWithoutSwiper}>
+          {this.state.dataSource._cachedRowCount > 0 &&  
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={this._renderUser.bind(this)}
+              style={styles.listView}
+              automaticallyAdjustContentInsets={false}
+            />
+          }
+          {this.state.dataSource._cachedRowCount === 0 && 
+            <View style={styles.noData}>
+              <Text>No Contacts Available</Text>
+            </View>
+          } 
+            <Menu styles={styles} navigator={this.props.navigator} parent={this}/>
           </View>
-        } 
-          <Menu styles={styles} navigator={this.props.navigator} parent={this}/>
         </View>
       </View>
     )

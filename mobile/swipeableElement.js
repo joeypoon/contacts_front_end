@@ -24,13 +24,13 @@ var styles = StyleSheet.create({
   },
   swipeableMain: {
     width: SCREEN_WIDTH,
-    padding:10
+    justifyContent: 'center'
   },
   swipeableLeft: {
     overflow: 'hidden',
     width: 0,
     alignItems: 'flex-start',
-    justifyContent:'center',
+    justifyContent:'center'
   },
   swipeableRight: {
     overflow: 'hidden',
