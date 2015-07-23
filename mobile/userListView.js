@@ -94,17 +94,6 @@ class UserListView extends React.Component{
     state.outboundContacts(dataSource).then((data) => this.setState(data))
   }
 
-  _renderLoadingView() {
-    var styles=this.props.styles
-    return (
-      <View style={styles.loadingContainer}>
-        <Text>
-          Loading users...
-        </Text>
-      </View>
-    )
-  }
-
   _selectUser(user){
     console.log('I want to share with this guy')
     state.outbound_user(user.id)
@@ -139,8 +128,36 @@ class UserListView extends React.Component{
     }
   }
 
-  _removeUser(user){
-    console.log('delete user')
+  _deleteContact(user){
+    console.log('deleting user')
+    state.deleteContact(user.id)
+  }
+
+  _denyRequest(user){
+    console.log('denying request')
+    state.denyRequest(user.id)
+  }
+
+  _cancelRequest(user){
+    console.log('canceling request')
+    state.cancelRequest(user.id)
+  }
+
+  _handleSwipeLeft(user){
+    switch (this.state.currentView) {
+      case "ProximityList":
+        this._selectUser(user)
+        break
+      case "ContactList":
+        this._deleteContact(user)
+        break
+      case "Inbound":
+        this._denyRequest(user)
+        break
+      case "Outbound":
+        this._cancelRequest(user)
+        break
+    }
   }
 
   _leftTitle(user){
@@ -159,7 +176,7 @@ class UserListView extends React.Component{
   _rightTitle(user){
     switch (this.state.currentView) {
       case "ProximityList":
-        return `Not sure yet....`  
+        return `Request User`  
         break
       case "ContactList":
         return `Delete Contact`
@@ -171,6 +188,17 @@ class UserListView extends React.Component{
         return `Cancel Request`
         break
     }
+  }
+
+  _renderLoadingView() {
+    var styles=this.props.styles
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>
+          Loading users...
+        </Text>
+      </View>
+    )
   }
 
   _renderUser(user, sectionId, rowId) {
@@ -192,11 +220,11 @@ class UserListView extends React.Component{
         swipeLeftImageColor={'#C4F071'}
         swipeRightBackgroundColor={'#0C6468'}
         swipeLeftBackgroundColor={'#0C6468'}
-        color={rowId%2===1 ? '#83CACD' : '#318C90'}
-        swipeRightTitle={this._leftTitle.bind(this, user)} //Why is it not getting it from switch?
-        swipeLeftTitle={this._rightTitle.bind(this, user)} //Why is it not getting it from switch?
+        color={rowId%2===1 ? '#83CACD' : '#83CACD'}
+        swipeRightTitle={this._leftTitle.call(this, user)}
+        swipeLeftTitle={this._rightTitle.call(this, user)}
         onSwipeRight={this._handleSwipeUser.bind(this, user)}
-        onSwipeLeft={this._removeUser.bind(this, user)}
+        onSwipeLeft={this._handleSwipeLeft.bind(this, user)}
       />
     );
   }
@@ -211,7 +239,7 @@ class UserListView extends React.Component{
     return (
       <View style={styles.navigator}>
         <View style={styles.backgroundColor}>
-          <Image style={styles.loadingLogo} source={require('image!connect')}/>
+          <Image style={styles.listLogo} source={require('image!connect')}/>
         </View>
         <View style={styles.container}>
           <NavigationBar styles={styles} parent={this} route={this.props.route}/>

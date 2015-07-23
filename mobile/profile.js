@@ -12,6 +12,7 @@ var {
 	View,
 	TextInput,
 	TouchableHighlight,
+	AlertIOS,
 	TouchableWithoutFeedback
 } = React;
 
@@ -161,7 +162,7 @@ class ProfileView extends React.Component{
 	    	})
 	    	.catch((e) => {
 	    		console.log(e)
-		    	// AlertIOS.alert('Update Failed', e)
+		    	AlertIOS.alert('Update Failed', e)
 		    })
 	}
 

@@ -2,6 +2,7 @@
 var React = require('react-native'),
 	NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
 	Menu = require('./menu'),
+	Swiper = require('./swiper'),
 	state = require('./state')
 
 var {
@@ -9,6 +10,7 @@ var {
   Text,
   View,
   TextInput,
+  AlertIOS,
   TouchableHighlight
 } = React;
 
@@ -138,8 +140,7 @@ class UserProfile extends React.Component{
 			this.setState(responseData.user)
 		})
 		.catch((e) => {
-    		console.log(e)
-	    	// AlertIOS.alert('Update Failed', e)
+	    	AlertIOS.alert('Update Failed', e)
 		})
 	}
 
@@ -147,16 +148,29 @@ class UserProfile extends React.Component{
 		this.props.navigator.pop()
 	}
 
+	_deleteUser(){
+		console.log('insert function to delete user from contacts')
+		this.props.navigator.pop()
+	}
+
 	render(){
 		var styles = this.props.styles
+		var routes = this.props.navigator.getCurrentRoutes(),
+			this_route_index = routes.length-1,
+			last_route = routes[this_route_index-1]
 		console.log('rendering this guy\'s profile')
 		return(
 			<View style={styles.container}>
 				<NavigationBarWithoutSearch styles={styles} route={this.props.route} parent={this}/>
 				<UserProfileBody styles={styles} parent={this}/>
-				<View style={styles.swiper}>
-					<Text style={styles.demand} onPress={this._returnToContacts.bind(this)}>Return to Contact List</Text>
-				</View>
+				<Swiper 
+					backRoute={'Delete this user'} 
+					forwardRoute={last_route.name} 
+					styles={styles} 
+					innerText={"Swipe to Return"} 
+					callback={this._returnToContacts.bind(this)}
+					callback_back={this._deleteUser.bind(this)}
+				/>
 			</View>
 		)
 	}

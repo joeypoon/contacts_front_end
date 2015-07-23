@@ -56,13 +56,18 @@ class RegisterOnly extends React.Component{
 			last_route = routes[this_route_index-1]
 		return(
 			<View style={styles.navigator}>
-				<View style={styles.backgroundColor}></View>
+				<View style={styles.backgroundColor}>
+					<Image style={styles.middleLogo} source={require('image!connect')}/>
+				</View>
 				{!this.state.loading &&
 					<View style={styles.container}>
 						<View style={styles.bodyWithOneSwiper}>
-							<View style={styles.frontContainer}>
-								<Image style={styles.frontLogo} source={require('image!connect')}/>
-								<Text style={styles.login}>Register</Text>
+							<View style={styles.placeholderUpper}>
+							</View>
+							<View style={styles.middleContainer}>
+								<View style={styles.loginHolder}>
+									<Text style={styles.authHeader}>Register</Text>
+								</View>
 								<View style={styles.inputHolder}>
 									<TextInput
 										style={styles.inputEntry}
@@ -87,6 +92,8 @@ class RegisterOnly extends React.Component{
 										placeholder='Confirm Password' 
 									/>
 								</View>
+							</View>
+							<View style={styles.placeholderBottom}>
 							</View>
 						</View>
 						<Swiper 

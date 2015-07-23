@@ -31,7 +31,10 @@ class NavigationBarWithoutSearch extends React.Component{
 					<Text style={styles.navName}>{route.name}</Text>
 				</View>
 				<TouchableWithoutFeedback onPress={this._toggleMenu.bind(this)}>
-					<Image style={[styles.menuInitiator, parent.state.menuVisible && styles.menuVisible]} source={require('image!menu')} />
+					<Image 
+						style={[styles.menuInitiator, parent.state.menuVisible && styles.menuVisible]} 
+						source={require('image!menu')} 
+					/>
 				</TouchableWithoutFeedback>
 			</View>
 		)

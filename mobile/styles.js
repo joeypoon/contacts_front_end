@@ -43,7 +43,9 @@ var styles = StyleSheet.create({
   },
   frontContainer: {
     width: width*.8,
-    height: width*.8
+    height: width*.8,
+    position: 'relative',
+    flexDirection: 'column'
   },
   frontLogo: {
     position: 'absolute',
@@ -53,7 +55,7 @@ var styles = StyleSheet.create({
     height: width*.8,
     opacity: .2
   },
-  loadingLogo: {
+  middleLogo: {
     width: width*.8,
     height: width*.8,
     opacity: .2
@@ -75,30 +77,51 @@ var styles = StyleSheet.create({
     top: width*.7*.82
   },
   bodyWithOneSwiper: {
-    flex: 80,
+    flex: 90,
+    flexDirection: 'column'
+  },
+  placeholderUpper: {
+    flex: 15
+  },
+  placeholderBottom: {
+    flex: 24
+  },
+  middleContainer: {
+    flex: 60,
     flexDirection: 'column',
+  },
+  loginHolder: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  login: {
-    fontSize: 35,
+  authHeader: {
+    fontSize: 50,
     color: '#ACDF4A',
-    fontFamily: 'Roboto-Medium',
-    textAlign: 'center'
+    fontFamily: 'Roboto-Medium'
   },
   inputHolder: {
-    width: width*.8,
-    height: width*.4,
-    position: 'absolute',
-    top: width*.2,
-    left: width*.2,
-    backgroundColor: 'orange',
-    flexDirection: 'column',
+    flex: 2
   },
   inputEntry: {
+    fontSize: 30,
+    fontFamily: "Roboto-Bold",
+    // backgroundColor: 'rgba(49,114,117, 0.8)',
+    padding: 5,
     flex: 1,
-    fontSize: 20,
-    opacity: .5
+    color: 'white',
+    borderBottomWidth: 3
+    // textDecorationLine: 'underline',
+    // textDecorationColor: 'white',
+    // textDecorationStyle: 'solid'
+  },
+  listLogo: {
+    opacity: .2
+  },
+  inputContainer: {
+    flex: 1,
+    width: .8 * width,
+    flexDirection: 'column'
   },
   noData: {
     flex: 1,
@@ -182,12 +205,6 @@ var styles = StyleSheet.create({
   loginInput: {
     flex: 10
   },
-  inputHolder: {
-    flex: 1,
-    flexDirection: 'row',
-    margin: 5,
-    justifyContent: 'center'
-  },
   navBarContainer: {
     flexDirection: 'row',
     flex: 8,
@@ -200,8 +217,8 @@ var styles = StyleSheet.create({
     flexDirection: 'column'
   },
   menuInitiator: {
-    width: 40,
-    height: 40,
+    width: width/10,
+    height: width/10,
     marginTop: 15
   },
   navNameContainer: {
@@ -236,7 +253,8 @@ var styles = StyleSheet.create({
     borderLeftWidth: 1
   },
   menuVisible: {
-    tintColor: 'red'
+    opacity: .7,
+    transform: [{rotate: '90deg'}]
   },
   imageContainer: {
     flex: 2,

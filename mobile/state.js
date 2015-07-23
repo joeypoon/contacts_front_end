@@ -299,6 +299,30 @@ function contactProfile(other_id){
 	return fetch_contactProfile(other_id)
 }
 
+function deleteContact(other_id){
+	return state.user()
+		.then((user) => user.id)
+		.then((user_id) => {
+			return fetch(`${REMOTE}/contacts/${other_id}`)
+		})
+}
+
+function denyRequest(other_id){
+	return state.user()
+		.then((user) => user.id)
+		.then((user_id) => {
+			return fetch(`${REMOTE}/inbound/${user_id}/${other_id}`)
+		})
+}
+
+function cancelRequest(other_id){
+	return state.user()
+		.then((user) => user.id)
+		.then((user_id) => {
+			return fetch(`${REMOTE}/outbound/${user_id}/${other_id}`)
+		})
+}
+
 const state = {
 	user: prop('user'),
 	outbound_user: prop('outbound_user'),
@@ -312,7 +336,10 @@ const state = {
 	profileUpdate: profileUpdate,
 	requestUser: requestUser,
 	contactList: contactList,
-	contactProfile: contactProfile
+	contactProfile: contactProfile,
+	deleteContact: deleteContact,
+	denyRequest: denyRequest,
+	cancelRequest: cancelRequest
 }
 
 
