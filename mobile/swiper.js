@@ -31,10 +31,11 @@ class Swiper extends React.Component{
 		var styles = this.props.styles
 		var callback = this.props.callback
 		var callback_back = this.props.callback_back
+		var titleColor = this.props.titleColor
 		return(
 			<SwipeableElement
 				color={this.props.color ? this.props.color : "#318C90"}
-	        	component={<Text style={{alignSelf: 'center', fontSize: 30, fontFamily: 'Roboto-Light', color: this.props.titleColor}}>{this.props.innerText}</Text>}
+	        	component={<Text style={{alignSelf: 'center', fontSize: 30, fontFamily: 'Roboto-Light', color: titleColor ? titleColor : '#FFA4A2'}}>{this.props.innerText}</Text>}
 	        	swipeRightTextColor={'#C4F071'}
 	        	swipeRightImageColor={'#C4F071'}
 	        	swipeRightBackgroundColor={'#0C6468'}

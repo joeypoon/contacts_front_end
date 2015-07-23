@@ -12,6 +12,11 @@ var styles = StyleSheet.create({
   navigator: {
     flex: 1
   },
+  centeredContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   keyboardView: {
     transform: [{translateY:-height/4}]
   },
@@ -27,12 +32,25 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  bodyWithTwoSwipers: {
+    flex: 80,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   frontContainer: {
     width: width*.8,
-    height: width*.8,
-    flexDirection: 'row'
+    height: width*.8
   },
   frontLogo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: width*.8,
+    height: width*.8,
+    opacity: .2
+  },
+  loadingLogo: {
     width: width*.8,
     height: width*.8,
     opacity: .2
@@ -53,41 +71,31 @@ var styles = StyleSheet.create({
     left: width*.7*.6,
     top: width*.7*.82
   },
-  loginCard: {
-    width: width*.9,
-    height: width*.5,
-    flexDirection: 'column'
-  },
-  cardHeader: {
-    flex: 50,
-    justifyContent: 'flex-end',
+  bodyWithOneSwiper: {
+    flex: 80,
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center'
   },
-  cardInfo: {
-    flex: 50,
+  login: {
+    fontSize: 35,
+    color: '#ACDF4A',
+    fontFamily: 'Roboto-Medium',
+    textAlign: 'center'
+  },
+  inputHolder: {
+    width: width*.8,
+    height: width*.4,
+    position: 'absolute',
+    top: width*.2,
+    left: width*.2,
+    backgroundColor: 'orange',
     flexDirection: 'column'
-  },
-  cardInputHolder: {
-    flex: 1, 
-    backgroundColor: 'orange'
-  },
-  lowerRight: {
-    alignSelf: 'flex-end',
-    width: width*.9*.4,
-    height: width*.5*.5*.4,
-    margin: 10,
-    borderBottomWidth: 2
   },
   inputEntry: {
     flex: 1,
-    fontSize: 12
-  },
-  lowerLeft: {
-    alignSelf: 'flex-start',
-    width: width*.9*.4,
-    height: width*.5*.5*.4,
-    margin: 10,
-    borderBottomWidth: 2
+    fontSize: 20,
+    opacity: .3
   },
   noData: {
     flex: 1,
@@ -109,12 +117,6 @@ var styles = StyleSheet.create({
   tileImage: {
     width: width/5,
     height: width/5
-  },
-  titlePage: {
-    flex: 80,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   cardholder: {
     width: width*.7,

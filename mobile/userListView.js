@@ -46,12 +46,11 @@ class UserListView extends React.Component{
     }
   }
 
+  //not doing anything right now
   componentWillUnmount(){
     if(this.state.currentView === "ProximityList")
       navigator.geolocation.clearWatch(this.onFocusID)
   }
-
-  //Turn off watcher on logout or unmount??
 
   _getContacts(){
     var {dataSource} = this.state

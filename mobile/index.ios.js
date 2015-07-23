@@ -34,7 +34,7 @@ class AppNavigation extends React.Component{
         if(data){
           this.refs.navigator.replace({id: "ProximityList", name: "Users Near You"})
         } else{
-          this.refs.navigator.replace({id: "LoginView"})
+          this.refs.navigator.replace({id: "LoginView", name: "Home Screen"})
         }
     })
   }
@@ -69,7 +69,7 @@ class AppNavigation extends React.Component{
       <Navigator
         ref="navigator"
         style={styles.navigator}
-        initialRoute={{id: "LoginView", name: "Login"}}
+        initialRoute={{id: "LoginView", name: "Home Screen"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}
         configureScene={(route) => {
           if (route.sceneConfig) {
