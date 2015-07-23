@@ -40,7 +40,7 @@ class NavigationBar extends React.Component{
 					/>
 				</View>
 				<TouchableWithoutFeedback onPress={this._toggleMenu.bind(this)}>
-					<Image style={[styles.menuInitiator, parent.state.menuVisible && styles.menuVisible]} source={require('image!hamburglar')} />
+					<Image style={[styles.menuInitiator, parent.state.menuVisible && styles.menuVisible]} source={require('image!menu')} />
 				</TouchableWithoutFeedback>
 			</View>
 		)

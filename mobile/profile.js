@@ -190,7 +190,6 @@ class ProfileView extends React.Component{
 					backRoute={last_route.id === "RegisterOnly" ? "Users Near You" : last_route.name} 
 					forwardRoute={'Users Near You'} 
 					styles={styles} 
-					color={"#bbb"} 
 					innerText={"Swipe to Update"} 
 					callback={this._updateInfo.bind(this)}
 					callback_back={this._goBack.bind(this)}

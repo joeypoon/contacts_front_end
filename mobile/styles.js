@@ -26,7 +26,10 @@ var styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: '#50A5A9'
+    backgroundColor: '#50A5A9',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   container: {
     flex: 1,
@@ -90,12 +93,12 @@ var styles = StyleSheet.create({
     top: width*.2,
     left: width*.2,
     backgroundColor: 'orange',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   inputEntry: {
     flex: 1,
     fontSize: 20,
-    opacity: .3
+    opacity: .5
   },
   noData: {
     flex: 1,
@@ -328,25 +331,8 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  contactsList: {
-    flex: 92,
-    flexWrap: 'wrap'
-  },
-  contactList: {
-    flex: 50,
-    height: 100,
-    backgroundColor: 'orange',
-    borderWidth: 2,
-    borderColor: 'black'
-  },
   bottomBarTag: {
     tintColor: 'red'
-  },
-  inbound: {
-    backgroundColor: 'red'
-  },
-  outbound: {
-    backgroundColor: 'blue'
   }
 });
 

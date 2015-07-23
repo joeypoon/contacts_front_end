@@ -9,7 +9,8 @@ var {
   View,
   TextInput,
   Navigator,
-  AlertIOS
+  AlertIOS,
+  Image
 } = React;
 
 class RegisterOnly extends React.Component{
@@ -45,51 +46,69 @@ class RegisterOnly extends React.Component{
 		this.props.navigator.popToTop()
 	}
 
+	//<Text onPress={this._goLogin.bind(this)}>Already an existing user?</Text>
+
 	render(){
 		var styles=this.props.styles
+		var nav = this.props.navigator
+		var routes = this.props.navigator.getCurrentRoutes(),
+			this_route_index = routes.length-1,
+			last_route = routes[this_route_index-1]
 		return(
-			<View style={[styles.container, !!this.state.keyboard && styles.keyboardView]}>
-				<View style={styles.registerTitle}><Text style={styles.title}>Register</Text></View>
-				<TextInput
-					style={styles.loginInput}
-					onChangeText={(text) => this.setState({newName: text})}
-					placeholder='Enter Name'
-					onFocus={() => this.setState({keyboard: true})}
-					onBlur={() => this.setState({keyboard: false})}
-				/>
-				<TextInput
-					style={styles.loginInput}
-					onChangeText={(text) => this.setState({newEmail: text})}
-					placeholder='Enter Email'
-					onFocus={() => this.setState({keyboard: true})}
-					onBlur={() => this.setState({keyboard: false})}
-				/>
-				<TextInput
-					style={styles.loginInput}
-					secureTextEntry={true}
-					onChangeText={(text) => this.setState({newPassword: text})}
-					placeholder='Enter Password'
-					onFocus={() => this.setState({keyboard: true})}
-					onBlur={() => this.setState({keyboard: false})}
-				/>
-				<TextInput
-					style={styles.loginInput}
-					secureTextEntry={true}
-					onChangeText={(text) => this.setState({newPassword_confirmation: text})}
-					placeholder='Confirm Password' 
-					onFocus={() => this.setState({keyboard: true})}
-					onBlur={() => this.setState({keyboard: false})}
-				/>
-				<Text onPress={this._goLogin.bind(this)}>Already an existing user?</Text>
-				<Swiper 
-					backRoute={'Home Screen'} 
-					forwardRoute={'Your Profile'} 
-					styles={styles} 
-					color={"#bbb"} 
-					innerText={"Swipe to Register"} 
-					callback={this._registerUser.bind(this)}
-					callback_back={this._goHome.bind(this)}
-				/>
+			<View style={styles.navigator}>
+				<View style={styles.backgroundColor}></View>
+				{!this.state.loading &&
+					<View style={styles.container}>
+						<View style={styles.bodyWithOneSwiper}>
+							<View style={styles.frontContainer}>
+								<Image style={styles.frontLogo} source={require('image!connect')}/>
+								<Text style={styles.login}>Register</Text>
+								<View style={styles.inputHolder}>
+									<TextInput
+										style={styles.inputEntry}
+										onChangeText={(text) => this.setState({newName: text})}
+										placeholder='Enter Name'
+									/>
+									<TextInput
+										style={styles.inputEntry}
+										onChangeText={(text) => this.setState({newEmail: text})}
+										placeholder='Enter Email'
+									/>
+									<TextInput
+										style={styles.inputEntry}
+										secureTextEntry={true}
+										onChangeText={(text) => this.setState({newPassword: text})}
+										placeholder='Enter Password'
+									/>
+									<TextInput
+										style={styles.inputEntry}
+										secureTextEntry={true}
+										onChangeText={(text) => this.setState({newPassword_confirmation: text})}
+										placeholder='Confirm Password' 
+									/>
+								</View>
+							</View>
+						</View>
+						<Swiper 
+							backRoute={last_route.name} 
+							forwardRoute={'Your Profile'} 
+							styles={styles} 
+							innerText={"Swipe to Register"} 
+							callback={this._registerUser.bind(this)}
+							callback_back={this._goHome.bind(this)}
+						/>
+					</View>
+				}
+				{!!this.state.loading &&
+					<View style={styles.container}>
+						<View style={styles.centeredContainer}>
+							<Image 
+								style={[styles.loadingLogo]} 
+								source={require('image!connect')}
+							/>
+						</View>
+					</View>
+				}
 			</View>
 		)
 	}

@@ -25,7 +25,7 @@ class PendingContacts extends React.Component{
 	render(){
 		var styles = this.props.styles
 		return(
-			<TabBarIOS selectedTab={this.state.selectedTab}>
+			<TabBarIOS style={styles.tabBar} selectedTab={this.state.selectedTab}>
 				<TabBarIOS.Item
 					title="Inbound"
 					selected={this.state.selectedTab === 'inbound'}

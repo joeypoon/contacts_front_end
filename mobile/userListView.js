@@ -192,7 +192,7 @@ class UserListView extends React.Component{
         swipeLeftImageColor={'#C4F071'}
         swipeRightBackgroundColor={'#0C6468'}
         swipeLeftBackgroundColor={'#0C6468'}
-        color={rowId%2===1 ? '#efefef' : '#ccc'}
+        color={rowId%2===1 ? '#83CACD' : '#318C90'}
         swipeRightTitle={this._leftTitle.bind(this, user)} //Why is it not getting it from switch?
         swipeLeftTitle={this._rightTitle.bind(this, user)} //Why is it not getting it from switch?
         onSwipeRight={this._handleSwipeUser.bind(this, user)}
@@ -210,7 +210,9 @@ class UserListView extends React.Component{
 
     return (
       <View style={styles.navigator}>
-        <View style={styles.backgroundColor}></View>
+        <View style={styles.backgroundColor}>
+          <Image style={styles.loadingLogo} source={require('image!connect')}/>
+        </View>
         <View style={styles.container}>
           <NavigationBar styles={styles} parent={this} route={this.props.route}/>
           <View style={styles.bodyWithoutSwiper}>
