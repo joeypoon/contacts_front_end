@@ -118,70 +118,22 @@ var styles = StyleSheet.create({
   listLogo: {
     opacity: .2
   },
-  inputContainer: {
-    flex: 1,
-    width: .8 * width,
-    flexDirection: 'column'
-  },
   noData: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  rowTiles: {
-    flex: 25,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    opacity: .5
-  },
-  tile: {
-    flex: 1,
-    borderRightWidth: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  tileImage: {
-    width: width/5,
-    height: width/5
-  },
-  cardholder: {
-    width: width*.7,
-    height: width*.7/2,
-    flexDirection: 'column',
-    borderWidth: 1
-  },
-  card: {
-    flex: 1,
-    backgroundColor: '#ef5350',
-    shadowOffset: {width: 3, height: 3},
-    shadowOpacity: .4,
-    shadowRadius: 3
-  },
-  title: {
-    fontSize: width/5,
-    fontFamily: "Roboto-Medium",
-    position: 'absolute',
-    left: -width*.13,
-    top: -width*.1
-  },
-  titleContainer: {
-    flex: 70,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  loginTitle: {
-    fontSize: 50
-  },
-  registerTitle: {
-    flex: 50,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   bodyWithSwiper: {
     flex: 82,
     flexDirection: 'column'
+  },
+  topProfileInfo: {
+    flex: 1.2,
+    backgroundColor: 'red'
+  },
+  bottomProfileInfo: {
+    flex: 1,
+    backgroundColor: 'yellow'
   },
   bodyWithoutSwiper: {
     flex: 92,

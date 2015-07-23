@@ -156,7 +156,7 @@ function fetch_profileUpdate(name, email, phone, company, linkedin, facebook, tw
 		            }
 		        })
 		    }).then((response) => {
-		        if (response.status > 400) throw 'You f***ed up bro'
+		        if (response.status > 400) throw 'Could not update profile'
 		        return response.json()
 		    }).then((updatedInfo) => state.user(updatedInfo))
 		})
@@ -254,7 +254,7 @@ function fetch_requestUser(outbound_id, name, email, phone, company, linkedin, f
 		            }
 		        })
 		    }).then((response) => {
-		        if (response.status > 399) throw response
+		        if (response.status > 399) throw "Could not request this user at the moment."
 		    })
 		})
 }
@@ -299,27 +299,60 @@ function contactProfile(other_id){
 	return fetch_contactProfile(other_id)
 }
 
-function deleteContact(other_id){
+function deleteContact(other_id, data_source){
 	return state.user()
 		.then((user) => user.id)
 		.then((user_id) => {
-			return fetch(`${REMOTE}/contacts/${other_id}`)
+			return fetch(`${REMOTE}/contacts/${other_id}`, {
+				method: 'delete'
+			})
+		})
+		.then((response) => { 
+		    if (response.status > 399) throw "Could not delete this user"
+		    	return response.json()
+		})
+		.then((responseData) => {
+			return {
+				dataSource: data_source.cloneWithRows(responseData)
+			}
 		})
 }
 
-function denyRequest(other_id){
+function denyRequest(other_id, data_source){
 	return state.user()
 		.then((user) => user.id)
 		.then((user_id) => {
-			return fetch(`${REMOTE}/inbound/${user_id}/${other_id}`)
+			return fetch(`${REMOTE}/inbound/${user_id}/${other_id}`, {
+				method: 'delete'
+			})
+		})
+		.then((response) => { 
+		    if (response.status > 399) throw "Could not deny request"
+		        return response.json()
+		})
+		.then((responseData) => {
+			return {
+				dataSource: data_source.cloneWithRows(responseData)
+			}
 		})
 }
 
-function cancelRequest(other_id){
+function cancelRequest(other_id, data_source){
 	return state.user()
 		.then((user) => user.id)
 		.then((user_id) => {
-			return fetch(`${REMOTE}/outbound/${user_id}/${other_id}`)
+			return fetch(`${REMOTE}/outbound/${user_id}/${other_id}`, {
+				method: 'delete'
+			})
+		})
+		.then((response) => { 
+		    if (response.status > 399) throw "Could not cancel request"
+		        return response.json()
+		})
+		.then((responseData) => {
+			return {
+				dataSource: data_source.cloneWithRows(responseData)
+			}
 		})
 }
 

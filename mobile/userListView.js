@@ -129,18 +129,21 @@ class UserListView extends React.Component{
   }
 
   _deleteContact(user){
-    console.log('deleting user')
-    state.deleteContact(user.id)
+    var {dataSource} = this.state
+    state.deleteContact(user.id, dataSource)
+    .then((data) => this.setState(data))
   }
 
   _denyRequest(user){
-    console.log('denying request')
-    state.denyRequest(user.id)
+    var {dataSource} = this.state
+    state.denyRequest(user.id, dataSource)
+    .then((data) => this.setState(data))
   }
 
   _cancelRequest(user){
-    console.log('canceling request')
-    state.cancelRequest(user.id)
+    var {dataSource} = this.state
+    state.cancelRequest(user.id, dataSource)
+    .then((data) => this.setState(data))
   }
 
   _handleSwipeLeft(user){
