@@ -10,7 +10,8 @@ var {
 	View,
 	TextInput,
 	Navigator,
-	AlertIOS
+	AlertIOS,
+	Image
 } = React;
 
 class LoginView extends React.Component{
@@ -29,19 +30,22 @@ class LoginView extends React.Component{
 	render(){
 		var styles=this.props.styles
 		return(
+			<View style={styles.navigator}>
+			<View style={styles.backgroundColor}></View>
 			<View style={styles.container}>
 				<View style={styles.titlePage}>
-					<View style={styles.cardholder}>
-						<View style={styles.card}>
-						</View>
-						<Text style={styles.title}>AdMi</Text>
+					<View style={styles.frontContainer}>
+						<Image style={styles.frontLogo} source={require('image!connect')}/>
+						<Text style={styles.frontTitle}>AdMi</Text>
+						<Text style={styles.slogan}>Network with ease</Text>
 					</View>
 				</View>
 				<Swiper 
 					backRoute={'Login'} 
 					forwardRoute={'Login'} 
 					styles={styles} 
-					color={"#DFD2F6"} 
+					color={"#318C90"}
+					titleColor={'#FFA4A2'} 
 					innerText={"Swipe to Login"} 
 					callback={this._goLogin.bind(this)}
 					callback_back={this._goLogin.bind(this)}
@@ -50,11 +54,13 @@ class LoginView extends React.Component{
 					backRoute={'Register'} 
 					forwardRoute={'Register'} 
 					styles={styles} 
-					color={"#BAA1E4"} 
+					color={"#0C6468"}
+					titleColor={'#FFA4A2'} 
 					innerText={"Swipe to Register"} 
 					callback={this._goRegister.bind(this)}
 					callback_back={this._goRegister.bind(this)}
 				/>
+			</View>
 			</View>
 		)
 	}

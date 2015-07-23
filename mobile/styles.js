@@ -15,14 +15,43 @@ var styles = StyleSheet.create({
   keyboardView: {
     transform: [{translateY:-height/4}]
   },
+  backgroundColor: {
+    width: width,
+    height: height,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: '#50A5A9'
+  },
   container: {
     flex: 1,
     flexDirection: 'column'
   },
-  cardContainer: {
-    flex: 90,
-    justifyContent: 'center',
-    alignItems: 'center'
+  frontContainer: {
+    width: width*.8,
+    height: width*.8,
+    flexDirection: 'row'
+  },
+  frontLogo: {
+    width: width*.8,
+    height: width*.8,
+    opacity: .2
+  },
+  frontTitle: {
+    fontSize: width/5,
+    fontFamily: "Roboto-Light",
+    position: 'absolute',
+    color: '#ACDF4A',
+    left: -width*.05,
+    top: -width*.05
+  },
+  slogan: {
+    fontSize: 20,
+    fontFamily: "Roboto-Medium",
+    position: "absolute",
+    color: '#ACDF4A',
+    left: width*.7*.6,
+    top: width*.7*.82
   },
   loginCard: {
     width: width*.9,

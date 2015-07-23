@@ -26,12 +26,6 @@ class Swiper extends React.Component{
 		cb_back()
 	}
 
-	// <TouchableWithoutFeedback onPress={this._handleSwipe.bind(this, callback)}>
-	// 			<View style={[styles.swiper, !!this.props.color && {backgroundColor: this.props.color}]}>
-	// 				<Text style={styles.demand}>{this.props.innerText || "Swipe to Save"}</Text>
-	// 			</View>
-	// 		</TouchableWithoutFeedback>
-
 	render(){
 		console.log(width, height)
 		var styles = this.props.styles
@@ -39,15 +33,15 @@ class Swiper extends React.Component{
 		var callback_back = this.props.callback_back
 		return(
 			<SwipeableElement
-				color={this.props.color}
-	        	component={<Text style={{alignSelf: 'center', fontSize: 30, fontFamily: 'Roboto-Light'}}>{this.props.innerText}</Text>}
-	        	swipeRightTextColor={'red'}
-	        	swipeRightImageColor={'red'}
-	        	swipeRightBackgroundColor={'#000000'}
+				color={this.props.color ? this.props.color : "#318C90"}
+	        	component={<Text style={{alignSelf: 'center', fontSize: 30, fontFamily: 'Roboto-Light', color: this.props.titleColor}}>{this.props.innerText}</Text>}
+	        	swipeRightTextColor={'#C4F071'}
+	        	swipeRightImageColor={'#C4F071'}
+	        	swipeRightBackgroundColor={'#0C6468'}
 	        	swipeRightTitle={this.props.forwardRoute}
-	        	swipeLeftTextColor={'black'}
-	        	swipeLeftImageColor={'black'}
-	        	swipeLeftBackgroundColor={'#FF0000'}
+	        	swipeLeftTextColor={'#C4F071'}
+	        	swipeLeftImageColor={'#C4F071'}
+	        	swipeLeftBackgroundColor={'#0C6468'}
 	        	swipeLeftTitle={this.props.backRoute}
 	        	onSwipeRight={this._handleSwipeRight.bind(this, callback)}
 	        	onSwipeLeft={this._handleSwipeLeft.bind(this, callback_back)} 
