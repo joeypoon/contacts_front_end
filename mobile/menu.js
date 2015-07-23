@@ -17,9 +17,16 @@ class Menu extends React.Component{
 	}
 
 	_logOut(){
-		console.log('loggin out')
+		var navigator = this.props.navigator
 		state.user(null)
-			.then(() => this.props.navigator.popToTop())
+			.then(() => {
+				if (navigator.getCurrentRoutes()[0].id === "LoginView"){
+					navigator.popToTop()
+				} else {
+					navigator.popToTop()
+					navigator.replace({id: "LoginView"})
+				}
+			})
 	}
 
 	_route(route_id, route_name){
@@ -37,7 +44,7 @@ class Menu extends React.Component{
 						<Text>Profile</Text>
 					</View>
 				</TouchableWithoutFeedback>
-				<TouchableWithoutFeedback onPress={this._route.bind(this, "ProximityList", "People Near You")}>
+				<TouchableWithoutFeedback onPress={this._route.bind(this, "ProximityList", "Users Near You")}>
 					<View style={[styles.menuItem]}>
 						<Text>Proximity List</Text>
 					</View>

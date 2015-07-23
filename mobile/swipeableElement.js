@@ -38,16 +38,24 @@ var styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center'
   },
-  leftText: {
+  leftImage: {
     padding:10,
     alignSelf:'center',
     height: 20,
     width: 20,
   },
-  rightText: {
+  rightImage: {
     padding:10,
     height: 20,
     width: 20,
+  },
+  leftText: {
+    color:'#FFFFFF',
+    padding:10,
+  },
+  rightText: {
+    color:'#FFFFFF',
+    padding:10,
   }
 });
 
@@ -84,9 +92,11 @@ var SwipeableElement = React.createClass({
     var opacity = (absdx / SWIPE_RELEASE_POINT) * 1;
     var height = 30 + ((opacity > 1 ? 1 : opacity) * 8);
     var width = 30 + ((opacity > 1 ? 1 : opacity) * 8);
+    var fontSize = 8 + ((opacity > 1 ? 1 : opacity) * 8);
     var paddingTop = 15 - ((opacity > 1 ? 1 : opacity) * 5);
     var marginHorizontal = 15 + ((opacity > 1 ? 1 : opacity) * 5);
     var text;
+    var image;
     var element;
 
     var props = { width: absdx*2, opacity, };
@@ -96,12 +106,15 @@ var SwipeableElement = React.createClass({
       element = this.refs.leftElement;
       props.left = absdx;
       text = this.refs.leftText;
+      image = this.refs.leftImage;
     } else {
       element = this.refs.rightElement;
       props.right = absdx;
       text = this.refs.rightText;
+      image = this.refs.rightImage;
     }
-    text.setNativeProps({ height, width, paddingTop, marginHorizontal });
+    text.setNativeProps({ fontSize, paddingTop })
+    image.setNativeProps({ height, width, paddingTop, marginHorizontal });
     element.setNativeProps(props);
 
     this.setState({ dx });
@@ -147,17 +160,21 @@ var SwipeableElement = React.createClass({
   },
 
   render: function() {
-    var pullOrRelease = (this.state.dx > SWIPE_RELEASE_POINT || this.state.dx < -SWIPE_RELEASE_POINT) ?
-      'Release' :
-      'Pull';
-
     var rightTextStyle = this.props.swipeLeftTextColor ?
-      [styles.rightText, {tintColor: this.props.swipeLeftTextColor,}] :
+      [styles.rightText, {color: this.props.swipeLeftTextColor,}] :
       styles.rightText;
 
+    var rightImageStyle = this.props.swipeLeftImageColor ?
+      [styles.rightImage, {tintColor: this.props.swipeLeftImageColor,}] :
+      styles.rightImage;
+
     var leftTextStyle = this.props.swipeRightTextColor ?
-      [styles.leftText, {tintColor: this.props.swipeRightTextColor,}] :
+      [styles.leftText, {color: this.props.swipeRightTextColor,}] :
       styles.leftText;
+
+    var leftImageStyle = this.props.swipeRightImageColor ?
+      [styles.leftImage, {tintColor: this.props.swipeRightImageColor,}] :
+      styles.leftImage;
 
     var rightElementStyle = this.props.swipeLeftBackgroundColor ?
       [styles.swipeableLeft, {backgroundColor: this.props.swipeLeftBackgroundColor}] :
@@ -172,15 +189,17 @@ var SwipeableElement = React.createClass({
         <View ref={'leftElement'} style={leftElementStyle}>
           <View style={{width:SCREEN_WIDTH,flexDirection:'row',}}>
             <View style={{flex:1,}}></View>
-            <Image ref={'leftText'} style={leftTextStyle} source={require('image!rightPointer')}/>
+              <Text ref={'leftText'} style={leftTextStyle}>{this.props.swipeRightTitle}</Text>
+              <Image ref={'leftImage'} style={leftImageStyle} source={require('image!rightPointer')}/>
           </View>
         </View>
         <View ref={'mainElement'} style={[styles.swipeableMain, {backgroundColor: this.props.color}]} {...this._panResponder.panHandlers}>
           {this.props.component}
         </View>
         <View ref={'rightElement'} style={rightElementStyle}>
-          <View style={{width:SCREEN_WIDTH,overflow:'hidden'}}>
-            <Image ref={'rightText'} style={rightTextStyle} source={require('image!leftPointer')}/>
+          <View style={{width:SCREEN_WIDTH,overflow:'hidden', flexDirection: 'row'}}>
+            <Image ref={'rightImage'} style={rightImageStyle} source={require('image!leftPointer')}/>
+            <Text ref={'rightText'} style={rightTextStyle}>{this.props.swipeLeftTitle}</Text>
           </View>
         </View>
       </View>

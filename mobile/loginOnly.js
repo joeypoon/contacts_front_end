@@ -7,7 +7,9 @@ var {
   Text,
   View,
   TextInput,
-  Navigator
+  Navigator,
+  Image,
+  AlertIOS
 } = React;
 
 class LoginOnly extends React.Component{
@@ -15,8 +17,7 @@ class LoginOnly extends React.Component{
 		super(props)
 		this.state = {
       		email: '',
-      		password: '',
-      		keyboard: false
+      		password: ''
 		}
 	}
 
@@ -25,42 +26,67 @@ class LoginOnly extends React.Component{
 
 	    state.login(email, password)
 	    	.then((data) => {
-	    		this.props.navigator.push({id: "ProximityList", name: "People Near You"})
+	    		this.props.navigator.push({id: "ProximityList", name: "Users Near You"})
 	    	})
 	    	.catch((e) => {
-	    		console.log(e)
-		    	// AlertIOS.alert('Login Failed', e)
+		    	AlertIOS.alert('Login Failed', e)
 		    })
 	}
 
 	_goRegister(){
-		this.props.navigator.replace({id: "RegisterOnly", sceneConfig: Navigator.SceneConfigs.FloatFromBottom})
+		this.props.navigator.replace({id: "RegisterOnly", name: "Register", sceneConfig: Navigator.SceneConfigs.FloatFromBottom})
 	}
+
+	_goHome(){
+		this.props.navigator.popToTop()
+	}
+
+	// <View style={styles.lowerLeft}>
+	// 							<TextInput 
+	// 								style={styles.inputEntry}
+	// 								onChangeText={(text) => this.setState({email: text})} 
+	// 								placeholder='Enter Email'
+	// 							/>
+	// 						</View>
+	// 						<View style={styles.lowerRight}>
+	// 							<TextInput 
+	// 								style={styles.inputEntry} 
+	// 								secureTextEntry={true}
+	// 								onChangeText={(text) => this.setState({password: text})} 
+	// 								placeholder='Enter Password'
+	// 							/>
+	// 						</View>
 
 	render(){
 		var styles=this.props.styles
 		var nav = this.props.navigator
 		console.log(this.state.keyboard)
 		return(
-			<View style={[styles.container, !!this.state.keyboard && styles.keyboardView]}>
-				<View style={styles.loginTitle}><Text style={styles.title}>Login</Text></View>
-				<TextInput 
-					style={styles.loginInput}
-					onChangeText={(text) => this.setState({email: text})} 
-					placeholder='Enter Email'
-					onFocus={() => this.setState({keyboard: true})}
-					onBlur={() => this.setState({keyboard: false})}
+			<View style={styles.container}>
+				<View style={styles.cardContainer}>
+					<Image style={styles.loginCard} source={require('image!cardStock')}>
+						<View style={styles.cardHeader}>
+							<Text>LOGIN</Text>
+						</View>
+						<View style={styles.cardInfo}>
+							<View style={styles.cardInputHolder}>
+
+							</View>
+							<View style={styles.cardInputHolder}>
+
+							</View>
+						</View>
+					</Image>
+				</View>
+				<Swiper 
+					backRoute={'Home Screen'} 
+					forwardRoute={'Users Near You'} 
+					styles={styles} 
+					color={"#DFD2F6"} 
+					innerText={"Swipe to Login"} 
+					callback={this._loginUser.bind(this)}
+					callback_back={this._goHome.bind(this)}
 				/>
-				<TextInput 
-					style={styles.loginInput} 
-					secureTextEntry={true}
-					onChangeText={(text) => this.setState({password: text})} 
-					placeholder='Enter Password'
-					onFocus={() => this.setState({keyboard: true})}
-					onBlur={() => this.setState({keyboard: false})}
-				/>
-				<Text onPress={this._goRegister.bind(this)}>Not already a user?</Text>
-				<Swiper navigator={nav} styles={styles} innerText={"Swipe to Login"} swipe_callback={this._loginUser.bind(this)}/>
 			</View>
 		)
 	}

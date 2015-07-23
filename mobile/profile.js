@@ -157,7 +157,7 @@ class ProfileView extends React.Component{
 
 	    state.profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site)
 	    	.then(() => {
-	    		this.props.navigator.push({id: "ProximityList", name: "People Near You"})
+	    		this.props.navigator.push({id: "ProximityList", name: "Users Near You"})
 	    	})
 	    	.catch((e) => {
 	    		console.log(e)
@@ -165,14 +165,36 @@ class ProfileView extends React.Component{
 		    })
 	}
 
+	_goBack(){
+		var routes = this.props.navigator.getCurrentRoutes(),
+			this_route_index = routes.length-1,
+			last_route = routes[this_route_index-1]
+		if(last_route.id=="RegisterOnly"){
+			this.props.navigator.push({id: "ProximityList", name: "Users Near You"})
+		} else {
+			this.props.navigator.pop()
+		}
+	}
+
 	render(){
 		var styles = this.props.styles
 		console.log('rendering profile')
+		var routes = this.props.navigator.getCurrentRoutes(),
+			this_route_index = routes.length-1,
+			last_route = routes[this_route_index-1]
 		return(
 			<View style={styles.container}>
 				<NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
 				<ProfileBody styles={styles} parent={this} navigator={this.props.navigator}/>
-				<Swiper styles={styles} swipe_callback={this._updateInfo.bind(this)}/>
+				<Swiper 
+					backRoute={last_route.id === "RegisterOnly" ? "Users Near You" : last_route.name} 
+					forwardRoute={'Users Near You'} 
+					styles={styles} 
+					color={"#bbb"} 
+					innerText={"Swipe to Update"} 
+					callback={this._updateInfo.bind(this)}
+					callback_back={this._goBack.bind(this)}
+				/>
 			</View>
 		)
 	}

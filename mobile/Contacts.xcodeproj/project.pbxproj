@@ -36,6 +36,7 @@
 		E35E6CAA1B5F3B0F00B6E3BC /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E35E6C9E1B5F3B0F00B6E3BC /* Roboto-Thin.ttf */; };
 		E35E6CAB1B5F3B0F00B6E3BC /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E35E6C9F1B5F3B0F00B6E3BC /* Roboto-ThinItalic.ttf */; };
 		E35E6CB21B5FE74300B6E3BC /* libRCTAnimationExperimental.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E35E6CB11B5FE71B00B6E3BC /* libRCTAnimationExperimental.a */; };
+		E35E6CB41B6046FC00B6E3BC /* EBGaramondSC12-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E35E6CB31B6046FC00B6E3BC /* EBGaramondSC12-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		E35E6C9E1B5F3B0F00B6E3BC /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		E35E6C9F1B5F3B0F00B6E3BC /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		E35E6CAC1B5FE71B00B6E3BC /* RCTAnimationExperimental.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimationExperimental.xcodeproj; path = "node_modules/react-native/Libraries/Animation/RCTAnimationExperimental.xcodeproj"; sourceTree = "<group>"; };
+		E35E6CB31B6046FC00B6E3BC /* EBGaramondSC12-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramondSC12-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 		13B07FAE1A68108700A75B9A /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				E35E6CB31B6046FC00B6E3BC /* EBGaramondSC12-Regular.ttf */,
 				E35E6C941B5F3B0F00B6E3BC /* Roboto-Black.ttf */,
 				E35E6C951B5F3B0F00B6E3BC /* Roboto-BlackItalic.ttf */,
 				E35E6C961B5F3B0F00B6E3BC /* Roboto-Bold.ttf */,
@@ -589,6 +592,7 @@
 				E35E6CA91B5F3B0F00B6E3BC /* Roboto-Regular.ttf in Resources */,
 				E35E6CA01B5F3B0F00B6E3BC /* Roboto-Black.ttf in Resources */,
 				E35E6CA51B5F3B0F00B6E3BC /* Roboto-Light.ttf in Resources */,
+				E35E6CB41B6046FC00B6E3BC /* EBGaramondSC12-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

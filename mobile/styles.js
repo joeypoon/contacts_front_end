@@ -19,6 +19,47 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  cardContainer: {
+    flex: 90,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  loginCard: {
+    width: width*.9,
+    height: width*.5,
+    flexDirection: 'column'
+  },
+  cardHeader: {
+    flex: 50,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  cardInfo: {
+    flex: 50,
+    flexDirection: 'column'
+  },
+  cardInputHolder: {
+    flex: 1, 
+    backgroundColor: 'orange'
+  },
+  lowerRight: {
+    alignSelf: 'flex-end',
+    width: width*.9*.4,
+    height: width*.5*.5*.4,
+    margin: 10,
+    borderBottomWidth: 2
+  },
+  inputEntry: {
+    flex: 1,
+    fontSize: 12
+  },
+  lowerLeft: {
+    alignSelf: 'flex-start',
+    width: width*.9*.4,
+    height: width*.5*.5*.4,
+    margin: 10,
+    borderBottomWidth: 2
+  },
   noData: {
     flex: 1,
     justifyContent: 'center',
@@ -42,17 +83,38 @@ var styles = StyleSheet.create({
   },
   titlePage: {
     flex: 80,
-    flexDirection: 'column'
-    },
-  title: {
-    fontSize: 40,
-    fontFamily: "Roboto-Light"
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  loginTitle: {
+  cardholder: {
+    width: width*.7,
+    height: width*.7/2,
+    flexDirection: 'column',
+    borderWidth: 1
+  },
+  card: {
+    flex: 1,
+    backgroundColor: '#ef5350',
+    shadowOffset: {width: 3, height: 3},
+    shadowOpacity: .4,
+    shadowRadius: 3
+  },
+  title: {
+    fontSize: width/5,
+    fontFamily: "Roboto-Medium",
+    position: 'absolute',
+    left: -width*.13,
+    top: -width*.1
+  },
+  titleContainer: {
     flex: 70,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  loginTitle: {
+    fontSize: 50
   },
   registerTitle: {
     flex: 50,

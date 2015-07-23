@@ -9,7 +9,8 @@ var {
   	Text,
 	View,
 	TextInput,
-	Navigator
+	Navigator,
+	AlertIOS
 } = React;
 
 class LoginView extends React.Component{
@@ -18,24 +19,42 @@ class LoginView extends React.Component{
 	}
 
 	_goLogin(){
-		this.props.navigator.push({id: 'LoginOnly', sceneConfig: Navigator.SceneConfigs.FloatFromLeft})
+		this.props.navigator.push({id: 'LoginOnly', name: "Login", sceneConfig: Navigator.SceneConfigs.FloatFromLeft})
 	}
 
 	_goRegister(){
-		this.props.navigator.push({id: 'RegisterOnly', sceneConfig: Navigator.SceneConfigs.FloatFromLeft})
+		this.props.navigator.push({id: 'RegisterOnly', name: "Register", sceneConfig: Navigator.SceneConfigs.FloatFromLeft})
 	}
-
-	//<Text style={styles.title}>AdMi</Text>
 
 	render(){
 		var styles=this.props.styles
 		return(
 			<View style={styles.container}>
 				<View style={styles.titlePage}>
-					<Tiles styles={styles}/>
+					<View style={styles.cardholder}>
+						<View style={styles.card}>
+						</View>
+						<Text style={styles.title}>AdMi</Text>
+					</View>
 				</View>
-				<Swiper styles={styles} color={"#ddd"} innerText={"Swipe to Login"} swipe_callback={this._goLogin.bind(this)}/>
-				<Swiper styles={styles} color={"#bbb"} innerText={"Swipe to Register"} swipe_callback={this._goRegister.bind(this)}/>
+				<Swiper 
+					backRoute={'Login'} 
+					forwardRoute={'Login'} 
+					styles={styles} 
+					color={"#DFD2F6"} 
+					innerText={"Swipe to Login"} 
+					callback={this._goLogin.bind(this)}
+					callback_back={this._goLogin.bind(this)}
+				/>
+				<Swiper 
+					backRoute={'Register'} 
+					forwardRoute={'Register'} 
+					styles={styles} 
+					color={"#BAA1E4"} 
+					innerText={"Swipe to Register"} 
+					callback={this._goRegister.bind(this)}
+					callback_back={this._goRegister.bind(this)}
+				/>
 			</View>
 		)
 	}

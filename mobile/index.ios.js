@@ -32,7 +32,7 @@ class AppNavigation extends React.Component{
     // test if user is already logged in, navigate to other screen
     state.user().then((data)=> {
         if(data){
-          this.refs.navigator.replace({id: "ProximityList", name: "People Near You"})
+          this.refs.navigator.replace({id: "ProximityList", name: "Users Near You"})
         } else{
           this.refs.navigator.replace({id: "LoginView"})
         }
@@ -69,7 +69,7 @@ class AppNavigation extends React.Component{
       <Navigator
         ref="navigator"
         style={styles.navigator}
-        initialRoute={{id: "LoginView"}}
+        initialRoute={{id: "LoginView", name: "Login"}}
         renderScene = {(route, navigator) => this._renderScene(route, navigator)}
         configureScene={(route) => {
           if (route.sceneConfig) {

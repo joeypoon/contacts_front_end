@@ -8,7 +8,8 @@ var {
   Text,
   View,
   TextInput,
-  Navigator
+  Navigator,
+  AlertIOS
 } = React;
 
 class RegisterOnly extends React.Component{
@@ -32,12 +33,16 @@ class RegisterOnly extends React.Component{
 			})
 			.catch((e) => {
 				console.log(e)
-				// AlertIOS.alert('Signup Failed', e)
+				AlertIOS.alert('Signup Failed', e)
 			})
   	}
 
   	_goLogin(){
-		this.props.navigator.replace({id: "LoginOnly", sceneConfig: Navigator.SceneConfigs.FloatFromBottom})
+		this.props.navigator.replace({id: "LoginOnly", name: "Login", sceneConfig: Navigator.SceneConfigs.FloatFromBottom})
+	}
+
+	_goHome(){
+		this.props.navigator.popToTop()
 	}
 
 	render(){
@@ -76,7 +81,15 @@ class RegisterOnly extends React.Component{
 					onBlur={() => this.setState({keyboard: false})}
 				/>
 				<Text onPress={this._goLogin.bind(this)}>Already an existing user?</Text>
-				<Swiper styles={styles} innerText={"Swipe to Register"} swipe_callback={this._registerUser.bind(this)}/>
+				<Swiper 
+					backRoute={'Home Screen'} 
+					forwardRoute={'Your Profile'} 
+					styles={styles} 
+					color={"#bbb"} 
+					innerText={"Swipe to Register"} 
+					callback={this._registerUser.bind(this)}
+					callback_back={this._goHome.bind(this)}
+				/>
 			</View>
 		)
 	}

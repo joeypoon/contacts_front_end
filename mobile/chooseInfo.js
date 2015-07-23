@@ -12,7 +12,8 @@ var {
   Text,
   View,
   TouchableWithoutFeedback,
-  PanResponder
+  PanResponder,
+  AlertIOS
 } = React;
 
 class ChooseInfo extends React.Component{
@@ -53,7 +54,6 @@ class ChooseInfo extends React.Component{
 	}
 
 	_checkUser(){
-		console.log('checking user')
 		state.outbound_user().then((outbound_id) => this._makeRequest(outbound_id))
 	}
 
@@ -65,13 +65,19 @@ class ChooseInfo extends React.Component{
 	    		this.props.navigator.push({id: "ProximityList"})
 	    	})
 	    	.catch((e) => {
-	    		console.log(e)
-		    	// AlertIOS.alert('Request failed', e)
+		    	AlertIOS.alert('Request failed', e)
 		    })
+	}
+
+	_goBack(){
+		this.props.navigator.pop()
 	}
 
 	render(){
 		var styles = this.props.styles
+		var routes = this.props.navigator.getCurrentRoutes(),
+			this_route_index = routes.length-1,
+			last_route = routes[this_route_index-1]
 		return(
 			<View style={styles.container}>
 				<View style={styles.header}>
@@ -163,7 +169,15 @@ class ChooseInfo extends React.Component{
 						</View>
 					}
 				</View>
-				<Swiper styles={styles} innerText={"Swipe to send request"} swipe_callback={this._checkUser.bind(this)}/>
+				<Swiper 
+					backRoute={last_route.name} 
+					forwardRoute={'Users Near You'} 
+					styles={styles} 
+					color={"#DFD2F6"} 
+					innerText={"Swipe to Share"} 
+					callback={this._checkUser.bind(this)}
+					callback_back={this._goBack.bind(this)}
+				/>
 			</View> 
 		)
 	}
