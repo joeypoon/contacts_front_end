@@ -91,7 +91,7 @@ class ChooseInfo extends React.Component{
 			<View style={styles.container}>
 				<View style={styles.topChooseInfo}>
 					<View style={styles.nameAndCompany}>
-						<Text style={styles.name}>{this.state.name}</Text>
+						<Text style={styles.nameTop}>{this.state.name}</Text>
 						<Text style={styles.company}>{this.state.company}</Text>
 					</View>
 					<View style={styles.instructions}>

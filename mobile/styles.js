@@ -139,7 +139,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#50A5A9'
   },
-  name: {
+  nameTop: {
     fontSize: 50,
     fontFamily: 'Roboto-Medium',
     color: 'white' 
@@ -213,7 +213,7 @@ var styles = StyleSheet.create({
     flex: 2,
     fontSize: 30,
     fontFamily: 'Roboto-Medium',
-    color: 'white'
+    color: '#198085'
   },
   companyInput: {
     flex: 1,
@@ -292,6 +292,11 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  menuTitle: {
+    fontSize: 20,
+    fontFamily: 'Roboto-Bold',
+    color: '#0C6468'
+  },
   menuLogo: {
     width: 30,
     height: 30
@@ -311,12 +316,12 @@ var styles = StyleSheet.create({
   },
   menu: {
     width: width/2,
-    height: height*.6,
+    height: height*.92,
     flexDirection: 'column',
     position: 'absolute',
     top: 0,
     left: width,
-    backgroundColor: '#efefef'
+    backgroundColor: '#83CACD'
   },
   showMenu: {
     transform: [{translateX: -width/2}]
@@ -326,7 +331,8 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderLeftWidth: 1
+    borderLeftWidth: 1,
+    borderColor: '#50A5A9'
   },
   menuVisible: {
     transform: [{rotate: '90deg'}]
@@ -362,9 +368,11 @@ var styles = StyleSheet.create({
   image: {
     height: 50,
     width: 50,
-    backgroundColor: '#333',
+    backgroundColor: 'white',
     borderRadius: 25,
-    margin: 7
+    margin: 7,
+    borderWidth: 1,
+    borderColor: '#198085'
   },
   homeInfoContainer: {
     flex: 70,

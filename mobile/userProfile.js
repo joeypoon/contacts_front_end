@@ -19,98 +19,6 @@ class UserProfileBody extends React.Component{
 		super(props)
 	}
 
-	// <View style={styles.bodyWithSwiper}>
-	// 			<View style={styles.topProfileInfo}>
-	// 				<View style={[styles.topSection, {alignItems: 'center'}]}>
-	// 					<Image 
-	// 						style={styles.profilePic} 
-	// 						source={{uri: `${parent.state.avatar}`}} 
-	// 					/>
-	// 				</View>
-	// 			<View style={styles.infoContainer}>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Name:</Text>
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Name'
-	// 						value={parent.state.name}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Email:</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Email' 
-	// 						value={parent.state.email}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Company:</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Company' 
-	// 						value={parent.state.company}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Phone:</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Phone' 
-	// 						value={parent.state.phone}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>LinkedIn</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share LinkedIn' 
-	// 						value={parent.state.linkedin}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Facebook</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Facebook' 
-	// 						value={parent.state.facebook}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Twitter:</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Twitter' 
-	// 						value={parent.state.twitter}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Instagram:</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Instagram' 
-	// 						value={parent.state.instagram}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Github:</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Github' 
-	// 						value={parent.state.github}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 				<View style={styles.inputHolder}>
-	// 					<Text style={styles.label}>Site:</Text>	
-	// 					<TextInput style={styles.input} 
-	// 						placeholder='Did not share Site' 
-	// 						value={parent.state.site}
-	// 						editable={false}
-	// 					/>
-	// 				</View>
-	// 			</View>
-	// 		</View>
-
 	render(){
 		var parent=this.props.parent
 		var styles=this.props.styles
@@ -333,21 +241,15 @@ class UserProfile extends React.Component{
 		this.props.navigator.pop()
 	}
 
-	_deleteUser(){
-		console.log('insert function to delete user from contacts')
-		this.props.navigator.pop()
-	}
-
 	render(){
 		var styles = this.props.styles
 		var routes = this.props.navigator.getCurrentRoutes(),
 			this_route_index = routes.length-1,
 			last_route = routes[this_route_index-1]
-		console.log('rendering this guy\'s profile')
 		return(
 			<View style={styles.container}>
 				<NavigationBarWithoutSearch styles={styles} route={this.props.route} parent={this}/>
-				<UserProfileBody styles={styles} parent={this}/>
+				<UserProfileBody navigator={this.props.navigator} styles={styles} parent={this}/>
 				<Swiper 
 					backRoute={last_route.name} 
 					forwardRoute={last_route.name} 

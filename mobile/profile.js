@@ -230,7 +230,10 @@ class ProfileView extends React.Component{
 	}
 
 	componentDidMount(){
-		state.user().then((data) => this.setState(data))
+		state.user().then((data) => {
+			this.setState(data)
+			this.refs.ProfileBody.temps = data
+		})
   	}
 
 	_updateInfo(){
@@ -265,11 +268,9 @@ class ProfileView extends React.Component{
 			last_route = routes[this_route_index-1]
 		return(
 			<View style={styles.navigator}>
-		        <View style={styles.backgroundColor}>
-		        </View>
 				<View style={styles.container}>
 					<NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
-					<ProfileBody styles={styles} parent={this} navigator={this.props.navigator}/>
+					<ProfileBody ref="ProfileBody" styles={styles} parent={this} navigator={this.props.navigator}/>
 					<Swiper 
 						backRoute={last_route.id === "RegisterOnly" ? "Users Near You" : last_route.name} 
 						forwardRoute={'Users Near You'} 
