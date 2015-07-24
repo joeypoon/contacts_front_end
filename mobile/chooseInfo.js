@@ -53,9 +53,13 @@ class ChooseInfo extends React.Component{
   	}
 
 	_toggle(key){
-		var newState = {}
-		newState[key] = !this.state[key]
-		this.setState(newState)
+		var bool=key[0]
+		var name=key[1]
+		if(this.state[name]){
+			var newState = {}
+			newState[bool] = !this.state[bool]
+			this.setState(newState)
+		}
 	}
 
 	_checkUser(){
@@ -96,31 +100,31 @@ class ChooseInfo extends React.Component{
 				</View>
 				<View style={styles.bottomChooseInfo}>
 					<View style={styles.tileRow}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_email')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_email', 'email'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_email && styles.selected]}>
 									<Image 
-										style={[styles.tileImage, {width: width/3*.7, height: width/3*.7}]} 
+										style={[styles.tileImage, {width: width/3*.7, height: width/3*.7}, this.state.bool_email && styles.highlight]} 
 										source={require('image!email')}
 									/>
 								</View>
 							</View>
 						</TouchableWithoutFeedback>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_phone')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_phone', 'phone'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_phone && styles.selected]}>
 									<Image 
-										style={[styles.tileImage, {width: width/3*.9, height: width/3*.9}]} 
+										style={[styles.tileImage, {width: width/3*.9, height: width/3*.9}, this.state.bool_phone && styles.highlight]} 
 										source={require('image!phone')}
 									/>
 								</View>
 							</View>
 						</TouchableWithoutFeedback>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_linkedin')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_linkedin', 'linkedin'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_linkedin && styles.selected]}>
 									<Image 
-										style={styles.tileImage} 
+										style={[styles.tileImage, this.state.bool_linkedin && styles.highlight]} 
 										source={require('image!linkedin')}
 									/>
 								</View>
@@ -128,31 +132,31 @@ class ChooseInfo extends React.Component{
 						</TouchableWithoutFeedback>
 					</View>
 					<View style={styles.tileRow}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_facebook')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_facebook', 'facebook'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_facebook && styles.selected]}>
 									<Image 
-										style={styles.tileImage} 
+										style={[styles.tileImage, this.state.bool_facebook && styles.highlight]} 
 										source={require('image!facebook')}
 									/>
 								</View>
 							</View>
 						</TouchableWithoutFeedback>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_twitter')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_twitter', 'twitter'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_twitter && styles.selected]}>
 									<Image 
-										style={styles.tileImage} 
+										style={[styles.tileImage, this.state.bool_twitter && styles.highlight]} 
 										source={require('image!twitter')}
 									/>
 								</View>
 							</View>
 						</TouchableWithoutFeedback>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_skype')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_skype', 'skype'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_skype && styles.selected]}>
 									<Image 
-										style={[styles.tileImage, {width: width/3*.7, height: width/3*.7}]} 
+										style={[styles.tileImage, {width: width/3*.7, height: width/3*.7}, this.state.bool_skype && styles.highlight]} 
 										source={require('image!skype')}
 									/>
 								</View>
@@ -160,31 +164,31 @@ class ChooseInfo extends React.Component{
 						</TouchableWithoutFeedback>
 					</View>
 					<View style={styles.tileRow}>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_instagram')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_instagram', 'instagram'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_instagram && styles.selected]}>
 									<Image 
-										style={[styles.tileImage, {width: width/3*.7, height: width/3*.7}]} 
+										style={[styles.tileImage, {width: width/3*.7, height: width/3*.7}, this.state.bool_instagram && styles.highlight]} 
 										source={require('image!instagram')}
 									/>
 								</View>
 							</View>
 						</TouchableWithoutFeedback>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_github')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_github', 'github'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_github && styles.selected]}>
 									<Image 
-										style={styles.tileImage} 
+										style={[styles.tileImage, this.state.bool_github && styles.highlight]} 
 										source={require('image!github')}
 									/>
 								</View>
 							</View>
 						</TouchableWithoutFeedback>
-						<TouchableWithoutFeedback onPress={this._toggle.bind(this, 'bool_site')}>
+						<TouchableWithoutFeedback onPress={this._toggle.bind(this, ['bool_site', 'site'])}>
 							<View style={styles.tile}>
 								<View style={[styles.backgroundImage, this.state.bool_site && styles.selected]}>
 									<Image 
-										style={[styles.tileImage, {width: width/3*.9, height: width/3*.9}]} 
+										style={[styles.tileImage, {width: width/3*.9, height: width/3*.9}, this.state.bool_site && styles.highlight]} 
 										source={require('image!site')}
 									/>
 								</View>

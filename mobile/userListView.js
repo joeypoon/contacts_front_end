@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native'),
-    NavigationBar = require('./navigationBar'),
+    NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
     Menu = require('./menu'),
     SwipeableElement = require('./swipeableElement'),
     LoadingView = require('./loadingView'),
@@ -225,7 +225,7 @@ class UserListView extends React.Component{
         swipeLeftImageColor={'#C4F071'}
         swipeRightBackgroundColor={'#0C6468'}
         swipeLeftBackgroundColor={'#0C6468'}
-        color={rowId%2===1 ? '#83CACD' : '#83CACD'}
+        color={rowId%2===1 ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, .6)'}
         swipeRightTitle={this._leftTitle.call(this, user)}
         swipeLeftTitle={this._rightTitle.call(this, user)}
         onSwipeRight={this._handleSwipeUser.bind(this, user)}
@@ -247,7 +247,7 @@ class UserListView extends React.Component{
           <Image style={styles.listLogo} source={require('image!connect')}/>
         </View>
         <View style={styles.container}>
-          <NavigationBar styles={styles} parent={this} route={this.props.route}/>
+          <NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
           <View style={styles.bodyWithoutSwiper}>
           {this.state.dataSource._cachedRowCount > 0 &&  
             <ListView
@@ -259,7 +259,7 @@ class UserListView extends React.Component{
           }
           {this.state.dataSource._cachedRowCount === 0 && 
             <View style={styles.noData}>
-              <Text>No Contacts Available</Text>
+              <Text style={styles.noUsers}>No Contacts Available</Text>
             </View>
           } 
             <Menu styles={styles} navigator={this.props.navigator} parent={this}/>

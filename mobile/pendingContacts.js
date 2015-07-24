@@ -25,9 +25,15 @@ class PendingContacts extends React.Component{
 	render(){
 		var styles = this.props.styles
 		return(
-			<TabBarIOS style={styles.tabBar} selectedTab={this.state.selectedTab}>
+			<TabBarIOS 
+				style={styles.tabBar} 
+				selectedTab={this.state.selectedTab}
+				barTintColor={'#efefef'}
+			>
 				<TabBarIOS.Item
 					title="Inbound"
+					// icon={require('image!email')}
+					// iconSize={32}
 					selected={this.state.selectedTab === 'inbound'}
 					onPress={() => 
 						this.setState({
@@ -39,6 +45,8 @@ class PendingContacts extends React.Component{
 				</TabBarIOS.Item>
 				<TabBarIOS.Item
 					title="Outbound"
+					// icon={require('image!email')}
+					// iconSize={32}
 					selected={this.state.selectedTab === 'outbound'}
 					onPress={() => 
 						this.setState({

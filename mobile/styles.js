@@ -73,7 +73,7 @@ var styles = StyleSheet.create({
     fontFamily: "Roboto-Medium",
     position: "absolute",
     color: '#ACDF4A',
-    left: width*.7*.6,
+    left: width*.7*.5,
     top: width*.7*.82
   },
   bodyWithOneSwiper: {
@@ -101,7 +101,8 @@ var styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium'
   },
   inputHolder: {
-    flex: 2
+    flex: 2,
+    marginLeft: 15
   },
   inputEntry: {
     fontSize: 30,
@@ -136,30 +137,33 @@ var styles = StyleSheet.create({
     flex: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'orange'
+    backgroundColor: '#50A5A9'
   },
   name: {
     fontSize: 50,
-    fontFamily: 'Roboto-Medium' 
+    fontFamily: 'Roboto-Medium',
+    color: 'white' 
   },
   company: {
     fontSize: 20,
-    fontFamily: 'Roboto-Light'
+    fontFamily: 'Roboto-Light',
+    color: 'white'
   },
   directions: {
     fontSize: 20,
-    fontFamily: 'Roboto-Bold'
+    fontFamily: 'Roboto-Bold',
+    color: 'white'
   },
   instructions: {
     flex: 20,
-    backgroundColor: 'green',
+    backgroundColor: '#318C90',
     justifyContent: 'center',
     alignItems: 'center'
   },
   bottomChooseInfo: {
     flex: 3,
     flexDirection: 'column',
-    backgroundColor: 'yellow'
+    backgroundColor: '#83CACD'
   },
   tileRow: {
     flex: 1,
@@ -171,7 +175,11 @@ var styles = StyleSheet.create({
     borderLeftWidth: 1
   },
   selected: {
-    backgroundColor: 'red'
+    backgroundColor: '#0C6468'
+  },
+  highlight: {
+    tintColor: '#C4F071',
+    opacity: .8
   },
   backgroundImage: {
     position: 'absolute',
@@ -204,7 +212,8 @@ var styles = StyleSheet.create({
   nameInput: {
     flex: 2,
     fontSize: 30,
-    fontFamily: 'Roboto-Medium'
+    fontFamily: 'Roboto-Medium',
+    color: 'white'
   },
   companyInput: {
     flex: 1,
@@ -215,7 +224,7 @@ var styles = StyleSheet.create({
     height: 120,
     width: 120,
     borderWidth: 2,
-    borderColor: 'blue',
+    borderColor: '#318C90',
     borderRadius: 60
   },
   bottomProfileInfo: {
@@ -231,7 +240,8 @@ var styles = StyleSheet.create({
   },
   infoLogo: {
     width: 30,
-    height: 30
+    height: 30,
+    opacity: .4
   },
   imageHolder: {
     flex: 1,
@@ -244,7 +254,8 @@ var styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontSize: 14
+    fontSize: 14,
+    fontFamily: 'Roboto-medium'
   },
   bodyWithoutSwiper: {
     flex: 92,
@@ -262,31 +273,36 @@ var styles = StyleSheet.create({
     paddingLeft: 30
   },
   loginInput: {
-    flex: 10
+    flex: 10,
+    fontFamily: 'Roboto-medium'
   },
   navBarContainer: {
     flexDirection: 'row',
     flex: 8,
     backgroundColor: '#fff',
+    paddingTop: 10,
     borderBottomWidth: 2
   },
   logo: {
-    width: 40,
-    height: 40,
-    flexDirection: 'column'
+    flex: 1
   },
   menuInitiator: {
-    width: width/10,
-    height: width/10,
-    marginTop: 15
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  menuLogo: {
+    width: 30,
+    height: 30
   },
   navNameContainer: {
-    flex: 75,
+    flex: 4,
     justifyContent: 'center',
     alignItems: 'center'
   },
   navName: {
-    fontSize: 20
+    fontSize: 18,
+    fontFamily: 'Roboto-Medium'
   },
   navInput: {
     fontSize: 14,
@@ -312,7 +328,6 @@ var styles = StyleSheet.create({
     borderLeftWidth: 1
   },
   menuVisible: {
-    opacity: .7,
     transform: [{rotate: '90deg'}]
   },
   imageContainer: {
@@ -401,8 +416,10 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  bottomBarTag: {
-    tintColor: 'red'
+  noUsers: {
+    fontSize: 30,
+    fontFamily: 'Roboto-Medium',
+    color: 'white'
   }
 });
 
