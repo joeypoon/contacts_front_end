@@ -316,7 +316,7 @@ var styles = StyleSheet.create({
   },
   menu: {
     width: width/2,
-    height: height*.92,
+    height: height*.80,
     flexDirection: 'column',
     position: 'absolute',
     top: 0,

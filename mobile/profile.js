@@ -130,6 +130,8 @@ class ProfileBody extends React.Component{
 						</View>
 						<View style={styles.updateEntry}>
 							<TextInput style={styles.input} 
+								onFocus={() => parent.setState({keyboard: true})}
+								onBlur={() => parent.setState({keyboard: false})}
 								placeholder='Twitter' 
 								onChangeText={(text) => this.temps.twitter = text}
 								onEndEditing={() => parent.setState({twitter: this.temps.twitter})} 
@@ -146,6 +148,8 @@ class ProfileBody extends React.Component{
 						</View>
 						<View style={styles.updateEntry}>
 							<TextInput style={styles.input} 
+								onFocus={() => parent.setState({keyboard: true})}
+								onBlur={() => parent.setState({keyboard: false})}
 								placeholder='Skype' 
 								onChangeText={(text) => this.temps.skype = text}
 								onEndEditing={() => parent.setState({skype: this.temps.skype})} 
@@ -162,6 +166,8 @@ class ProfileBody extends React.Component{
 						</View>
 						<View style={styles.updateEntry}>
 							<TextInput style={styles.input} 
+								onFocus={() => parent.setState({keyboard: true})}
+								onBlur={() => parent.setState({keyboard: false})}
 								placeholder='Instagram' 
 								onChangeText={(text) => this.temps.instagram = text}
 								onEndEditing={() => parent.setState({instagram: this.temps.instagram})} 
@@ -178,6 +184,8 @@ class ProfileBody extends React.Component{
 						</View>
 						<View style={styles.updateEntry}>
 							<TextInput style={styles.input} 
+								onFocus={() => parent.setState({keyboard: true})}
+								onBlur={() => parent.setState({keyboard: false})}
 								placeholder='Github' 
 								onChangeText={(text) => this.temps.github = text}
 								onEndEditing={() => parent.setState({github: this.temps.github})} 
@@ -194,6 +202,8 @@ class ProfileBody extends React.Component{
 						</View>
 						<View style={styles.updateEntry}>
 							<TextInput style={styles.input} 
+								onFocus={() => parent.setState({keyboard: true})}
+								onBlur={() => parent.setState({keyboard: false})}
 								placeholder='Site' 
 								onChangeText={(text) => this.temps.site = text}
 								onEndEditing={() => parent.setState({site: this.temps.site})} 
@@ -225,7 +235,8 @@ class ProfileView extends React.Component{
 			github: '',
 			site: '',
 			avatar: '',
-			menuVisible: false
+			menuVisible: false,
+			keyboard: false
 		}
 	}
 
@@ -268,7 +279,7 @@ class ProfileView extends React.Component{
 			last_route = routes[this_route_index-1]
 		return(
 			<View style={styles.navigator}>
-				<View style={styles.container}>
+				<View style={[styles.container, !!this.state.keyboard && styles.keyboardView]}>
 					<NavigationBarWithoutSearch styles={styles} parent={this} route={this.props.route}/>
 					<ProfileBody ref="ProfileBody" styles={styles} parent={this} navigator={this.props.navigator}/>
 					<Swiper 
