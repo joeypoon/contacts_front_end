@@ -2,7 +2,6 @@
 
 var React = require('react-native'),
 	Swiper = require('./swiper'),
-	Tiles = require('./tiles'),
 	state = require('./state')
 
 var {

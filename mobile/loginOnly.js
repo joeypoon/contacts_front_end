@@ -2,6 +2,7 @@
 
 var React = require('react-native'),
 	Swiper = require('./swiper'),
+	LoadingView = require('./loadingView'),
 	state = require('./state')
 var {
   Text,
@@ -19,7 +20,7 @@ class LoginOnly extends React.Component{
 		this.state = {
       		email: '',
       		password: '',
-      		loading: false,
+      		loading: false
 		}
 	}
 
@@ -67,59 +68,53 @@ class LoginOnly extends React.Component{
 		var routes = this.props.navigator.getCurrentRoutes(),
 			this_route_index = routes.length-1,
 			last_route = routes[this_route_index-1]
-		return(
-			<View style={styles.navigator}>
-				<View style={styles.backgroundColor}>
-					<Image style={styles.middleLogo} source={require('image!connect')}/>
-				</View>
-				{!this.state.loading &&
-					<View style={styles.container}>
-						<View style={styles.bodyWithOneSwiper}>
-							<View style={styles.placeholderUpper}>
-							</View>
-							<View style={styles.middleContainer}>
-								<View style={styles.loginHolder}>
-									<Text style={styles.authHeader}>Login</Text>
-								</View>
-								<View style={styles.inputHolder}>
-									<TextInput 
-										style={styles.inputEntry}
-										onChangeText={(text) => this.setState({email: text})} 
-										placeholder='Enter Email'
-									/>
-									<TextInput 
-										style={styles.inputEntry} 
-										secureTextEntry={true}
-										onChangeText={(text) => this.setState({password: text})} 
-										placeholder='Enter Password'
-									/>
-								</View>
-							</View>
-							<View style={styles.placeholderBottom}>
-							</View>
-						</View>
-						<Swiper 
-							backRoute={'Home Screen'} 
-							forwardRoute={'Users Near You'} 
-							styles={styles} 
-							innerText={"Swipe to Login"} 
-							callback={this._loginUser.bind(this)}
-							callback_back={this._goHome.bind(this)}
-						/>
+		if(!this.state.loading){
+			return(
+				<View style={styles.navigator}>
+					<View style={styles.backgroundColor}>
+						<Image style={styles.middleLogo} source={require('image!connect')}/>
 					</View>
-				}
-				{!!this.state.loading &&
-					<View style={styles.container}>
-						<View style={styles.centeredContainer}>
-							<Image 
-								style={[styles.middleLogo]} 
-								source={require('image!connect')}
+						<View style={styles.container}>
+							<View style={styles.bodyWithOneSwiper}>
+								<View style={styles.placeholderUpper}>
+								</View>
+								<View style={styles.middleContainer}>
+									<View style={styles.loginHolder}>
+										<Text style={styles.authHeader}>Login</Text>
+									</View>
+									<View style={styles.inputHolder}>
+										<TextInput 
+											style={styles.inputEntry}
+											onChangeText={(text) => this.setState({email: text})} 
+											placeholder='Enter Email'
+										/>
+										<TextInput 
+											style={styles.inputEntry} 
+											secureTextEntry={true}
+											onChangeText={(text) => this.setState({password: text})} 
+											placeholder='Enter Password'
+										/>
+									</View>
+								</View>
+								<View style={styles.placeholderBottom}>
+								</View>
+							</View>
+							<Swiper 
+								backRoute={'Home Screen'} 
+								forwardRoute={'Users Near You'} 
+								styles={styles} 
+								innerText={"Swipe to Login"} 
+								callback={this._loginUser.bind(this)}
+								callback_back={this._goHome.bind(this)}
 							/>
 						</View>
-					</View>
-				}
-			</View>
-		)
+				</View>
+			)
+		} else{
+			return(
+				<LoadingView styles={styles}/>
+			)
+		}
 	}
 }
 

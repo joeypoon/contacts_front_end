@@ -4,6 +4,7 @@ var React = require('react-native'),
     NavigationBar = require('./navigationBar'),
     Menu = require('./menu'),
     SwipeableElement = require('./swipeableElement'),
+    LoadingView = require('./loadingView'),
     state = require('./state')
 
 var {
@@ -196,11 +197,7 @@ class UserListView extends React.Component{
   _renderLoadingView() {
     var styles=this.props.styles
     return (
-      <View style={styles.loadingContainer}>
-        <Text>
-          Loading users...
-        </Text>
-      </View>
+      <LoadingView styles={styles}/>
     )
   }
 

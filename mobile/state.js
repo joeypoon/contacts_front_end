@@ -130,7 +130,7 @@ function register(name, email, password, password_confirmation){
 	})
 }
 
-function fetch_profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site){
+function fetch_profileUpdate(name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site){
 	return state.user()
 		.then((user) => user.id)
 		.then((user_id) => {
@@ -150,6 +150,7 @@ function fetch_profileUpdate(name, email, phone, company, linkedin, facebook, tw
 						linkedin: linkedin,
 						facebook: facebook,
 						twitter: twitter,
+						skype: skype,
 						instagram: instagram,
 						github: github,
 						site: site
@@ -162,8 +163,8 @@ function fetch_profileUpdate(name, email, phone, company, linkedin, facebook, tw
 		})
 }
 
-function profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site){
-	return fetch_profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site)
+function profileUpdate(name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site){
+	return fetch_profileUpdate(name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site)
 }
 
 function fetch_proximityList(data_source){
@@ -229,7 +230,7 @@ function outboundContacts(data_source){
 	return fetch_outboundContacts(data_source)
 }
 
-function fetch_requestUser(outbound_id, name, email, phone, company, linkedin, facebook, twitter, instagram, github, site){
+function fetch_requestUser(outbound_id, name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site){
 	return state.user()
 		.then((user) => user.id)
 		.then((user_id) => {
@@ -248,6 +249,7 @@ function fetch_requestUser(outbound_id, name, email, phone, company, linkedin, f
 						linkedin: linkedin,
 						facebook: facebook,
 						twitter: twitter,
+						skype: skype,
 						instagram: instagram,
 						github: github,
 						site: site
@@ -259,8 +261,8 @@ function fetch_requestUser(outbound_id, name, email, phone, company, linkedin, f
 		})
 }
 
-function requestUser(outbound_id, name, email, phone, company, linkedin, facebook, twitter, instagram, github, site){
-	return fetch_requestUser(outbound_id, name, email, phone, company, linkedin, facebook, twitter, instagram, github, site)
+function requestUser(outbound_id, name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site){
+	return fetch_requestUser(outbound_id, name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site)
 }
 
 function fetch_contactList(data_source){
@@ -303,7 +305,7 @@ function deleteContact(other_id, data_source){
 	return state.user()
 		.then((user) => user.id)
 		.then((user_id) => {
-			return fetch(`${REMOTE}/contacts/${other_id}`, {
+			return fetch(`${REMOTE}/contacts/${user_id}/${other_id}`, {
 				method: 'delete'
 			})
 		})

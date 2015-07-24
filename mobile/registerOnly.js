@@ -2,6 +2,7 @@
 
 var React = require('react-native'),
 	Swiper = require('./swiper'),
+	LoadingView = require('./loadingView'),
 	state = require('./state')
 
 var {
@@ -21,19 +22,22 @@ class RegisterOnly extends React.Component{
       		newEmail: '',
 			newPassword: '',
 			newPassword_confirmation: '',
-			keyboard: false
+			keyboard: false,
+			loading: false
 		}
 	}
 
 	_registerUser(){
 		var {newName, newEmail, newPassword, newPassword_confirmation} = this.state
-		
+		this.setState({loading: true})
+
 		state.register(newName, newEmail, newPassword, newPassword_confirmation)
 			.then(() => {
+	    		this.setState({loading: false})
 				this.props.navigator.push({id: "ProfileView", name: "Profile"})
 			})
 			.catch((e) => {
-				console.log(e)
+	    		this.setState({loading: false})
 				AlertIOS.alert('Signup Failed', e)
 			})
   	}
@@ -54,12 +58,12 @@ class RegisterOnly extends React.Component{
 		var routes = this.props.navigator.getCurrentRoutes(),
 			this_route_index = routes.length-1,
 			last_route = routes[this_route_index-1]
-		return(
-			<View style={styles.navigator}>
-				<View style={styles.backgroundColor}>
-					<Image style={styles.middleLogo} source={require('image!connect')}/>
-				</View>
-				{!this.state.loading &&
+		if(!this.state.loading){
+			return(
+				<View style={styles.navigator}>
+					<View style={styles.backgroundColor}>
+						<Image style={styles.middleLogo} source={require('image!connect')}/>
+					</View>
 					<View style={styles.container}>
 						<View style={styles.bodyWithOneSwiper}>
 							<View style={styles.placeholderUpper}>
@@ -105,19 +109,13 @@ class RegisterOnly extends React.Component{
 							callback_back={this._goHome.bind(this)}
 						/>
 					</View>
-				}
-				{!!this.state.loading &&
-					<View style={styles.container}>
-						<View style={styles.centeredContainer}>
-							<Image 
-								style={[styles.loadingLogo]} 
-								source={require('image!connect')}
-							/>
-						</View>
-					</View>
-				}
-			</View>
-		)
+				</View>
+			)
+		} else{
+			return (
+				<LoadingView styles={styles}/>
+			)
+		}
 	}
 }
 

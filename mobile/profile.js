@@ -3,7 +3,10 @@ var React = require('react-native'),
 	NavigationBarWithoutSearch = require('./navigationBarWithoutSearch'),
 	Menu = require('./menu'),
 	Swiper = require('./swiper'),
-	state = require('./state')
+	state = require('./state'),
+	Dimensions = require('Dimensions')
+
+var {width, height, scale} = Dimensions.get('window')
 
 var {
 	CameraRoll,
@@ -146,6 +149,7 @@ class ProfileView extends React.Component{
 			linkedin: '',
 			facebook: '',
 			twitter: '',
+			skype: '',
 			instagram: '',
 			github: '',
 			site: '',
@@ -159,9 +163,9 @@ class ProfileView extends React.Component{
   	}
 
 	_updateInfo(){
-		var {name, email, phone, company, linkedin, facebook, twitter, instagram, github, site} = this.state
+		var {name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site} = this.state
 
-	    state.profileUpdate(name, email, phone, company, linkedin, facebook, twitter, instagram, github, site)
+	    state.profileUpdate(name, email, phone, company, linkedin, facebook, twitter, skype, instagram, github, site)
 	    	.then(() => {
 	    		this.props.navigator.push({id: "ProximityList", name: "Users Near You"})
 	    	})

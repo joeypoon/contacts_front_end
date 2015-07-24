@@ -127,12 +127,76 @@ var styles = StyleSheet.create({
     flex: 82,
     flexDirection: 'column'
   },
-  topProfileInfo: {
-    flex: 1.2,
+  topChooseInfo: {
+    flex: 2,
+    flexDirection: 'column',
     backgroundColor: 'red'
   },
-  bottomProfileInfo: {
+  nameAndCompany: {
+    flex: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'orange'
+  },
+  name: {
+    fontSize: 50,
+    fontFamily: 'Roboto-Medium' 
+  },
+  company: {
+    fontSize: 20,
+    fontFamily: 'Roboto-Light'
+  },
+  directions: {
+    fontSize: 20,
+    fontFamily: 'Roboto-Bold'
+  },
+  instructions: {
+    flex: 20,
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  bottomChooseInfo: {
+    flex: 3,
+    flexDirection: 'column',
+    backgroundColor: 'yellow'
+  },
+  tileRow: {
     flex: 1,
+    flexDirection: 'row'
+  },
+  tile: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderLeftWidth: 1
+  },
+  selected: {
+    backgroundColor: 'red'
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: width/3,
+    height: width/3,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  tileImage: {
+    width: width/3*.8,
+    height: width/3*.8,
+    opacity: .2
+  },
+  topProfileInfo: {
+    flex: 2,
+    flexDirection: 'column',
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  bottomProfileInfo: {
+    flex: 4,
+    flexDirection: 'column',
     backgroundColor: 'yellow'
   },
   bodyWithoutSwiper: {
