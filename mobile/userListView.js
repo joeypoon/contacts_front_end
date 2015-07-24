@@ -81,6 +81,7 @@ class UserListView extends React.Component{
       .then((res) => state.user_location(res))
       .then(() => state.proximityList(dataSource))
       .then((data) => this.setState(data))
+      .catch((...a) => console.log(...a))
   }
 
   _getInboundPendingContacts(){
@@ -96,19 +97,16 @@ class UserListView extends React.Component{
   }
 
   _selectUser(user){
-    console.log('I want to share with this guy')
     state.outbound_user(user.id)
     this.props.navigator.push({id: "ChooseInfo"})
   }
 
   _seeUserProfile(user){
-    console.log('See this guy\'s profile')
     state.connected_user(user.id)
     this.props.navigator.push({id: "UserProfile", name: `${user.name}'s Info`})
   }
 
   _shareBack(user){
-    console.log('Sharing my contact info back')
     state.outbound_user(user.id)
     this.props.navigator.push({id: "ChooseInfo"})
   }
@@ -133,18 +131,25 @@ class UserListView extends React.Component{
     var {dataSource} = this.state
     state.deleteContact(user.id, dataSource)
     .then((data) => this.setState(data))
+    .catch((e) => AlertIOS.alert('Delete Failed', e))
   }
 
   _denyRequest(user){
     var {dataSource} = this.state
     state.denyRequest(user.id, dataSource)
     .then((data) => this.setState(data))
+    .catch((e) => {
+      AlertIOS.alert('Deny Failed', e)
+    })
   }
 
   _cancelRequest(user){
     var {dataSource} = this.state
     state.cancelRequest(user.id, dataSource)
     .then((data) => this.setState(data))
+    .catch((e) => {
+      AlertIOS.alert('Cancel Failed', e)
+    })
   }
 
   _handleSwipeLeft(user){

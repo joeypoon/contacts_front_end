@@ -189,15 +189,62 @@ var styles = StyleSheet.create({
   },
   topProfileInfo: {
     flex: 2,
+    flexDirection: 'row'
+  },
+  topSection: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  mainInputs: {
+    flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'red',
-    justifyContent: 'center',
-    alignItems: 'center'
+    marginVertical: height/20,
+    marginRight: 5
+  },
+  nameInput: {
+    flex: 2,
+    fontSize: 30,
+    fontFamily: 'Roboto-Medium'
+  },
+  companyInput: {
+    flex: 1,
+    fontSize: 14,
+    fontFamily: 'Roboto-Light'
+  },
+  profilePic: {
+    height: 120,
+    width: 120,
+    borderWidth: 2,
+    borderColor: 'blue',
+    borderRadius: 60
   },
   bottomProfileInfo: {
     flex: 4,
     flexDirection: 'column',
-    backgroundColor: 'yellow'
+    marginBottom: height/30
+  },
+  updateInfoHolder: {
+    flex: 1,
+    flexDirection: 'row',
+    marginHorizontal: width/10,
+    marginVertical: height/100
+  },
+  infoLogo: {
+    width: 30,
+    height: 30
+  },
+  imageHolder: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 20
+  },
+  updateEntry: {
+    flex: 7
+  },
+  input: {
+    flex: 1,
+    fontSize: 14
   },
   bodyWithoutSwiper: {
     flex: 92,
@@ -213,10 +260,6 @@ var styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     paddingLeft: 30
-  },
-  input: {
-    fontSize: 14,
-    flex: 70
   },
   loginInput: {
     flex: 10
@@ -276,13 +319,6 @@ var styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  profilePic: {
-    height: 120,
-    width: 120,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 60
   },
   infoContainer: {
     flex: 5,

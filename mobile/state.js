@@ -50,7 +50,6 @@ function fetch_updateLocation(){
 
 	return Promise.all(promises)
 		.then((res) => {
-			console.log(res)
 			return fetch(`${REMOTE}/update.json`, {
 		        method: 'post',
 		        headers: {
@@ -157,7 +156,7 @@ function fetch_profileUpdate(name, email, phone, company, linkedin, facebook, tw
 		            }
 		        })
 		    }).then((response) => {
-		        if (response.status > 400) throw 'Could not update profile'
+		        if (response.status > 400) throw response
 		        return response.json()
 		    }).then((updatedInfo) => state.user(updatedInfo))
 		})
@@ -187,7 +186,6 @@ function proximityList(data_source){
 	console.log('FETCHING ONCE AGAIN')
 	return fetch_updateLocation()
 	.then(() => fetch_proximityList(data_source))
-    .catch((...a) => console.log(...a))
 }
 
 function fetch_inboundContacts(data_source){

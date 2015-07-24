@@ -128,10 +128,177 @@ class ProfileBody extends React.Component{
 		return (
 			<View style={styles.bodyWithSwiper}>
 				<View style={styles.topProfileInfo}>
+					<View style={[styles.topSection, {alignItems: 'center'}]}>
+						<Image 
+							style={styles.profilePic} 
+							source={{uri: `${parent.state.avatar}`}} 
+						/>
+					</View>
+					<View style={styles.topSection}>
+						<View style={styles.mainInputs}>
+							<TextInput style={styles.nameInput} 
+								placeholder='Name'
+								onChangeText={(text) => this.temps.name = text}
+								onEndEditing={() => parent.setState({name: this.temps.name})} 
+								value={parent.state.name}
+							/>
+							<TextInput style={styles.companyInput} 
+								placeholder='Company' 
+								onChangeText={(text) => this.temps.company = text}
+								onEndEditing={() => parent.setState({company: this.temps.company})} 
+								value={parent.state.company}
+							/>
+						</View>
+					</View>
 				</View>
 				<View style={styles.bottomProfileInfo}>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!email')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='Email' 
+								onChangeText={(text) => this.temps.email = text}
+								onEndEditing={() => parent.setState({email: this.temps.email})} 
+								value={parent.state.email}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!phone')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input}
+								placeholder='Phone' 
+								keyboardType='numeric'
+								onChangeText={(text) => this.temps.phone = text}
+								onEndEditing={() => parent.setState({phone: this.temps.phone})} 
+								value={parent.state.phone}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!linkedin')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='LinkedIn' 
+								onChangeText={(text) => this.temps.linkedin = text}
+								onEndEditing={() => parent.setState({linkedin: this.temps.linkedin})} 
+								value={parent.state.linkedin}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!facebook')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='Facebook' 
+								onChangeText={(text) => this.temps.facebook = text}
+								onEndEditing={() => parent.setState({facebook: this.temps.facebook})} 
+								value={parent.state.facebook}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!twitter')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='Twitter' 
+								onChangeText={(text) => this.temps.twitter = text}
+								onEndEditing={() => parent.setState({twitter: this.temps.twitter})} 
+								value={parent.state.twitter}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!skype')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='Skype' 
+								onChangeText={(text) => this.temps.skype = text}
+								onEndEditing={() => parent.setState({skype: this.temps.skype})} 
+								value={parent.state.skype}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!instagram')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='Instagram' 
+								onChangeText={(text) => this.temps.instagram = text}
+								onEndEditing={() => parent.setState({instagram: this.temps.instagram})} 
+								value={parent.state.instagram}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!github')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='Github' 
+								onChangeText={(text) => this.temps.github = text}
+								onEndEditing={() => parent.setState({github: this.temps.github})} 
+								value={parent.state.github}
+							/>
+						</View>
+					</View>
+					<View style={styles.updateInfoHolder}>
+						<View style={styles.imageHolder}>
+							<Image 
+								style={styles.infoLogo}
+								source={require('image!site')}
+							/>
+						</View>
+						<View style={styles.updateEntry}>
+							<TextInput style={styles.input} 
+								placeholder='Site' 
+								onChangeText={(text) => this.temps.site = text}
+								onEndEditing={() => parent.setState({site: this.temps.site})} 
+								value={parent.state.site}
+							/>
+						</View>
+					</View>
 				</View>
-				<Menu styles={styles} navigator={this.props.navigator} parent={parent}/>
+				<Menu styles={styles} navigator={this.props.navigator} parent={parent} />
 			</View>
 		)
 	}
