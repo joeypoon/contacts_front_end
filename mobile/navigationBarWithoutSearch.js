@@ -20,9 +20,6 @@ class NavigationBarWithoutSearch extends React.Component{
 		parent.setState({menuVisible: !parent.state.menuVisible})
 	}
 
-	//<TouchableWithoutFeedback onPress={this._toggleMenu.bind(this)}>
-	////</TouchableWithoutFeedback>
-
 	render(){
 		var route = this.props.route
 		var styles = this.props.styles

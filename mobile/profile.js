@@ -41,6 +41,7 @@ class ProfileBody extends React.Component{
 						<View style={styles.mainInputs}>
 							<TextInput style={styles.nameInput} 
 								placeholder='Name'
+								multiline={true}
 								onChangeText={(text) => this.temps.name = text}
 								onEndEditing={() => parent.setState({name: this.temps.name})} 
 								value={parent.state.name}

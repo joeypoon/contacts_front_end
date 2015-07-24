@@ -24,21 +24,6 @@ class LoginOnly extends React.Component{
 		}
 	}
 
-	//bounceValue: new Animated.Value(0)
-
-	// componentDidMount(){
-	// 	if (this.state.loading){
-	// 	    this.state.bounceValue.setValue(1.5)
-	// 	    Animated.spring(
-	// 	      this.state.bounceValue,
-	// 	      {
-	// 	        toValue: 0.8,
-	// 	        friction: 1,
-	// 	      }
-	// 	    ).start()
-	// 	}
-	// }
-
 	_loginUser(){
 		var {email, password} = this.state
 		this.setState({loading: true})
@@ -87,6 +72,9 @@ class LoginOnly extends React.Component{
 											style={styles.inputEntry}
 											onChangeText={(text) => this.setState({email: text})} 
 											placeholder='Enter Email'
+											textDecorationLine = 'underline'
+    										textDecorationColor = 'white'
+    										textDecorationStyle = 'solid'
 										/>
 										<TextInput 
 											style={styles.inputEntry} 

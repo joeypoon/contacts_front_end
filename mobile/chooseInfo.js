@@ -71,7 +71,7 @@ class ChooseInfo extends React.Component{
 		var {bool_name, bool_email, bool_phone, bool_company, bool_linkedin, bool_facebook, bool_twitter, bool_skype, bool_instagram, bool_github, bool_site} = this.state
 	    state.requestUser(outbound_id, bool_name, bool_email, bool_phone, bool_company, bool_linkedin, bool_facebook, bool_twitter, bool_skype, bool_instagram, bool_github, bool_site)
 	    	.then(() => {
-	    		this.props.navigator.push({id: "ProximityList"})
+	    		this.props.navigator.push({id: "ProximityList", name: 'Users Near You'})
 	    	})
 	    	.catch((e) => {
 		    	AlertIOS.alert('Request failed', e)

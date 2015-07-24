@@ -255,7 +255,8 @@ var styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 14,
-    fontFamily: 'Roboto-medium'
+    fontFamily: 'Roboto-medium',
+    color: '#0C6468'
   },
   bodyWithoutSwiper: {
     flex: 92,
@@ -371,12 +372,13 @@ var styles = StyleSheet.create({
     marginLeft: 15
   },
   name: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    marginBottom: 8
+    fontSize: 16,
+    marginBottom: 8,
+    fontFamily: "Roboto-Bold"
   },
   email: {
-    fontSize:11
+    fontSize:12,
+    fontFamily: "Roboto-Light"
   },
   listView: {
     flex: 1
@@ -417,7 +419,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
   noUsers: {
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: 'Roboto-Medium',
     color: 'white'
   }
